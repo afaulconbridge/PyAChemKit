@@ -52,4 +52,6 @@ Performance benchmarks can be automatically run with the command::
 
     make benchmarks
 
-
+Copyright
+=========
+This project is licensed under a modified-BSD license. See https://github.com/afaulconbridge/PyAChemKit/blob/master/COPYRIGHT
