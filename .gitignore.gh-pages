@@ -1,0 +1,10 @@
+#this is extra stuff this branch will ignor
+#defined in .git/config as
+#[local "gh-pages"]
+#	excludesfile = +.gitignore.gh-pages
+
+#ignroe all source files
+AChemKit/
+
+#ignore the makefile
+Makefile
