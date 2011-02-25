@@ -1,0 +1,16 @@
+#compiled python files
+*.pyc
+
+#temporary editor files
+*~
+
+#specific to PyAChemKit
+#final doc version
+AChemKit.pdf
+#documentation build directorys
+doc/html/
+doc/latex/
+#auto-generated documentation
+doc/autodoc/
+#sphinx internal caching
+doc/doctrees/
