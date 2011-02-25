@@ -1,0 +1,23 @@
+AChemKit.utils.simpledot
+========================
+
+.. automodule:: AChemKit.utils.simpledot
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      DictMixin
+      SimpleDot
+   
+   
+
+   
+   
+   

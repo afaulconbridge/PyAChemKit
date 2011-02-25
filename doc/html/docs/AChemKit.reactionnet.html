@@ -1,0 +1,221 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>AChemKit.reactionnet &mdash; AChemKit v0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="AChemKit v0.1 documentation" href="../index.html" />
+    <link rel="up" title="AChemKit" href="AChemKit.html" />
+    <link rel="next" title="AChemKit.randomnet" href="AChemKit.randomnet.html" />
+    <link rel="prev" title="AChemKit.tools.chem_to_pdf" href="AChemKit.tools.chem_to_pdf.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="AChemKit.randomnet.html" title="AChemKit.randomnet"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="AChemKit.tools.chem_to_pdf.html" title="AChemKit.tools.chem_to_pdf"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">AChemKit v0.1 documentation</a> &raquo;</li>
+          <li><a href="AChemKit.html" accesskey="U">AChemKit</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-AChemKit.reactionnet">
+<span id="achemkit-reactionnet"></span><h1>AChemKit.reactionnet<a class="headerlink" href="#module-AChemKit.reactionnet" title="Permalink to this headline">¶</a></h1>
+<p>Core for all ReactionNetwork classes</p>
+<p>Of particular note are the alternative constructors for <a class="reference internal" href="#AChemKit.reactionnet.ReactionNetwork" title="AChemKit.reactionnet.ReactionNetwork"><tt class="xref py py-class docutils literal"><span class="pre">ReactionNetwork</span></tt></a>, <a class="reference internal" href="#AChemKit.reactionnet.ReactionNetwork.from_file" title="AChemKit.reactionnet.ReactionNetwork.from_file"><tt class="xref py py-meth docutils literal"><span class="pre">ReactionNetwork.from_file()</span></tt></a>,
+<a class="reference internal" href="#AChemKit.reactionnet.ReactionNetwork.from_filename" title="AChemKit.reactionnet.ReactionNetwork.from_filename"><tt class="xref py py-meth docutils literal"><span class="pre">ReactionNetwork.from_filename()</span></tt></a> and  <a class="reference internal" href="#AChemKit.reactionnet.ReactionNetwork.from_string" title="AChemKit.reactionnet.ReactionNetwork.from_string"><tt class="xref py py-meth docutils literal"><span class="pre">ReactionNetwork.from_string()</span></tt></a>.</p>
+<p class="rubric">Classes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr><td><a class="reference internal" href="#AChemKit.reactionnet.ReactionNetwork" title="AChemKit.reactionnet.ReactionNetwork"><tt class="xref py py-obj docutils literal"><span class="pre">ReactionNetwork</span></tt></a>(rates)</td>
+<td>A dictionary of reactions where each key is a reaction composed of (tuple(sorted(reactants)), sorted(tuple(products))) and each value is the rate.</td>
+</tr>
+<tr><td><tt class="xref py py-obj docutils literal"><span class="pre">SimpleDot</span></tt>([name,&nbsp;digraph,&nbsp;strict])</td>
+<td>Repsents a graphviz <cite>.dot</cite> file (also known as <cite>.gv</cite>).</td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="AChemKit.reactionnet.ReactionNetwork">
+<em class="property">class </em><tt class="descclassname">AChemKit.reactionnet.</tt><tt class="descname">ReactionNetwork</tt><big>(</big><em>rates</em><big>)</big><a class="headerlink" href="#AChemKit.reactionnet.ReactionNetwork" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>A dictionary of reactions where each key is a reaction
+composed of (tuple(sorted(reactants)), sorted(tuple(products))) and each value is the rate.</p>
+<p>ReactionNetwork objects are immutable and hashable.</p>
+<p>ReactionNetwork objects support __eq__ and __ne__, but none of
+the other rich comparison operators (__lt__, __le__, __gt__,
+__ge__).</p>
+<p>Different subclassess should be implemented to generate
+reaction networks on demand (artificial chemistries, etc)
+and provide additional functionallity, such as visualization
+or metrics.</p>
+<p>Can be cast to string to get a <cite>.chem</cite> representation.</p>
+<dl class="attribute">
+<dt id="AChemKit.reactionnet.ReactionNetwork.dot">
+<tt class="descname">dot</tt><a class="headerlink" href="#AChemKit.reactionnet.ReactionNetwork.dot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Property wrapper around <a class="reference internal" href="#AChemKit.reactionnet.ReactionNetwork.to_dot" title="AChemKit.reactionnet.ReactionNetwork.to_dot"><tt class="xref py py-meth docutils literal"><span class="pre">to_dot()</span></tt></a> to provide attribute-like access.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="AChemKit.reactionnet.ReactionNetwork.from_file">
+<em class="property">classmethod </em><tt class="descname">from_file</tt><big>(</big><em>infile</em><big>)</big><a class="headerlink" href="#AChemKit.reactionnet.ReactionNetwork.from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alternative constructor that accepts a <tt class="xref py py-class docutils literal"><span class="pre">file</span></tt> object (or equivalent).</p>
+<p>Source must be formatted as a .chem file, see <a class="reference internal" href="fileformats.html#chem-file-format"><em>.chem Format</em></a>.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="AChemKit.reactionnet.ReactionNetwork.from_filename">
+<em class="property">classmethod </em><tt class="descname">from_filename</tt><big>(</big><em>infilename</em><big>)</big><a class="headerlink" href="#AChemKit.reactionnet.ReactionNetwork.from_filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper around <a class="reference internal" href="#AChemKit.reactionnet.ReactionNetwork.from_file" title="AChemKit.reactionnet.ReactionNetwork.from_file"><tt class="xref py py-meth docutils literal"><span class="pre">from_file()</span></tt></a> that opens the provided filename as a file to read.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="AChemKit.reactionnet.ReactionNetwork.from_string">
+<em class="property">classmethod </em><tt class="descname">from_string</tt><big>(</big><em>instr</em><big>)</big><a class="headerlink" href="#AChemKit.reactionnet.ReactionNetwork.from_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper around <a class="reference internal" href="#AChemKit.reactionnet.ReactionNetwork.from_file" title="AChemKit.reactionnet.ReactionNetwork.from_file"><tt class="xref py py-meth docutils literal"><span class="pre">from_file()</span></tt></a> that uses <tt class="xref py py-class docutils literal"><span class="pre">StringIO</span></tt>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="AChemKit.reactionnet.ReactionNetwork.reactions">
+<tt class="descname">reactions</tt><a class="headerlink" href="#AChemKit.reactionnet.ReactionNetwork.reactions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sorted tuple of all reactions in the network</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="AChemKit.reactionnet.ReactionNetwork.seen">
+<tt class="descname">seen</tt><a class="headerlink" href="#AChemKit.reactionnet.ReactionNetwork.seen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sorted tuple of all molecular species in the network</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.reactionnet.ReactionNetwork.to_dot">
+<tt class="descname">to_dot</tt><big>(</big><em>names=None</em>, <em>rates=None</em>, <em>shown=()</em>, <em>hidden=()</em><big>)</big><a class="headerlink" href="#AChemKit.reactionnet.ReactionNetwork.to_dot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a <cite>.dot</cite> format string constructed using a <a class="reference internal" href="AChemKit.utils.simpledot.html#AChemKit.utils.simpledot.SimpleDot" title="AChemKit.utils.simpledot.SimpleDot"><tt class="xref py py-class docutils literal"><span class="pre">AChemKit.utils.simpledot.SimpleDot</span></tt></a>
+view of this reaction network.</p>
+<p>Molecular species are shown as either full names, identifier numbers, or as blank circles.
+This is determined by the <cite>names</cite> parameter, which is a string indicating which to use:</p>
+<dl class="docutils">
+<dt>&#8220;full&#8221;</dt>
+<dd>This will use the full molecule name specified in the .chem file</dd>
+<dt>&#8220;id&#8221;</dt>
+<dd>This will use a shortened identifier of that molecules index in the
+<a class="reference internal" href="#AChemKit.reactionnet.ReactionNetwork.seen" title="AChemKit.reactionnet.ReactionNetwork.seen"><tt class="xref py py-meth docutils literal"><span class="pre">seen()</span></tt></a> tuple.</dd>
+<dt>&#8220;blank&#8221;</dt>
+<dd>This will not name any molecules, but will put an empty circle instead.</dd>
+</dl>
+<p>A sub-set of the reaction network can be drawn using the <cite>shown</cite> and <cite>hidden</cite> parameters.</p>
+<p>Reactions involving only molecular species on the <cite>hidden</cite> list are not shown. Molecular
+species on the <cite>hidden</cite> list are not shown unless they are involved in a reaction with
+molecular species not on the <cite>hidden</cite> list, in which case the molecular species on the
+<cite>hidden</cite> list is unlabeled and shown as a point.</p>
+<p>The <cite>shown</cite> list in the inverse of the hidden list. If it is used, any molecular species
+not on the <cite>shown</cite> list is treated as being on the <cite>hidden</cite> list. If a molecular species
+is on both <cite>shown</cite> and <cite>hidden</cite> lists, the <cite>hidden</cite> lists wins.</p>
+<p>Catalysts (defined as molecules that are required for but unchanged by a reaction)
+are indicated with a grey line.</p>
+<p>Reversible reactions (defined as a pair of reactions where reactants of one are the
+products of the other and visa versa) are combined and indicated with double arrows
+resembling a diamond shape.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="AChemKit.tools.chem_to_pdf.html"
+                        title="previous chapter">AChemKit.tools.chem_to_pdf</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="AChemKit.randomnet.html"
+                        title="next chapter">AChemKit.randomnet</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/docs/AChemKit.reactionnet.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="AChemKit.randomnet.html" title="AChemKit.randomnet"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="AChemKit.tools.chem_to_pdf.html" title="AChemKit.tools.chem_to_pdf"
+             >previous</a> |</li>
+        <li><a href="../index.html">AChemKit v0.1 documentation</a> &raquo;</li>
+          <li><a href="AChemKit.html" >AChemKit</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2010, Adam Faulconbridge.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.3.
+    </div>
+  </body>
+</html>

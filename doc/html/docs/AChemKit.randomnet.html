@@ -1,0 +1,239 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>AChemKit.randomnet &mdash; AChemKit v0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="AChemKit v0.1 documentation" href="../index.html" />
+    <link rel="up" title="AChemKit" href="AChemKit.html" />
+    <link rel="next" title="AChemKit.properties" href="AChemKit.properties.html" />
+    <link rel="prev" title="AChemKit.reactionnet" href="AChemKit.reactionnet.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="AChemKit.properties.html" title="AChemKit.properties"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="AChemKit.reactionnet.html" title="AChemKit.reactionnet"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">AChemKit v0.1 documentation</a> &raquo;</li>
+          <li><a href="AChemKit.html" accesskey="U">AChemKit</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-AChemKit.randomnet">
+<span id="achemkit-randomnet"></span><h1>AChemKit.randomnet<a class="headerlink" href="#module-AChemKit.randomnet" title="Permalink to this headline">¶</a></h1>
+<p>Functions that construct random <tt class="xref py py-class docutils literal"><span class="pre">ReactionNetwork</span></tt> instances by various methods.</p>
+<p class="rubric">Functions</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr><td><a class="reference internal" href="#AChemKit.randomnet.Linear" title="AChemKit.randomnet.Linear"><tt class="xref py py-obj docutils literal"><span class="pre">Linear</span></tt></a>(natoms,&nbsp;maxlength,&nbsp;pform,&nbsp;pbreak[,&nbsp;...])</td>
+<td>Generates a random <tt class="xref py py-class docutils literal"><span class="pre">ReactionNetwork</span></tt> from molecules that are strings of atoms and can join together or break apart.</td>
+</tr>
+<tr><td><a class="reference internal" href="#AChemKit.randomnet.Uniform" title="AChemKit.randomnet.Uniform"><tt class="xref py py-obj docutils literal"><span class="pre">Uniform</span></tt></a>(nmols,&nbsp;nreactions,&nbsp;nreactants,&nbsp;nproducts)</td>
+<td>Generates a random <tt class="xref py py-class docutils literal"><span class="pre">ReactionNetwork</span></tt> by assigning reaction randomly between all molecular species.</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Classes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr><td><tt class="xref py py-obj docutils literal"><span class="pre">ReactionNetwork</span></tt>(rates)</td>
+<td>A dictionary of reactions where each key is a reaction composed of (tuple(sorted(reactants)), sorted(tuple(products))) and each value is the rate.</td>
+</tr>
+</tbody>
+</table>
+<dl class="function">
+<dt id="AChemKit.randomnet.Uniform">
+<tt class="descclassname">AChemKit.randomnet.</tt><tt class="descname">Uniform</tt><big>(</big><em>nmols</em>, <em>nreactions</em>, <em>nreactants</em>, <em>nproducts</em>, <em>rates=1.0</em>, <em>cls=&lt;class 'AChemKit.reactionnet.ReactionNetwork'&gt;</em>, <em>rng=None</em><big>)</big><a class="headerlink" href="#AChemKit.randomnet.Uniform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a random <tt class="xref py py-class docutils literal"><span class="pre">ReactionNetwork</span></tt> by assigning reaction randomly between all molecular species.</p>
+<p>Arguments:</p>
+<dl class="docutils">
+<dt>nmols</dt>
+<dd>Number of molecules in the reaction network. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><tt class="xref py py-class docutils literal"><span class="pre">ReactionNetwork</span></tt> tracks molecules by their reactions, so if a molecule is not part of any reaction
+it will not appear at all e.g. in <tt class="xref py py-meth docutils literal"><span class="pre">seen()</span></tt>. This could lead to differences from <cite>nmols</cite>.</p>
+</div>
+<dl class="docutils">
+<dt>nreactions</dt>
+<dd>Number of reaction in the reaction network. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The value of <cite>nreactions</cite> is the number of times a reaction will be added to the <tt class="xref py py-class docutils literal"><span class="pre">ReactionNetwork</span></tt>. If it
+is already in the <tt class="xref py py-class docutils literal"><span class="pre">ReactionNetwork</span></tt>, it will be replaced. This can lead to <tt class="xref py py-class docutils literal"><span class="pre">ReactionNetwork</span></tt> with less
+than <cite>nreactions</cite> reactions.</p>
+</div>
+<dl class="docutils">
+<dt>nreactants</dt>
+<dd><p class="first">Number of reactants for each reaction in the reaction network. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).</p>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If this is a tuple/list it will be sampled for each reaction.</p>
+</div>
+</dd>
+<dt>nproducts</dt>
+<dd><p class="first">Number of products for each reaction in the reaction network. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).</p>
+<p>If this is None, then <cite>nreactants</cite> must be a tuple of (<cite>nreactants</cite>, <cite>nproducts</cite>) or a list of tuples.</p>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If this is a tuple/list it will be sampled for each reaction.</p>
+</div>
+</dd>
+<dt>rates</dt>
+<dd><p class="first">Rate of each reaction in the reaction network. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).</p>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If this is a tuple/list it will be sampled for each reaction.</p>
+</div>
+</dd>
+<dt>cls</dt>
+<dd>Alternative class to use for constructing the return rather than <tt class="xref py py-class docutils literal"><span class="pre">ReactionNetwork</span></tt>.</dd>
+<dt>rng</dt>
+<dd>Random number generator to use. If not specifed, one will be generated at random.</dd>
+</dl>
+<p>These arguments can be a single value or a tuple/list which will be uniformly sampled from.</p>
+<p>For example:</p>
+<p><tt class="docutils literal"><span class="pre">Uniform(5,3,2,1)</span></tt> will generate 5 molecules with 3 reactions between them where each reaction has two reactants and one product.</p>
+<p><tt class="docutils literal"><span class="pre">Uniform(5,3,(1,2),</span> <span class="pre">(1,2))</span></tt> will generate 5 molecules with 3 reactions between them where each reaction has one or two reactants and one or two products.</p>
+<p><tt class="docutils literal"><span class="pre">Uniform(5,3,((2,1),(1,2)),</span> <span class="pre">None)</span></tt> will generate 5 molecules with 3 reactions between them where each reaction has either two reactants and one product or one reactant and two products.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="AChemKit.randomnet.Linear">
+<tt class="descclassname">AChemKit.randomnet.</tt><tt class="descname">Linear</tt><big>(</big><em>natoms</em>, <em>maxlength</em>, <em>pform</em>, <em>pbreak</em>, <em>directed=True</em>, <em>rates=1.0</em>, <em>cls=&lt;class 'AChemKit.reactionnet.ReactionNetwork'&gt;</em>, <em>rng=None</em><big>)</big><a class="headerlink" href="#AChemKit.randomnet.Linear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a random <tt class="xref py py-class docutils literal"><span class="pre">ReactionNetwork</span></tt> from molecules that are strings of atoms and can join together or break apart.</p>
+<p>Based on the paper Autocatalytic sets of proteins. 1986. Journal of Theoretical Biology 119:1-24 by Kauffman, Stuart A.  but without the explicit catalytic activity.</p>
+<p>Arguments:</p>
+<dl class="docutils">
+<dt>natoms</dt>
+<dd>Number of atoms to use. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><tt class="xref py py-class docutils literal"><span class="pre">ReactionNetwork</span></tt> tracks molecules by their reactions, so if a molecule is not part of any reaction
+it will not appear at all e.g. in <tt class="xref py py-meth docutils literal"><span class="pre">seen()</span></tt>.</p>
+</div>
+<dl class="docutils">
+<dt>maxlength</dt>
+<dd>Maximum number of atoms in a molecule. If this is None, then they are unbounded; this might cause problems with a computational explosion. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).</dd>
+<dt>pform</dt>
+<dd>Probability that a pair of molecules will join together per orientation. Must be between 0 and 1. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).</dd>
+<dt>pbreak</dt>
+<dd>Probability that any pair of atoms will break. Must be between 0 and 1.</dd>
+<dt>directed</dt>
+<dd>If false, molecules have no intrinsic direction so AlphBeta is equivlanet to BetaAlpha.
+<strong>NOT IMPLEMENTED</strong></dd>
+<dt>rates</dt>
+<dd>Rate of each reaction in the reaction network. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).</dd>
+<dt>cls</dt>
+<dd>Alternative class to use for constructing the return rather than <tt class="xref py py-class docutils literal"><span class="pre">ReactionNetwork</span></tt>.</dd>
+<dt>rng</dt>
+<dd>Random number generator to use. If not specifed, one will be generated at random.</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="AChemKit.reactionnet.html"
+                        title="previous chapter">AChemKit.reactionnet</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="AChemKit.properties.html"
+                        title="next chapter">AChemKit.properties</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/docs/AChemKit.randomnet.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="AChemKit.properties.html" title="AChemKit.properties"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="AChemKit.reactionnet.html" title="AChemKit.reactionnet"
+             >previous</a> |</li>
+        <li><a href="../index.html">AChemKit v0.1 documentation</a> &raquo;</li>
+          <li><a href="AChemKit.html" >AChemKit</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2010, Adam Faulconbridge.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,203 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>AChemKit.utils.simpledot &mdash; AChemKit v0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="AChemKit v0.1 documentation" href="../index.html" />
+    <link rel="up" title="AChemKit.utils" href="AChemKit.utils.html" />
+    <link rel="next" title="AChemKit.tools" href="AChemKit.tools.html" />
+    <link rel="prev" title="AChemKit.utils.simpledot" href="" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="AChemKit.tools.html" title="AChemKit.tools"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="#" title="AChemKit.utils.simpledot"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">AChemKit v0.1 documentation</a> &raquo;</li>
+          <li><a href="AChemKit.html" >AChemKit</a> &raquo;</li>
+          <li><a href="AChemKit.utils.html" accesskey="U">AChemKit.utils</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-AChemKit.utils.simpledot">
+<span id="achemkit-utils-simpledot"></span><h1>AChemKit.utils.simpledot<a class="headerlink" href="#module-AChemKit.utils.simpledot" title="Permalink to this headline">¶</a></h1>
+<p>A library to manage <cite>.dot</cite> files</p>
+<p>There are existing python libraries for this, but they do not
+always do it correctly (e.g. PyDot does not respect order within
+a .dot file).</p>
+<p class="rubric">Classes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr><td><tt class="xref py py-obj docutils literal"><span class="pre">DictMixin</span></tt></td>
+<td></td>
+</tr>
+<tr><td><a class="reference internal" href="#AChemKit.utils.simpledot.SimpleDot" title="AChemKit.utils.simpledot.SimpleDot"><tt class="xref py py-obj docutils literal"><span class="pre">SimpleDot</span></tt></a>([name,&nbsp;digraph,&nbsp;strict])</td>
+<td>Repsents a graphviz <cite>.dot</cite> file (also known as <cite>.gv</cite>).</td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="AChemKit.utils.simpledot.SimpleDot">
+<em class="property">class </em><tt class="descclassname">AChemKit.utils.simpledot.</tt><tt class="descname">SimpleDot</tt><big>(</big><em>name='G'</em>, <em>digraph=True</em>, <em>strict=False</em><big>)</big><a class="headerlink" href="#AChemKit.utils.simpledot.SimpleDot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">UserDict.DictMixin</span></tt></p>
+<p>Repsents a graphviz <cite>.dot</cite> file (also known as <cite>.gv</cite>).</p>
+<p>Uses a dictionary-like interface via the :class:~`UserDict.DictMixin`
+class.</p>
+<p>To produce <cite>.dot</cite> output, cast to string e.g. <cite>str(mysimpledot)</cite></p>
+<p>Contains three types of graph objects:</p>
+<dl class="docutils">
+<dt>Nodes</dt>
+<dd>Named by strings and are dictionaries of attributes.</dd>
+<dt>Edges</dt>
+<dd>Named by tuples of length 2 of strings and are are
+dictionaries of attributes. Nodes will be implicitly created by
+graphviz if they do not exist, and therefore do not need to be
+explicitly created.</dd>
+<dt>Subgraphs</dt>
+<dd>Named by strings and are instances of this class. Some
+graphviz layout engines (e.g. <cite>neato</cite>) will flatten subgraphs.</dd>
+</dl>
+<p>These can be set and accessed by standard slice notation (e.g.
+<cite>dot[nodename] = {}</cite>).</p>
+<p>Node names and subgraph names are unique but multiple parallel edges
+are permitted. However, slice notation (e.g. <cite>dot[(from, to)]</cite>) cannot
+cope with this. Therefore, when there are multiple parallel edges,
+accessing any of them returns a tuple of all their attributes as
+dictionaries. To create multiple parallel edges you must use the
+<a class="reference internal" href="#AChemKit.utils.simpledot.SimpleDot.add" title="AChemKit.utils.simpledot.SimpleDot.add"><tt class="xref py py-meth docutils literal"><span class="pre">add()</span></tt></a> method</p>
+<p>Names of nodes and subgraphs, attribute keys, and attribute values
+should all be graphviz compatible. Some attempt to wrap string attribute
+values in quotes will be made so that the use of plain python strings
+is accepted by graphviz.</p>
+<p>Very little checking and enforcement is performed. This means that you
+can use them in ways not originally intended; for example, you can
+se attributes that no graphviz programme will recognize. But, it also
+means you can break it by doing odd things to them.</p>
+<dl class="method">
+<dt id="AChemKit.utils.simpledot.SimpleDot.add">
+<tt class="descname">add</tt><big>(</big><em>key</em>, <em>value=None</em><big>)</big><a class="headerlink" href="#AChemKit.utils.simpledot.SimpleDot.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Guaranteed to add the passed key/value to self, even if it is a duplicate.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.utils.simpledot.SimpleDot.get">
+<tt class="descname">get</tt><big>(</big><em>key</em><big>)</big><a class="headerlink" href="#AChemKit.utils.simpledot.SimpleDot.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a tuple of all things matching that key.</p>
+<p>Designed for multiple edges, but will also work with single edges, nodes, or subgraphs.
+This provides a unified interface.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.utils.simpledot.SimpleDot.keys">
+<tt class="descname">keys</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.utils.simpledot.SimpleDot.keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple of the keys.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.utils.simpledot.SimpleDot.plot">
+<tt class="descname">plot</tt><big>(</big><em>output='pdf'</em>, <em>prog='dot'</em>, <em>args=()</em><big>)</big><a class="headerlink" href="#AChemKit.utils.simpledot.SimpleDot.plot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href=""
+                        title="previous chapter">AChemKit.utils.simpledot</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="AChemKit.tools.html"
+                        title="next chapter">AChemKit.tools</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/docs/AChemKit.utils.simpledot.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="AChemKit.tools.html" title="AChemKit.tools"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="#" title="AChemKit.utils.simpledot"
+             >previous</a> |</li>
+        <li><a href="../index.html">AChemKit v0.1 documentation</a> &raquo;</li>
+          <li><a href="AChemKit.html" >AChemKit</a> &raquo;</li>
+          <li><a href="AChemKit.utils.html" >AChemKit.utils</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2010, Adam Faulconbridge.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.3.
+    </div>
+  </body>
+</html>

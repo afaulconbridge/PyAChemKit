@@ -1,0 +1,163 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>File Formats &mdash; AChemKit v0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="AChemKit v0.1 documentation" href="../index.html" />
+    <link rel="next" title="AChemKit" href="AChemKit.html" />
+    <link rel="prev" title="Readme" href="../README.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="AChemKit.html" title="AChemKit"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../README.html" title="Readme"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">AChemKit v0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="file-formats">
+<h1>File Formats<a class="headerlink" href="#file-formats" title="Permalink to this headline">¶</a></h1>
+<p>AChemKit uses a number of text file formats for data storage and as intermediates between various components.</p>
+<div class="section" id="chem-format">
+<span id="chem-file-format"></span><h2><cite>.chem</cite> Format<a class="headerlink" href="#chem-format" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>.chem</cite> format is used to abstractly describe a chemistry in terms of reactions. Each reaction is represented as a single line, separated into reactants and products by the symbol <cite>-&gt;</cite>. Blank lines and lines starting with <cite>#</cite> are ignored - this is useful to remove reactions temporarily or to add documentation. Additional white-space within a line is also ignored.</p>
+<p>Reactants and/or products can contain multiple molecular species, separated by <cite>+</cite>. No explicit restrictions are placed on the names of molecular species, but it is recommended to be restricted to alpha-numeric characters (upper-case and lower-case) as well as <cite>()</cite> and <cite>[]</cite>. In particular, the following should be avoided: <cite>+</cite>, <cite>-</cite>, <cite>&gt;</cite>. At this time, escaping or quoting is not supported.</p>
+<p>The reactant/product separator <cite>-&gt;</cite> is also used to represent the rate constant of the reaction, if specified. This is done by a floating-point number between the <cite>-</cite> and <cite>&gt;</cite> characters. For example, <cite>-2.0&gt;</cite> represents a reaction with a rate constant of 2.0. Integers can also be used, but will be converted to floating-point, e.g. <cite>-2&gt;</cite> is a rate constant of 2.0. If a rate constant is not specified, it defaults to 1.0. Rate constants &lt;=0.0 are not valid, and in some situations rate constants &gt;1.0 may not be either.</p>
+<p>It is not valid to have more than one reaction with the same combination of reactants and products - in any order and with any rate. For example, <cite>A + B -&gt; C</cite> cannot appear in the same file as <cite>B + A -2.0&gt; C</cite>.</p>
+<p>It is not valid to have the same molecular species in both reactants and products. For example <cite>A + B -&gt; B + A</cite> is not valid.</p>
+<p>Either the reactants or products can be omitted from a reaction, e.g. <cite>A -&gt;</cite>. This corresponds to material being added or removed from the system.</p>
+<p>When a <cite>.chem</cite> file is generated, reactants and products of all reactions are sorted by their string representations, and then reactions are sorted before being output.</p>
+<p>Below is a valid example <cite>.chem</cite> file:</p>
+<div class="highlight-python"><pre>    #This is a comment
+    
+    #Here are some blank lines
+    
+    #Now for some reactions
+    A + B -&gt; AB
+    
+    #The same molecular species can be used again
+    A -&gt; C
+    
+    #A reversible reaction can be specified by 
+    #stating the inverse of an existing reaction
+    C -&gt; A
+    
+    #Some reactions have rate constants other than 1.0
+    D -10.0&gt; E
+    F -0.01&gt; G
+    
+    #Any number of molecular species can be in the reactants and/or products    
+    #The same molecular species can be in the reactants and/or products multiple times
+    Spam + Spam + Spam + Eggs + Spam -&gt; Breakfast
+    Catalyst + Input -&gt; Catalyst + Output
+    
+    #Things can be created and destroyed
+    -&gt; TheUniverse
+    TheUniverse -&gt;
+</pre>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">File Formats</a><ul>
+<li><a class="reference internal" href="#chem-format"><cite>.chem</cite> Format</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../README.html"
+                        title="previous chapter">Readme</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="AChemKit.html"
+                        title="next chapter">AChemKit</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/docs/fileformats.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="AChemKit.html" title="AChemKit"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../README.html" title="Readme"
+             >previous</a> |</li>
+        <li><a href="../index.html">AChemKit v0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2010, Adam Faulconbridge.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.3.
+    </div>
+  </body>
+</html>

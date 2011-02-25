@@ -1,0 +1,216 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>AChemKit.properties &mdash; AChemKit v0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="AChemKit v0.1 documentation" href="../index.html" />
+    <link rel="up" title="AChemKit" href="AChemKit.html" />
+    <link rel="next" title="AChemKit.utils" href="AChemKit.utils.html" />
+    <link rel="prev" title="AChemKit.randomnet" href="AChemKit.randomnet.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="AChemKit.utils.html" title="AChemKit.utils"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="AChemKit.randomnet.html" title="AChemKit.randomnet"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">AChemKit v0.1 documentation</a> &raquo;</li>
+          <li><a href="AChemKit.html" accesskey="U">AChemKit</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-AChemKit.properties">
+<span id="achemkit-properties"></span><h1>AChemKit.properties<a class="headerlink" href="#module-AChemKit.properties" title="Permalink to this headline">¶</a></h1>
+<p>Functions for testing properties of particular reaction networks.</p>
+<p>These functions expect an object of class <a class="reference internal" href="AChemKit.reactionnet.html#AChemKit.reactionnet.ReactionNetwork" title="AChemKit.reactionnet.ReactionNetwork"><tt class="xref py py-class docutils literal"><span class="pre">AChemKit.reactionnet.ReactionNetwork</span></tt></a>
+or subclass or something with an equivalent API. It does not enforce
+this however, so you may use custom classes with the same API.</p>
+<p>Some of these properties have logical prerequisites, but these are not tested
+for explicitly.</p>
+<p class="rubric">Functions</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr><td><a class="reference internal" href="#AChemKit.properties.has_catalysis_direct" title="AChemKit.properties.has_catalysis_direct"><tt class="xref py py-obj docutils literal"><span class="pre">has_catalysis_direct</span></tt></a>(rn)</td>
+<td>Tests for reactions where some species is both consumed and produced by the same reaction.</td>
+</tr>
+<tr><td><a class="reference internal" href="#AChemKit.properties.has_decomposition" title="AChemKit.properties.has_decomposition"><tt class="xref py py-obj docutils literal"><span class="pre">has_decomposition</span></tt></a>(rn)</td>
+<td>Tests for reactions where reactants combine to produce more products.</td>
+</tr>
+<tr><td><a class="reference internal" href="#AChemKit.properties.has_reversible" title="AChemKit.properties.has_reversible"><tt class="xref py py-obj docutils literal"><span class="pre">has_reversible</span></tt></a>(rn)</td>
+<td>Tests for a pair of reactions where the products of one is the reactants of the other and visa vera.</td>
+</tr>
+<tr><td><a class="reference internal" href="#AChemKit.properties.has_synthesis" title="AChemKit.properties.has_synthesis"><tt class="xref py py-obj docutils literal"><span class="pre">has_synthesis</span></tt></a>(rn)</td>
+<td>Tests for reactions where reactants combine to produce fewer products.</td>
+</tr>
+<tr><td><a class="reference internal" href="#AChemKit.properties.has_varying_rates" title="AChemKit.properties.has_varying_rates"><tt class="xref py py-obj docutils literal"><span class="pre">has_varying_rates</span></tt></a>(rn)</td>
+<td>Tests that the reaction network has different rates for different reactions.</td>
+</tr>
+<tr><td><a class="reference internal" href="#AChemKit.properties.not_conservation_mass" title="AChemKit.properties.not_conservation_mass"><tt class="xref py py-obj docutils literal"><span class="pre">not_conservation_mass</span></tt></a>(rn)</td>
+<td>Tests for violation of conservation of mass.</td>
+</tr>
+</tbody>
+</table>
+<dl class="function">
+<dt id="AChemKit.properties.has_catalysis_direct">
+<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">has_catalysis_direct</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.has_catalysis_direct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests for reactions where some species is both consumed and produced by the same reaction.</p>
+<p>For example:</p>
+<div class="highlight-python"><pre>A + C -&gt; B + C
+AB + C -&gt; A + B + C</pre>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="AChemKit.properties.has_decomposition">
+<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">has_decomposition</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.has_decomposition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests for reactions where reactants combine to produce more products.</p>
+<p>For example:</p>
+<div class="highlight-python"><pre>AB -&gt; A + B
+AB + C -&gt; A + B + C</pre>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="AChemKit.properties.has_reversible">
+<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">has_reversible</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.has_reversible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests for a pair of reactions where the products of one is the reactants of the other and visa vera.</p>
+<p>For example:</p>
+<div class="highlight-python"><pre>A + B -&gt; AB
+AB -&gt; A + B</pre>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="AChemKit.properties.has_synthesis">
+<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">has_synthesis</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.has_synthesis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests for reactions where reactants combine to produce fewer products.</p>
+<p>May also be called a <em>combination reaction</em>.</p>
+<p>For example:</p>
+<div class="highlight-python"><pre>A + B -&gt; AB
+A + B + C -&gt; AB + D</pre>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="AChemKit.properties.has_varying_rates">
+<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">has_varying_rates</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.has_varying_rates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests that the reaction network has different rates for different reactions.</p>
+<p>To get the range of rates a reaction network spans, use:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">span</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">rn</span><span class="o">.</span><span class="n">rates</span><span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="o">-</span><span class="nb">min</span><span class="p">(</span><span class="n">rn</span><span class="o">.</span><span class="n">rates</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="AChemKit.properties.not_conservation_mass">
+<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">not_conservation_mass</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.not_conservation_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests for violation of conservation of mass.</p>
+<p>Note, we can show that a reaction network breaks conservation of mass, but not prove that it obeys it.</p>
+<p>This is done by arranging all the molecules into a partially ordered set - a tree from largest to smallest. If this
+cannot be done, then conservation of mass must be violated. If this can be done, then conservation of mass may or may
+not apply - it cannot be said for certain.</p>
+<p>This requires that each molecular species can be separated into individual atoms. If this is not possible, then
+this function will not work.</p>
+<p>NEEDS TO BE WRITTEN</p>
+<p>(Credit to Adam Nellis for algorithm)</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="AChemKit.randomnet.html"
+                        title="previous chapter">AChemKit.randomnet</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="AChemKit.utils.html"
+                        title="next chapter">AChemKit.utils</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/docs/AChemKit.properties.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="AChemKit.utils.html" title="AChemKit.utils"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="AChemKit.randomnet.html" title="AChemKit.randomnet"
+             >previous</a> |</li>
+        <li><a href="../index.html">AChemKit v0.1 documentation</a> &raquo;</li>
+          <li><a href="AChemKit.html" >AChemKit</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2010, Adam Faulconbridge.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.3.
+    </div>
+  </body>
+</html>
