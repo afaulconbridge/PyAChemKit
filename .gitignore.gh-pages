@@ -8,3 +8,7 @@ AChemKit/
 
 #ignore the makefile
 Makefile
+
+#test
+foo
+
