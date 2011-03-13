@@ -15,7 +15,7 @@ help:
 
 all: clean doc
 
-clean: sphinxclean
+clean: 
 	-rm -f test.txt
 	-rm -f AChemKit.pdf
 	-rm -f AChemKit/*.pyc
@@ -30,7 +30,7 @@ doc: dochtml doclatex
 dochtml:
 	@echo sphinx-build -b html -n docs/src docs/html
 
-dochtml:
+doclatex:
 	@echo sphinx-build -b latex -n docs/src docs/latex
 	#@echo pdflatex docs/latex
 	
@@ -45,5 +45,3 @@ test.txt: AChemKit
 	@#rpython was removed from more recent (> 03/2010) pylint versions :(
 	@#-pylint --reports=n --rpython-mode -- AChemKit >> test.txt  
 	python AChemKit/tests/reactionnet_test.py 2>&1 | cat >> test.txt
-
-include sphinx.mk
