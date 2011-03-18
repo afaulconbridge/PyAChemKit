@@ -10,6 +10,6 @@ if __name__ == "__main__":
     #because we want coverage, we do not want to auto-discover tests!
     suite = unittest.TestSuite()
     loader = unittest.TestLoader()
-    import AChemKit.reactionnet_test
-    suite.addTest(loader.loadTestsFromTestCase(AChemKit.reactionnet_test.TestReactionNetwork))
+    #import AChemKit.reactionnet_test
+    #suite.addTest(loader.loadTestsFromTestCase(AChemKit.reactionnet_test.TestReactionNetwork))
     unittest.TextTestRunner(verbosity=2).run(suite)
