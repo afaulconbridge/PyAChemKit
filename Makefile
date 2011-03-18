@@ -36,7 +36,7 @@ doclatex:
 	#@echo pdflatex docs/latex
 	
 test:
-	python2.7 rununittest.py
+	python rununittest.py
 
 pylint:
 	pylint AChemKit > pylint.txt
