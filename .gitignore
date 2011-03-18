@@ -4,6 +4,9 @@
 #temporary editor files
 *~
 
+#pylint report
+pylint.txt
+
 #specific to PyAChemKit
 
 #final doc version

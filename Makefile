@@ -36,6 +36,7 @@ doclatex:
 	
 test:
 	python2.7 -m unittest discover -s AChemKit -p '*_test.py'
+	pylint AChemKit > pylint.txt
 
 benchmark: 
 	@echo "BENCHMAKRING NOT PROPERLY IMPLEMENTED"
