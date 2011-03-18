@@ -39,7 +39,7 @@ test:
 	python rununittest.py
 
 pylint:
-	pylint -f parseable AChemKit > pylint.txt
+	pylint --rcfile=pylint.rc -f parseable AChemKit > pylint.txt
 
 benchmark: 
 	@echo "BENCHMAKRING NOT PROPERLY IMPLEMENTED"

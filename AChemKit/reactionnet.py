@@ -74,6 +74,9 @@ class ReactionNetwork(object):
     
     @classmethod
     def reaction_to_string(cls, reaction, rate=1.0):
+        """
+        Produces a human-readable string for a particular reaction.
+        """
         reactionstring = ""
         reactants, products = reaction
         if reactants == products:
@@ -255,10 +258,10 @@ class ReactionNetwork(object):
                 continue
 
 
-            r = "R%d"% self.reactions.index((reactants, products))
+            r = "R % d"% self.reactions.index((reactants, products))
             dot[r] = {"shape":"point"}
 
-            if rates == True or rates is None and self.rates[(reactants, products)] != 1.0:
+            if rates == True or (rates is None and self.rates[(reactants, products)] != 1.0):
                 dot[r] = {"label":self.rates[(reactants, products)]}
                 #make it inverted colors
                 dot[r]["style"] = "filled"
@@ -275,7 +278,7 @@ class ReactionNetwork(object):
 
             for i in xrange(len(reactants)):
                 reactant = reactants[i]
-                m = "M%d" % self.seen.index(reactant)
+                m = "M % d" % self.seen.index(reactant)
                 #see if this is a catalyst
                 #remember to allow for multiple copies of the same molecular species
                 #to act as a collective catalyst
@@ -295,7 +298,7 @@ class ReactionNetwork(object):
 
             for i in xrange(len(products)):
                 product = products[i]
-                m = "M%d" % self.seen.index(product)
+                m = "M % d" % self.seen.index(product)
                 #see if this is a catalyst
                 #remeber to allow for multiple copies of the same molecular species
                 #to act as a collective catalyst
