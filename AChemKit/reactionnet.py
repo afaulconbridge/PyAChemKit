@@ -2,8 +2,9 @@
 """
 Core for all ReactionNetwork classes
 
-Of particular note are the alternative constructors for :class:`ReactionNetwork`, :meth:`ReactionNetwork.from_file`,
-:meth:`ReactionNetwork.from_filename` and  :meth:`ReactionNetwork.from_string`.
+Of particular note are the alternative constructors of :class:`ReactionNetwork`,
+:meth:`ReactionNetwork.from_file`, :meth:`ReactionNetwork.from_filename` and
+:meth:`ReactionNetwork.from_string`.
 """
 
 #regular expression to detect reaction when reading from string-based inputs
@@ -18,18 +19,17 @@ from AChemKit.utils.simpledot import SimpleDot
 class ReactionNetwork(object):
     """
     A dictionary of reactions where each key is a reaction
-    composed of (tuple(sorted(reactants)), sorted(tuple(products))) and each value is the rate.
+    composed of (tuple(sorted(reactants)), sorted(tuple(products))) and each
+    value is the rate.
 
     ReactionNetwork objects are immutable and hashable.
 
-    ReactionNetwork objects support __eq__ and __ne__, but none of
-    the other rich comparison operators (__lt__, __le__, __gt__,
-    __ge__).
+    ReactionNetwork objects support __eq__ and __ne__, but none of the other
+    rich comparison operators (__lt__, __le__, __gt__, __ge__).
 
-    Different subclassess should be implemented to generate
-    reaction networks on demand (artificial chemistries, etc)
-    and provide additional functionallity, such as visualization
-    or metrics.
+    Different subclassess should be implemented to generate reaction networks on
+    demand (artificial chemistries, etc) and provide additional functionallity,
+    such as visualization or metrics.
 
     Can be cast to string to get a `.chem` representation.
     """
@@ -100,9 +100,9 @@ class ReactionNetwork(object):
         if self._str is None:
             reactionstrings = []
             for reaction in self.reactions:
-                reactionstring = self.reaction_to_string(reaction, self.rates[reaction])
-                if reactionstring != "":
-                    reactionstrings.append(reactionstring)
+                reactionstr = self.reaction_to_string(reaction, self.rates[reaction])
+                if reactionstr != "":
+                    reactionstrings.append(reactionstr)
 
             reactionstrings.sort()
             self._str = ""

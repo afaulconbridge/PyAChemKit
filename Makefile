@@ -8,7 +8,8 @@ help:
 	@echo "  doc        Generate documentation (HTML + LaTeX)"
 	@echo "  dochtml    Generate documentation in HTML"
 	@echo "  doclatex   Generate documentation in LaTeX"
-	@echo "  test       Run tests" 
+	@echo "  test       Run tests"
+	@echo "  pylint     Run pylint for code quality"
 	@echo "  benchmark  Run benchmarks"
 	@echo "  clean      Remove all generated files"
 	@echo "  all        Run clean, test, and doc"
@@ -35,7 +36,9 @@ doclatex:
 	#@echo pdflatex docs/latex
 	
 test:
-	python2.7 -m unittest discover -s AChemKit -p '*_test.py'
+	python2.7 rununittest.py
+
+pylint:
 	pylint AChemKit > pylint.txt
 
 benchmark: 
