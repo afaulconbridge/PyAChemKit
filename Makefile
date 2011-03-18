@@ -34,14 +34,8 @@ doclatex:
 	@echo sphinx-build -b latex -n docs/src docs/latex
 	#@echo pdflatex docs/latex
 	
-test: test.txt
-	@echo "TESTING NOT PROPERLY IMPLEMENTED"
+test:
+	python2.7 -m unittest discover -s AChemKit -p '*_test.py'
 
 benchmark: 
 	@echo "BENCHMAKRING NOT PROPERLY IMPLEMENTED"
-
-test.txt: AChemKit
-	-pylint --reports=n AChemKit > test.txt
-	@#rpython was removed from more recent (> 03/2010) pylint versions :(
-	@#-pylint --reports=n --rpython-mode -- AChemKit >> test.txt  
-	python AChemKit/tests/reactionnet_test.py 2>&1 | cat >> test.txt

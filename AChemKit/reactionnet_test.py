@@ -11,10 +11,10 @@ import unittest
 class TestReactionNetwork(unittest.TestCase):
 
     def test_from_rates(self):
-        rates = {("A", "B"):2.0}
+        rates = {(("A",), ("B",)):2.0}
         net = ReactionNetwork(rates)
         self.assertEqual(net.seen, ("A", "B"))
-        self.assertEqual(net.reactions, (("A", "B"),))
+        self.assertEqual(net.reactions, ((("A",), ("B",)),))
 
 if __name__=="__main__":
     unittest.main()

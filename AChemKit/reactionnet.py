@@ -60,7 +60,7 @@ class ReactionNetwork(object):
             for reactants, products in self.rates:
                 self._seen.update(reactants)
                 self._seen.update(products)
-            self._seen = sorted(tuple(self._seen))
+            self._seen = tuple(sorted(self._seen))
         return self._seen
 
     @property
@@ -69,7 +69,7 @@ class ReactionNetwork(object):
         Sorted tuple of all reactions in the network
         """
         if self._reactions is None:
-            self._reactions = sorted(tuple(self.rates.keys()))
+            self._reactions = tuple(sorted(self.rates.keys()))
         return self._reactions
     
     @classmethod
