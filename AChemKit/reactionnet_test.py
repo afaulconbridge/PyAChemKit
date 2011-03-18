@@ -7,6 +7,7 @@ from AChemKit.reactionnet import ReactionNetwork
 
 import unittest
 
+__module__ = "AChemKit.reactionnet_test"
 
 class TestReactionNetwork(unittest.TestCase):
 
