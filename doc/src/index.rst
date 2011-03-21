@@ -6,5 +6,5 @@ Welcome to AChemKit's documentation!
    
    README
    fileformats
-   Auto-generated documentation <autodoc/AChemKit>
+   Auto-generated documentation <autoAChemKit>
    TODO

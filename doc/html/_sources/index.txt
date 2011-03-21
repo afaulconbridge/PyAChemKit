@@ -5,6 +5,6 @@ Welcome to AChemKit's documentation!
 .. toctree::  
    
    README
-   docs/fileformats
-   Auto-generated documentation <docs/AChemKit>
+   fileformats
+   Auto-generated documentation <autoAChemKit>
    TODO

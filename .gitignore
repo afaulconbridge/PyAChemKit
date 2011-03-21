@@ -17,15 +17,15 @@ PyAChemKit.geany
 
 #specific to PyAChemKit
 
-#final doc version
-AChemKit.pdf
 
 #documentation build directorys
 doc/latex/
 #doc/html/ #dont ignore this so it can be put on the git website in branch gh-pages
+!doc/latex/AChemKit.pdf
 
-#auto-generated documentation
-doc/autodoc/
+#autobuild doc sources
+doc/src/AChemKit.*.rst
 
 #sphinx internal caching
-doc/doctrees/
+doc/html/.doctrees/
+doc/html/.buildinfo

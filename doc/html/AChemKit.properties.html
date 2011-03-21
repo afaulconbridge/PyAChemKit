@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Welcome to AChemKit’s documentation! &mdash; AChemKit v0.1 documentation</title>
+    <title>AChemKit.properties &mdash; AChemKit v0.1 documentation</title>
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -22,8 +22,10 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="AChemKit v0.1 documentation" href="#" />
-    <link rel="next" title="Readme" href="README.html" /> 
+    <link rel="top" title="AChemKit v0.1 documentation" href="index.html" />
+    <link rel="up" title="&lt;no title&gt;" href="autoAChemKit.html" />
+    <link rel="next" title="AChemKit.utils" href="AChemKit.utils.html" />
+    <link rel="prev" title="AChemKit.randomnet" href="AChemKit.randomnet.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,9 +38,13 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="README.html" title="Readme"
+          <a href="AChemKit.utils.html" title="AChemKit.utils"
              accesskey="N">next</a> |</li>
-        <li><a href="#">AChemKit v0.1 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="AChemKit.randomnet.html" title="AChemKit.randomnet"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">AChemKit v0.1 documentation</a> &raquo;</li>
+          <li><a href="autoAChemKit.html" accesskey="U">&lt;no title&gt;</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -47,38 +53,19 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="welcome-to-achemkit-s-documentation">
-<h1>Welcome to AChemKit&#8217;s documentation!<a class="headerlink" href="#welcome-to-achemkit-s-documentation" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="README.html">Readme</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="README.html#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="README.html#documentation">Documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="README.html#tests">Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="README.html#benchmarks">Benchmarks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="README.html#copyright">Copyright</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="fileformats.html">File Formats</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="fileformats.html#chem-format"><cite>.chem</cite> Format</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="AChemKit.reactionnet.html">AChemKit.reactionnet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AChemKit.randomnet.html">AChemKit.randomnet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AChemKit.properties.html">AChemKit.properties</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AChemKit.utils.html">AChemKit.utils</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="AChemKit.tools.html">AChemKit.tools</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="TODO.html">To-Dos</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="TODO.html#features">Features</a></li>
-<li class="toctree-l2"><a class="reference internal" href="TODO.html#bugs">Bugs</a></li>
-</ul>
-</li>
-</ul>
-</div>
+  <div class="section" id="achemkit-properties">
+<h1>AChemKit.properties<a class="headerlink" href="#achemkit-properties" title="Permalink to this headline">¶</a></h1>
+<dl class="data">
+<dt id="AChemKit.properties">
+<tt class="descclassname">AChemKit.</tt><tt class="descname">properties</tt><a class="headerlink" href="#AChemKit.properties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Functions for testing properties of particular reaction networks.</p>
+<p>These functions expect an object of class <tt class="xref py py-class docutils literal"><span class="pre">AChemKit.reactionnet.ReactionNetwork</span></tt>
+or subclass or something with an equivalent API. It does not enforce
+this however, so you may use custom classes with the same API.</p>
+<p>Some of these properties have logical prerequisites, but these are not tested
+for explicitly.</p>
+</dd></dl>
+
 </div>
 
 
@@ -87,12 +74,15 @@
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="AChemKit.randomnet.html"
+                        title="previous chapter">AChemKit.randomnet</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="README.html"
-                        title="next chapter">Readme</a></p>
+  <p class="topless"><a href="AChemKit.utils.html"
+                        title="next chapter">AChemKit.utils</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="_sources/index.txt"
+    <li><a href="_sources/AChemKit.properties.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -122,9 +112,13 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="README.html" title="Readme"
+          <a href="AChemKit.utils.html" title="AChemKit.utils"
              >next</a> |</li>
-        <li><a href="#">AChemKit v0.1 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="AChemKit.randomnet.html" title="AChemKit.randomnet"
+             >previous</a> |</li>
+        <li><a href="index.html">AChemKit v0.1 documentation</a> &raquo;</li>
+          <li><a href="autoAChemKit.html" >&lt;no title&gt;</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
