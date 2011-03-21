@@ -29,11 +29,13 @@ clean:
 doc: dochtml doclatex
 
 dochtml:
-	@echo sphinx-build -b html -n docs/src docs/html
+	@echo sphinx-build -b html -n doc/src doc/html
 
 doclatex:
-	@echo sphinx-build -b latex -n docs/src docs/latex
-	#@echo pdflatex docs/latex
+	@echo sphinx-build -b latex -n doc/src doc/latex
+	@echo pdflatex doc/latex
+	@echo pdflatex doc/latex
+	@echo pdflatex doc/latex
 	
 test:
 	python rununittest.py
