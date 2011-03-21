@@ -1,5 +1,6 @@
 #compiled python files
 *.pyc
+*.pyo
 
 #temporary editor files
 *~
@@ -10,6 +11,9 @@ pylint.txt
 #coverage report
 .coverage
 coverage.xml
+
+#geany editor project file
+PyAChemKit.geany
 
 #specific to PyAChemKit
 
