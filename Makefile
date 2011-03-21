@@ -1,5 +1,3 @@
-#FOOOM!
-
 
 .PHONY: doc dochtml doclatex clean test benchmark
 
