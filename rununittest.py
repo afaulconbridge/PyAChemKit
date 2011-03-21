@@ -1,6 +1,6 @@
 """
 The purpose of this is to see the coverage of the unit tests, so they can be
-added to accordingly. It uses nose to do this as well as coverage script
+added to accordingly. It uses unittest to do this as well as coverage script
 from nedbatchelder.com/code/coverage
 """
 
@@ -12,8 +12,12 @@ if __name__ == "__main__":
     loader = unittest.TestLoader()
     import AChemKit
     import AChemKit.reactionnet
+    
     import AChemKit.reactionnet_test
     suite.addTest(loader.loadTestsFromTestCase(AChemKit.reactionnet_test.TestReactionNetwork))
+    
     import AChemKit.bucket
+    
     import AChemKit.randomnet
+    
     unittest.TextTestRunner(verbosity=2).run(suite)
