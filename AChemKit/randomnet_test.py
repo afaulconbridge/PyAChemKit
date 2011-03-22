@@ -1,5 +1,5 @@
 """
-This is the test harness for ``randomnet.py``.
+This is the test harness for :py:mod:`AChemKit.randomnet`.
 
 """
 #this will not be required once a proper installer exists

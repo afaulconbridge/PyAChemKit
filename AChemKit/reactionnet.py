@@ -2,9 +2,9 @@
 """
 Core for all ReactionNetwork classes
 
-Of particular note are the alternative constructors of :class:`ReactionNetwork`,
-:meth:`ReactionNetwork.from_file`, :meth:`ReactionNetwork.from_filename` and
-:meth:`ReactionNetwork.from_string`.
+Of particular note are the alternative constructors of :class:`AChemKit.reactionnet.ReactionNetwork`,
+:meth:`AChemKit.reactionnet.ReactionNetwork.from_file`, :meth:`AChemKit.reactionnet.ReactionNetwork.from_filename` and
+:meth:`AChemKit.reactionnet.ReactionNetwork.from_string`.
 """
 
 #regular expression to detect reaction when reading from string-based inputs
@@ -76,6 +76,9 @@ class ReactionNetwork(object):
     def reaction_to_string(cls, reaction, rate=1.0):
         """
         Produces a human-readable string for a particular reaction.
+        
+        Mainly used to convert entire reaction network to a string representation,
+        but can also be used for individual reactions if desired.
         """
         reactionstring = ""
         reactants, products = reaction
@@ -136,7 +139,7 @@ class ReactionNetwork(object):
     @property
     def dot(self):
         """
-        Property wrapper around :meth:`to_dot` to provide attribute-like access.
+        Property wrapper around :meth:`AChemKit.reactionnet.to_dot` to provide attribute-like access.
         """
         if self._dot is None:
             self._dot = self.to_dot()

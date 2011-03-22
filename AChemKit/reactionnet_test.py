@@ -1,5 +1,5 @@
 """
-This is the test harness for ``reactionnet.py``.
+This is the test harness for :py:mod:`AChemKit.reactionnet`.
 
 """
 #this will not be required once a proper installer exists
