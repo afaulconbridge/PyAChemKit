@@ -24,7 +24,7 @@ doc/latex/
 !doc/latex/AChemKit.pdf
 
 #autobuild doc sources
-doc/src/AChemKit.*.rst
+doc/src/AChemKit*.rst
 
 #sphinx internal caching
 doc/html/.doctrees/

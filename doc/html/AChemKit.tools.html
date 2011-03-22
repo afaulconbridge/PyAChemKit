@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>AChemKit.tools &mdash; AChemKit v0.1 documentation</title>
+    <title>tools Package &mdash; AChemKit v0.1 documentation</title>
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -23,7 +23,9 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="AChemKit v0.1 documentation" href="index.html" />
-    <link rel="up" title="&lt;no title&gt;" href="autoAChemKit.html" /> 
+    <link rel="up" title="AChemKit Package" href="AChemKit.html" />
+    <link rel="next" title="AChemKit.tools.chem_pp" href="AChemKit.tools.chem_pp.html" />
+    <link rel="prev" title="AChemKit Package" href="AChemKit.html" /> 
   </head>
   <body>
     <div class="related">
@@ -35,8 +37,14 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="AChemKit.tools.chem_pp.html" title="AChemKit.tools.chem_pp"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="AChemKit.html" title="AChemKit Package"
+             accesskey="P">previous</a> |</li>
         <li><a href="index.html">AChemKit v0.1 documentation</a> &raquo;</li>
-          <li><a href="autoAChemKit.html" accesskey="U">&lt;no title&gt;</a> &raquo;</li> 
+          <li><a href="AChemKit.html" accesskey="U">AChemKit Package</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -45,42 +53,153 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="achemkit-tools">
-<h1>AChemKit.tools<a class="headerlink" href="#achemkit-tools" title="Permalink to this headline">¶</a></h1>
-<dl class="data">
-<dt id="AChemKit.tools">
-<tt class="descclassname">AChemKit.</tt><tt class="descname">tools</tt><a class="headerlink" href="#AChemKit.tools" title="Permalink to this definition">¶</a></dt>
-<dd><p>AChemKit comes with a number of complete command-line driven tools for working with various file types.</p>
+  <div class="section" id="tools-package">
+<h1>tools Package<a class="headerlink" href="#tools-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><tt class="xref py py-mod docutils literal"><span class="pre">tools</span></tt> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-AChemKit.tools"></span><p>AChemKit comes with a number of complete command-line driven tools for working with various file types.</p>
 <p>These are intended to be used in automated pipelines, such as <a class="reference external" href="http://www.gnu.org/software/make/">Makefiles</a>.</p>
 <p>These can be used as stand-alone programs, or examined as usage examples for the AChemKit <em class="xref std std-ref">API</em>.</p>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/adam/Dropbox/PyAChemKit/doc/src/AChemKit.tools.rst</tt>, line 11)</p>
-toctree references unknown document u&#8217;AChemKit.tools.chem_pp&#8217;</div>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/adam/Dropbox/PyAChemKit/doc/src/AChemKit.tools.rst</tt>, line 11)</p>
-toctree references unknown document u&#8217;AChemKit.tools.chem_to_dot&#8217;</div>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/adam/Dropbox/PyAChemKit/doc/src/AChemKit.tools.rst</tt>, line 11)</p>
-toctree references unknown document u&#8217;AChemKit.tools.chem_to_pdf&#8217;</div>
 <table border="1" class="docutils">
 <colgroup>
 <col width="10%" />
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr><td><tt class="xref py py-obj docutils literal"><span class="pre">AChemKit.tools.chem_pp</span></tt></td>
+<tr><td><a class="reference internal" href="#module-AChemKit.tools.chem_pp" title="AChemKit.tools.chem_pp"><tt class="xref py py-obj docutils literal"><span class="pre">AChemKit.tools.chem_pp</span></tt></a></td>
 <td>A pretty-printer and syntax checker for <cite>.chem</cite> files</td>
 </tr>
-<tr><td><tt class="xref py py-obj docutils literal"><span class="pre">AChemKit.tools.chem_to_dot</span></tt></td>
+<tr><td><a class="reference internal" href="#module-AChemKit.tools.chem_to_dot" title="AChemKit.tools.chem_to_dot"><tt class="xref py py-obj docutils literal"><span class="pre">AChemKit.tools.chem_to_dot</span></tt></a></td>
 <td>Produces a <cite>.dot</cite> output from a provided <cite>.chem</cite> format input</td>
 </tr>
-<tr><td><tt class="xref py py-obj docutils literal"><span class="pre">AChemKit.tools.chem_to_pdf</span></tt></td>
+<tr><td><a class="reference internal" href="#module-AChemKit.tools.chem_to_pdf" title="AChemKit.tools.chem_to_pdf"><tt class="xref py py-obj docutils literal"><span class="pre">AChemKit.tools.chem_to_pdf</span></tt></a></td>
 <td>Produces a <cite>.pdf</cite> output from a provided <cite>.chem</cite> format input</td>
 </tr>
 </tbody>
 </table>
-</dd></dl>
-
+</div>
+<div class="section" id="module-AChemKit.tools.chem_pp">
+<span id="chem-pp-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">chem_pp</span></tt> Module<a class="headerlink" href="#module-AChemKit.tools.chem_pp" title="Permalink to this headline">¶</a></h2>
+<p>A pretty-printer and syntax checker for <cite>.chem</cite> files</p>
+<p>For information in <cite>.chem</cite> files see <a class="reference internal" href="fileformats.html#chem-file-format"><em>.chem Format</em></a>.</p>
+<p>Usage: chem_pp.py [options]</p>
+<p>Options:</p>
+<blockquote>
+<div><table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td>show a help message and exit</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-i <var>INFILE</var></span>, <span class="option">--infile=<var>INFILE</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>read from INFILE (if ommited, use stdin)</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-o <var>OUTFILE</var></span>, <span class="option">--outfile=<var>OUTFILE</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>write to OUTFILE in .chem format  (if ommited, use stdout)</td></tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="module-AChemKit.tools.chem_to_dot">
+<span id="chem-to-dot-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">chem_to_dot</span></tt> Module<a class="headerlink" href="#module-AChemKit.tools.chem_to_dot" title="Permalink to this headline">¶</a></h2>
+<p>Produces a <cite>.dot</cite> output from a provided <cite>.chem</cite> format input</p>
+<p>The output files in <cite>.dot</cite> format are suitable for future processing using Graphviz tools.
+In particular, they are constructed using <a class="reference internal" href="AChemKit.utils.html#AChemKit.utils.simpledot.SimpleDot" title="AChemKit.utils.simpledot.SimpleDot"><tt class="xref py py-class docutils literal"><span class="pre">AChemKit.utils.simpledot.SimpleDot</span></tt></a>.</p>
+<p>For information in <cite>.chem</cite> files see <a class="reference internal" href="fileformats.html#chem-file-format"><em>.chem Format</em></a>.</p>
+<p>Usage: chem_to_dot.py [options]</p>
+<p>Options:</p>
+<blockquote>
+<div><table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td>Show a help message and exit</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-i <var>INFILE</var></span>, <span class="option">--infile=<var>INFILE</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Read from INFILE (if ommited, use stdin)</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-o <var>OUTFILE</var></span>, <span class="option">--outfile=<var>OUTFILE</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Write to OUTFILE in .chem format  (if ommited, use stdout)</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-n <var>NAMES</var></span>, <span class="option">--names</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Style of molecular species naming. One of &#8216;full&#8217;, &#8216;id&#8217;, &#8216;blank&#8217;</td></tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="module-AChemKit.tools.chem_to_pdf">
+<span id="chem-to-pdf-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">chem_to_pdf</span></tt> Module<a class="headerlink" href="#module-AChemKit.tools.chem_to_pdf" title="Permalink to this headline">¶</a></h2>
+<p>Produces a <cite>.pdf</cite> output from a provided <cite>.chem</cite> format input</p>
+<p>The output files in <cite>.pdf</cite> format produced using Graphviz tools.
+In particular, they are constructed using <a class="reference internal" href="AChemKit.utils.html#AChemKit.utils.simpledot.SimpleDot" title="AChemKit.utils.simpledot.SimpleDot"><tt class="xref py py-class docutils literal"><span class="pre">AChemKit.utils.simpledot.SimpleDot</span></tt></a>.</p>
+<p>For information in <cite>.chem</cite> files see <a class="reference internal" href="fileformats.html#chem-file-format"><em>.chem Format</em></a>.</p>
+<p>Usage: chem_to_pdf.py [options]</p>
+<p>Options:</p>
+<blockquote>
+<div><table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td>show a help message and exit</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-i <var>INFILE</var></span>, <span class="option">--infile=<var>INFILE</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>read from INFILE (if ommited, use stdin)</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-o <var>OUTFILE</var></span>, <span class="option">--outfile=<var>OUTFILE</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>write to OUTFILE in .pdf format  (if ommited, use stdout)</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-l <var>LAYOUT</var></span>, <span class="option">--layout=<var>LAYOUT</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Graphviz layout to use (if ommited, use dot)</td></tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="module-AChemKit.tools.log_to_chem">
+<span id="log-to-chem-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">log_to_chem</span></tt> Module<a class="headerlink" href="#module-AChemKit.tools.log_to_chem" title="Permalink to this headline">¶</a></h2>
+<p>Produces a <cite>.dot</cite> output from a provided <cite>.chem</cite> format input</p>
+<p>The output files in <cite>.dot</cite> format are suitable for future processing using Graphviz tools.
+In particular, they are constructed using <a class="reference internal" href="AChemKit.utils.html#AChemKit.utils.simpledot.SimpleDot" title="AChemKit.utils.simpledot.SimpleDot"><tt class="xref py py-class docutils literal"><span class="pre">AChemKit.utils.simpledot.SimpleDot</span></tt></a>.</p>
+<p>For information in <cite>.chem</cite> files see <a class="reference internal" href="fileformats.html#chem-file-format"><em>.chem Format</em></a>.</p>
+<p>Usage: chem_to_dot.py [options]</p>
+<p>Options:</p>
+<blockquote>
+<div><table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td>Show a help message and exit</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-i <var>INFILE</var></span>, <span class="option">--infile=<var>INFILE</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Read from INFILE (if ommited, use stdin)</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-o <var>OUTFILE</var></span>, <span class="option">--outfile=<var>OUTFILE</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Write to OUTFILE in .chem format  (if ommited, use stdout)</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-n <var>NAMES</var></span>, <span class="option">--names</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Style of molecular species naming. One of &#8216;full&#8217;, &#8216;id&#8217;, &#8216;blank&#8217;</td></tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
 </div>
 
 
@@ -89,6 +208,26 @@ toctree references unknown document u&#8217;AChemKit.tools.chem_to_pdf&#8217;</d
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">tools Package</a><ul>
+<li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">tools</span></tt> Package</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-AChemKit.tools.chem_pp"><tt class="docutils literal"><span class="pre">chem_pp</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-AChemKit.tools.chem_to_dot"><tt class="docutils literal"><span class="pre">chem_to_dot</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-AChemKit.tools.chem_to_pdf"><tt class="docutils literal"><span class="pre">chem_to_pdf</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-AChemKit.tools.log_to_chem"><tt class="docutils literal"><span class="pre">log_to_chem</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="AChemKit.html"
+                        title="previous chapter">AChemKit Package</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="AChemKit.tools.chem_pp.html"
+                        title="next chapter">AChemKit.tools.chem_pp</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/AChemKit.tools.txt"
@@ -120,8 +259,14 @@ toctree references unknown document u&#8217;AChemKit.tools.chem_to_pdf&#8217;</d
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="AChemKit.tools.chem_pp.html" title="AChemKit.tools.chem_pp"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="AChemKit.html" title="AChemKit Package"
+             >previous</a> |</li>
         <li><a href="index.html">AChemKit v0.1 documentation</a> &raquo;</li>
-          <li><a href="autoAChemKit.html" >&lt;no title&gt;</a> &raquo;</li> 
+          <li><a href="AChemKit.html" >AChemKit Package</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

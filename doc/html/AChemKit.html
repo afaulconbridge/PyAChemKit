@@ -1,0 +1,624 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>AChemKit Package &mdash; AChemKit v0.1 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="AChemKit v0.1 documentation" href="index.html" />
+    <link rel="next" title="tools Package" href="AChemKit.tools.html" />
+    <link rel="prev" title="File Formats" href="fileformats.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="AChemKit.tools.html" title="tools Package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="fileformats.html" title="File Formats"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">AChemKit v0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="achemkit-package">
+<h1>AChemKit Package<a class="headerlink" href="#achemkit-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><tt class="xref py py-mod docutils literal"><span class="pre">AChemKit</span></tt> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-AChemKit.__init__"></span><p>Detailed documentation for all the components of AChemKit.
+It is generated directly from the source code, so should be up-to-date.</p>
+</div>
+<div class="section" id="module-AChemKit.bucket">
+<span id="bucket-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">bucket</span></tt> Module<a class="headerlink" href="#module-AChemKit.bucket" title="Permalink to this headline">¶</a></h2>
+<p>Library for working with <cite>buckets</cite>; instances of a simulation of an Artificial Chemistry.</p>
+<p>Various tools for going between ReactionNetwork  and Buckets, as well an analysing buckets.</p>
+<dl class="class">
+<dt id="AChemKit.bucket.Bucket">
+<em class="property">class </em><tt class="descclassname">AChemKit.bucket.</tt><tt class="descname">Bucket</tt><big>(</big><em>events</em><big>)</big><a class="headerlink" href="#AChemKit.bucket.Bucket" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Event history of a simulation of an Artificial Chemistry.</p>
+<dl class="classmethod">
+<dt id="AChemKit.bucket.Bucket.from_file">
+<em class="property">classmethod </em><tt class="descname">from_file</tt><big>(</big><em>file</em><big>)</big><a class="headerlink" href="#AChemKit.bucket.Bucket.from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alternative constructor that accepts a <tt class="xref py py-class docutils literal"><span class="pre">file</span></tt> object (or equivalent).</p>
+<p>Source must be formatted as a bucket log  file, see <em class="xref std std-ref">bucket_file_format</em>.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="AChemKit.bucket.Bucket.from_filename">
+<em class="property">classmethod </em><tt class="descname">from_filename</tt><big>(</big><em>infilename</em><big>)</big><a class="headerlink" href="#AChemKit.bucket.Bucket.from_filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper around <a class="reference internal" href="#AChemKit.bucket.Bucket.from_file" title="AChemKit.bucket.Bucket.from_file"><tt class="xref py py-meth docutils literal"><span class="pre">from_file()</span></tt></a> that opens the provided filename as a file to read.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="AChemKit.bucket.Bucket.from_string">
+<em class="property">classmethod </em><tt class="descname">from_string</tt><big>(</big><em>instr</em><big>)</big><a class="headerlink" href="#AChemKit.bucket.Bucket.from_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper around <a class="reference internal" href="#AChemKit.bucket.Bucket.from_file" title="AChemKit.bucket.Bucket.from_file"><tt class="xref py py-meth docutils literal"><span class="pre">from_file()</span></tt></a> that uses <tt class="xref py py-class docutils literal"><span class="pre">StringIO</span></tt>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="AChemKit.bucket.Bucket.reactionnet">
+<tt class="descname">reactionnet</tt><a class="headerlink" href="#AChemKit.bucket.Bucket.reactionnet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="AChemKit.bucket.Event">
+<em class="property">class </em><tt class="descclassname">AChemKit.bucket.</tt><tt class="descname">Event</tt><big>(</big><em>time</em>, <em>reactants</em>, <em>products</em><big>)</big><a class="headerlink" href="#AChemKit.bucket.Event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Mini-class for tracking events (instances of a reaction) within a bucket.</p>
+<p>Supports comparisons, is hashable, is immutable</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-AChemKit.properties">
+<span id="properties-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">properties</span></tt> Module<a class="headerlink" href="#module-AChemKit.properties" title="Permalink to this headline">¶</a></h2>
+<p>Functions for testing properties of particular reaction networks.</p>
+<p>These functions expect an object of class <a class="reference internal" href="#AChemKit.reactionnet.ReactionNetwork" title="AChemKit.reactionnet.ReactionNetwork"><tt class="xref py py-class docutils literal"><span class="pre">AChemKit.reactionnet.ReactionNetwork</span></tt></a>
+or subclass or something with an equivalent API. It does not enforce
+this however, so you may use custom classes with the same API.</p>
+<p>Some of these properties have logical prerequisites, but these are not tested
+for explicitly.</p>
+<dl class="function">
+<dt id="AChemKit.properties.has_catalysis_direct">
+<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">has_catalysis_direct</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.has_catalysis_direct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests for reactions where some species is both consumed and produced by the same reaction.</p>
+<p>For example:</p>
+<div class="highlight-python"><pre>A + C -&gt; B + C
+AB + C -&gt; A + B + C</pre>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="AChemKit.properties.has_decomposition">
+<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">has_decomposition</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.has_decomposition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests for reactions where reactants combine to produce more products.</p>
+<p>For example:</p>
+<div class="highlight-python"><pre>AB -&gt; A + B
+AB + C -&gt; A + B + C</pre>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="AChemKit.properties.has_reversible">
+<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">has_reversible</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.has_reversible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests for a pair of reactions where the products of one is the reactants of the other and visa vera.</p>
+<p>For example:</p>
+<div class="highlight-python"><pre>A + B -&gt; AB
+AB -&gt; A + B</pre>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="AChemKit.properties.has_synthesis">
+<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">has_synthesis</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.has_synthesis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests for reactions where reactants combine to produce fewer products.</p>
+<p>May also be called a <em>combination reaction</em>.</p>
+<p>For example:</p>
+<div class="highlight-python"><pre>A + B -&gt; AB
+A + B + C -&gt; AB + D</pre>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="AChemKit.properties.has_varying_rates">
+<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">has_varying_rates</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.has_varying_rates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests that the reaction network has different rates for different reactions.</p>
+<p>To get the range of rates a reaction network spans, use:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">span</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">rn</span><span class="o">.</span><span class="n">rates</span><span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="o">-</span><span class="nb">min</span><span class="p">(</span><span class="n">rn</span><span class="o">.</span><span class="n">rates</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="AChemKit.properties.not_conservation_mass">
+<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">not_conservation_mass</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.not_conservation_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests for violation of conservation of mass.</p>
+<p>Note, we can show that a reaction network breaks conservation of mass, but not prove that it obeys it.</p>
+<p>This is done by arranging all the molecules into a partially ordered set - a tree from largest to smallest. If this
+cannot be done, then conservation of mass must be violated. If this can be done, then conservation of mass may or may
+not apply - it cannot be said for certain.</p>
+<p>This requires that each molecular species can be separated into individual atoms. If this is not possible, then
+this function will not work.</p>
+<p>NEEDS TO BE WRITTEN</p>
+<p>(Credit to Adam Nellis for algorithm)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-AChemKit.randomnet">
+<span id="randomnet-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">randomnet</span></tt> Module<a class="headerlink" href="#module-AChemKit.randomnet" title="Permalink to this headline">¶</a></h2>
+<p>Functions that construct random <tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt> instances by various methods.</p>
+<dl class="function">
+<dt id="AChemKit.randomnet.Linear">
+<tt class="descclassname">AChemKit.randomnet.</tt><tt class="descname">Linear</tt><big>(</big><em>natoms</em>, <em>maxlength</em>, <em>pform</em>, <em>pbreak</em>, <em>directed=True</em>, <em>rates=1.0</em>, <em>cls=&lt;class 'AChemKit.reactionnet.ReactionNetwork'&gt;</em>, <em>rng=None</em><big>)</big><a class="headerlink" href="#AChemKit.randomnet.Linear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a random <tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt> from molecules that are strings of atoms and can join together or break apart.</p>
+<p>Based on the paper Autocatalytic sets of proteins. 1986. Journal of Theoretical Biology 119:1-24 by Kauffman, Stuart A.  but without the explicit catalytic activity.</p>
+<p>Arguments:</p>
+<dl class="docutils">
+<dt>natoms</dt>
+<dd>Number of atoms to use. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt> tracks molecules by their reactions, so if a molecule is not part of any reaction
+it will not appear at all e.g. in <tt class="xref py py-meth docutils literal"><span class="pre">seen()</span></tt>.</p>
+</div>
+<dl class="docutils">
+<dt>maxlength</dt>
+<dd>Maximum number of atoms in a molecule. If this is None, then they are unbounded; this might cause problems with a computational explosion. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).</dd>
+<dt>pform</dt>
+<dd>Probability that a pair of molecules will join together per orientation. Must be between 0 and 1. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).</dd>
+<dt>pbreak</dt>
+<dd>Probability that any pair of atoms will break. Must be between 0 and 1.</dd>
+<dt>directed</dt>
+<dd>If false, molecules have no intrinsic direction so AlphBeta is equivlanet to BetaAlpha.
+<strong>NOT IMPLEMENTED</strong></dd>
+<dt>rates</dt>
+<dd>Rate of each reaction in the reaction network. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).</dd>
+<dt>cls</dt>
+<dd>Alternative class to use for constructing the return rather than <tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt>.</dd>
+<dt>rng</dt>
+<dd>Random number generator to use. If not specifed, one will be generated at random.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="AChemKit.randomnet.Uniform">
+<tt class="descclassname">AChemKit.randomnet.</tt><tt class="descname">Uniform</tt><big>(</big><em>nmols</em>, <em>nreactions</em>, <em>nreactants</em>, <em>nproducts</em>, <em>rates=1.0</em>, <em>cls=&lt;class 'AChemKit.reactionnet.ReactionNetwork'&gt;</em>, <em>rng=None</em><big>)</big><a class="headerlink" href="#AChemKit.randomnet.Uniform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a random <tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt> by assigning reaction randomly between all molecular species.</p>
+<p>Arguments:</p>
+<dl class="docutils">
+<dt>nmols</dt>
+<dd>Number of molecules in the reaction network. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt> tracks molecules by their reactions, so if a molecule is not part of any reaction
+it will not appear at all e.g. in <tt class="xref py py-meth docutils literal"><span class="pre">seen()</span></tt>. This could lead to differences from <cite>nmols</cite>.</p>
+</div>
+<dl class="docutils">
+<dt>nreactions</dt>
+<dd>Number of reaction in the reaction network. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The value of <cite>nreactions</cite> is the number of times a reaction will be added to the <tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt>. If it
+is already in the <tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt>, it will be replaced. This can lead to <tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt> with less
+than <cite>nreactions</cite> reactions.</p>
+</div>
+<dl class="docutils">
+<dt>nreactants</dt>
+<dd><p class="first">Number of reactants for each reaction in the reaction network. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).</p>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If this is a tuple/list it will be sampled for each reaction.</p>
+</div>
+</dd>
+<dt>nproducts</dt>
+<dd><p class="first">Number of products for each reaction in the reaction network. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).</p>
+<p>If this is None, then <cite>nreactants</cite> must be a tuple of (<cite>nreactants</cite>, <cite>nproducts</cite>) or a list of tuples.</p>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If this is a tuple/list it will be sampled for each reaction.</p>
+</div>
+</dd>
+<dt>rates</dt>
+<dd><p class="first">Rate of each reaction in the reaction network. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).</p>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If this is a tuple/list it will be sampled for each reaction.</p>
+</div>
+</dd>
+<dt>cls</dt>
+<dd>Alternative class to use for constructing the return rather than <tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt>.</dd>
+<dt>rng</dt>
+<dd>Random number generator to use. If not specifed, one will be generated at random.</dd>
+</dl>
+<p>These arguments can be a single value or a tuple/list which will be uniformly sampled from.</p>
+<p>For example:</p>
+<p><tt class="docutils literal"><span class="pre">Uniform(5,3,2,1)</span></tt> will generate 5 molecules with 3 reactions between them where each reaction has two reactants and one product.</p>
+<p><tt class="docutils literal"><span class="pre">Uniform(5,3,(1,2),</span> <span class="pre">(1,2))</span></tt> will generate 5 molecules with 3 reactions between them where each reaction has one or two reactants and one or two products.</p>
+<p><tt class="docutils literal"><span class="pre">Uniform(5,3,((2,1),(1,2)),</span> <span class="pre">None)</span></tt> will generate 5 molecules with 3 reactions between them where each reaction has either two reactants and one product or one reactant and two products.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="AChemKit.randomnet.combinations_with_replacement">
+<tt class="descclassname">AChemKit.randomnet.</tt><tt class="descname">combinations_with_replacement</tt><big>(</big><em>iterable</em>, <em>r</em><big>)</big><a class="headerlink" href="#AChemKit.randomnet.combinations_with_replacement" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-AChemKit.randomnet_test">
+<span id="randomnet-test-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">randomnet_test</span></tt> Module<a class="headerlink" href="#module-AChemKit.randomnet_test" title="Permalink to this headline">¶</a></h2>
+<p>This is the test harness for <tt class="docutils literal"><span class="pre">randomnet.py</span></tt>.</p>
+<dl class="class">
+<dt id="AChemKit.randomnet_test.TestLinear">
+<em class="property">class </em><tt class="descclassname">AChemKit.randomnet_test.</tt><tt class="descname">TestLinear</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#AChemKit.randomnet_test.TestLinear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.TestCase</span></tt></p>
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="AChemKit.randomnet_test.TestUniform">
+<em class="property">class </em><tt class="descclassname">AChemKit.randomnet_test.</tt><tt class="descname">TestUniform</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#AChemKit.randomnet_test.TestUniform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.TestCase</span></tt></p>
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-AChemKit.reactionnet">
+<span id="reactionnet-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">reactionnet</span></tt> Module<a class="headerlink" href="#module-AChemKit.reactionnet" title="Permalink to this headline">¶</a></h2>
+<p>Core for all ReactionNetwork classes</p>
+<p>Of particular note are the alternative constructors of <a class="reference internal" href="#AChemKit.reactionnet.ReactionNetwork" title="AChemKit.reactionnet.ReactionNetwork"><tt class="xref py py-class docutils literal"><span class="pre">ReactionNetwork</span></tt></a>,
+<a class="reference internal" href="#AChemKit.reactionnet.ReactionNetwork.from_file" title="AChemKit.reactionnet.ReactionNetwork.from_file"><tt class="xref py py-meth docutils literal"><span class="pre">ReactionNetwork.from_file()</span></tt></a>, <a class="reference internal" href="#AChemKit.reactionnet.ReactionNetwork.from_filename" title="AChemKit.reactionnet.ReactionNetwork.from_filename"><tt class="xref py py-meth docutils literal"><span class="pre">ReactionNetwork.from_filename()</span></tt></a> and
+<a class="reference internal" href="#AChemKit.reactionnet.ReactionNetwork.from_string" title="AChemKit.reactionnet.ReactionNetwork.from_string"><tt class="xref py py-meth docutils literal"><span class="pre">ReactionNetwork.from_string()</span></tt></a>.</p>
+<dl class="class">
+<dt id="AChemKit.reactionnet.ReactionNetwork">
+<em class="property">class </em><tt class="descclassname">AChemKit.reactionnet.</tt><tt class="descname">ReactionNetwork</tt><big>(</big><em>rates</em><big>)</big><a class="headerlink" href="#AChemKit.reactionnet.ReactionNetwork" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>A dictionary of reactions where each key is a reaction
+composed of (tuple(sorted(reactants)), sorted(tuple(products))) and each
+value is the rate.</p>
+<p>ReactionNetwork objects are immutable and hashable.</p>
+<p>ReactionNetwork objects support __eq__ and __ne__, but none of the other
+rich comparison operators (__lt__, __le__, __gt__, __ge__).</p>
+<p>Different subclassess should be implemented to generate reaction networks on
+demand (artificial chemistries, etc) and provide additional functionallity,
+such as visualization or metrics.</p>
+<p>Can be cast to string to get a <cite>.chem</cite> representation.</p>
+<dl class="attribute">
+<dt id="AChemKit.reactionnet.ReactionNetwork.dot">
+<tt class="descname">dot</tt><a class="headerlink" href="#AChemKit.reactionnet.ReactionNetwork.dot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Property wrapper around <a class="reference internal" href="#AChemKit.reactionnet.ReactionNetwork.to_dot" title="AChemKit.reactionnet.ReactionNetwork.to_dot"><tt class="xref py py-meth docutils literal"><span class="pre">to_dot()</span></tt></a> to provide attribute-like access.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="AChemKit.reactionnet.ReactionNetwork.from_file">
+<em class="property">classmethod </em><tt class="descname">from_file</tt><big>(</big><em>infile</em><big>)</big><a class="headerlink" href="#AChemKit.reactionnet.ReactionNetwork.from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alternative constructor that accepts a <tt class="xref py py-class docutils literal"><span class="pre">file</span></tt> object (or equivalent).</p>
+<p>Source must be formatted as a .chem file, see <a class="reference internal" href="fileformats.html#chem-file-format"><em>.chem Format</em></a>.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="AChemKit.reactionnet.ReactionNetwork.from_filename">
+<em class="property">classmethod </em><tt class="descname">from_filename</tt><big>(</big><em>infilename</em><big>)</big><a class="headerlink" href="#AChemKit.reactionnet.ReactionNetwork.from_filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper around <a class="reference internal" href="#AChemKit.reactionnet.ReactionNetwork.from_file" title="AChemKit.reactionnet.ReactionNetwork.from_file"><tt class="xref py py-meth docutils literal"><span class="pre">from_file()</span></tt></a> that opens the provided filename as a file to read.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="AChemKit.reactionnet.ReactionNetwork.from_string">
+<em class="property">classmethod </em><tt class="descname">from_string</tt><big>(</big><em>instr</em><big>)</big><a class="headerlink" href="#AChemKit.reactionnet.ReactionNetwork.from_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper around <a class="reference internal" href="#AChemKit.reactionnet.ReactionNetwork.from_file" title="AChemKit.reactionnet.ReactionNetwork.from_file"><tt class="xref py py-meth docutils literal"><span class="pre">from_file()</span></tt></a> that uses <tt class="xref py py-class docutils literal"><span class="pre">StringIO</span></tt>.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="AChemKit.reactionnet.ReactionNetwork.reaction_to_string">
+<em class="property">classmethod </em><tt class="descname">reaction_to_string</tt><big>(</big><em>reaction</em>, <em>rate=1.0</em><big>)</big><a class="headerlink" href="#AChemKit.reactionnet.ReactionNetwork.reaction_to_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produces a human-readable string for a particular reaction.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="AChemKit.reactionnet.ReactionNetwork.reactions">
+<tt class="descname">reactions</tt><a class="headerlink" href="#AChemKit.reactionnet.ReactionNetwork.reactions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sorted tuple of all reactions in the network</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="AChemKit.reactionnet.ReactionNetwork.seen">
+<tt class="descname">seen</tt><a class="headerlink" href="#AChemKit.reactionnet.ReactionNetwork.seen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sorted tuple of all molecular species in the network</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.reactionnet.ReactionNetwork.to_dot">
+<tt class="descname">to_dot</tt><big>(</big><em>names=None</em>, <em>rates=None</em>, <em>shown=()</em>, <em>hidden=()</em><big>)</big><a class="headerlink" href="#AChemKit.reactionnet.ReactionNetwork.to_dot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a <cite>.dot</cite> format string constructed using a <a class="reference internal" href="AChemKit.utils.html#AChemKit.utils.simpledot.SimpleDot" title="AChemKit.utils.simpledot.SimpleDot"><tt class="xref py py-class docutils literal"><span class="pre">AChemKit.utils.simpledot.SimpleDot</span></tt></a>
+view of this reaction network.</p>
+<p>Molecular species are shown as either full names, identifier numbers, or as blank circles.
+This is determined by the <cite>names</cite> parameter, which is a string indicating which to use:</p>
+<dl class="docutils">
+<dt>&#8220;full&#8221;</dt>
+<dd>This will use the full molecule name specified in the .chem file</dd>
+<dt>&#8220;id&#8221;</dt>
+<dd>This will use a shortened identifier of that molecules index in the
+<a class="reference internal" href="#AChemKit.reactionnet.ReactionNetwork.seen" title="AChemKit.reactionnet.ReactionNetwork.seen"><tt class="xref py py-meth docutils literal"><span class="pre">seen()</span></tt></a> tuple.</dd>
+<dt>&#8220;blank&#8221;</dt>
+<dd>This will not name any molecules, but will put an empty circle instead.</dd>
+</dl>
+<p>A sub-set of the reaction network can be drawn using the <cite>shown</cite> and <cite>hidden</cite> parameters.</p>
+<p>Reactions involving only molecular species on the <cite>hidden</cite> list are not shown. Molecular
+species on the <cite>hidden</cite> list are not shown unless they are involved in a reaction with
+molecular species not on the <cite>hidden</cite> list, in which case the molecular species on the
+<cite>hidden</cite> list is unlabeled and shown as a point.</p>
+<p>The <cite>shown</cite> list in the inverse of the hidden list. If it is used, any molecular species
+not on the <cite>shown</cite> list is treated as being on the <cite>hidden</cite> list. If a molecular species
+is on both <cite>shown</cite> and <cite>hidden</cite> lists, the <cite>hidden</cite> lists wins.</p>
+<p>Catalysts (defined as molecules that are required for but unchanged by a reaction)
+are indicated with a grey line.</p>
+<p>Reversible reactions (defined as a pair of reactions where reactants of one are the
+products of the other and visa versa) are combined and indicated with double arrows
+resembling a diamond shape.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-AChemKit.reactionnet_test">
+<span id="reactionnet-test-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">reactionnet_test</span></tt> Module<a class="headerlink" href="#module-AChemKit.reactionnet_test" title="Permalink to this headline">¶</a></h2>
+<p>This is the test harness for <tt class="docutils literal"><span class="pre">reactionnet.py</span></tt>.</p>
+<dl class="class">
+<dt id="AChemKit.reactionnet_test.TestReactionNetwork">
+<em class="property">class </em><tt class="descclassname">AChemKit.reactionnet_test.</tt><tt class="descname">TestReactionNetwork</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#AChemKit.reactionnet_test.TestReactionNetwork" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.TestCase</span></tt></p>
+<p>This is the main class to test ReactionNetwork class.</p>
+<p>It relies on setUp to generate a ReactionNetwork instance which
+is then probed by the <a href="#id2"><span class="problematic" id="id3">test_</span></a> functions</p>
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p>
+<dl class="method">
+<dt id="AChemKit.reactionnet_test.TestReactionNetwork.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.reactionnet_test.TestReactionNetwork.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.reactionnet_test.TestReactionNetwork.test_equal">
+<tt class="descname">test_equal</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.reactionnet_test.TestReactionNetwork.test_equal" title="Permalink to this definition">¶</a></dt>
+<dd><p>As ReactionNetwork has a custom __eq__ function, it is tested
+here.</p>
+<p>Needs to both pass and fail.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.reactionnet_test.TestReactionNetwork.test_hash">
+<tt class="descname">test_hash</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.reactionnet_test.TestReactionNetwork.test_hash" title="Permalink to this definition">¶</a></dt>
+<dd><p>As ReactionNetwork has a custom __hash__ function, it is tested
+here.</p>
+<p>Needs to both pass and fail.</p>
+<p>Technically, the fail here could be true and still be a hash
+but it is supposed to usually be wrong so assume that it will be
+wrong.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.reactionnet_test.TestReactionNetwork.test_rates">
+<tt class="descname">test_rates</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.reactionnet_test.TestReactionNetwork.test_rates" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.reactionnet_test.TestReactionNetwork.test_reaction_to_string">
+<tt class="descname">test_reaction_to_string</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.reactionnet_test.TestReactionNetwork.test_reaction_to_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that it convert a reaction to a string correctly</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.reactionnet_test.TestReactionNetwork.test_reactions">
+<tt class="descname">test_reactions</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.reactionnet_test.TestReactionNetwork.test_reactions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes sure the reactions that were specified are in reactions.
+Also checks that they are in sorted order
+TODO check sorted order between reactions</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.reactionnet_test.TestReactionNetwork.test_seen">
+<tt class="descname">test_seen</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.reactionnet_test.TestReactionNetwork.test_seen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes sure the molecules that were specified are in seen.
+Also checks that they are in sorted order.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.reactionnet_test.TestReactionNetwork.test_to_dot_str">
+<tt class="descname">test_to_dot_str</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.reactionnet_test.TestReactionNetwork.test_to_dot_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test for dot conversion by string representation</p>
+<p>Assumes that the dot representation itself is valid</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.reactionnet_test.TestReactionNetwork.test_to_string">
+<tt class="descname">test_to_string</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.reactionnet_test.TestReactionNetwork.test_to_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that it converts to a string correctly</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="AChemKit.reactionnet_test.TestReactionNetwork_from_string">
+<em class="property">class </em><tt class="descclassname">AChemKit.reactionnet_test.</tt><tt class="descname">TestReactionNetwork_from_string</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#AChemKit.reactionnet_test.TestReactionNetwork_from_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#AChemKit.reactionnet_test.TestReactionNetwork" title="AChemKit.reactionnet_test.TestReactionNetwork"><tt class="xref py py-class docutils literal"><span class="pre">AChemKit.reactionnet_test.TestReactionNetwork</span></tt></a></p>
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p>
+<dl class="method">
+<dt id="AChemKit.reactionnet_test.TestReactionNetwork_from_string.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.reactionnet_test.TestReactionNetwork_from_string.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-AChemKit.wnx">
+<span id="wnx-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">wnx</span></tt> Module<a class="headerlink" href="#module-AChemKit.wnx" title="Permalink to this headline">¶</a></h2>
+<p>Various functions that interact with NetworkX (<a class="reference external" href="http://networkx.lanl.gov/">http://networkx.lanl.gov/</a>)</p>
+<dl class="function">
+<dt id="AChemKit.wnx.MultiDiGraph_make_flow">
+<tt class="descclassname">AChemKit.wnx.</tt><tt class="descname">MultiDiGraph_make_flow</tt><big>(</big><em>G</em>, <em>sizeprop=0.5</em>, <em>catalysts=True</em><big>)</big><a class="headerlink" href="#AChemKit.wnx.MultiDiGraph_make_flow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a <cite>flow</cite> network from a MultiDiGraph (usually created by ReactionNetwork_to_MultiDiGraph).</p>
+<p><cite>sizeprop</cite> is the proportion if the larger molecule that must be contained in the smaller one</p>
+<p><cite>catalysts</cite> determines if catalsysts should be considered when looking at edges between reactants and products</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="AChemKit.wnx.ReactionNetwork_to_MultiDiGraph">
+<tt class="descclassname">AChemKit.wnx.</tt><tt class="descname">ReactionNetwork_to_MultiDiGraph</tt><big>(</big><em>net</em><big>)</big><a class="headerlink" href="#AChemKit.wnx.ReactionNetwork_to_MultiDiGraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a ReactionNetwork (or class with same interface) to a MultiDiGraph.</p>
+<p>Converts each reaction into a node, and each molecular species into a node.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="AChemKit.wnx.find_cycles">
+<tt class="descclassname">AChemKit.wnx.</tt><tt class="descname">find_cycles</tt><big>(</big><em>G</em><big>)</big><a class="headerlink" href="#AChemKit.wnx.find_cycles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find some of the cycles in G.</p>
+<p>Does this by splitting it into strongly connected subgraphs, then for each edge of each node
+find the shorted path exists that goes the other way. If it does, then it is a cycle.</p>
+<p>Once cycles are found, they are ordered so the lowest node is first. Repeated cycles are ignored.</p>
+<p>Ineffeicient algorithm, needs optimization for large highly-connected graphs.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="AChemKit.tools.html">tools Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="AChemKit.tools.html#id1"><tt class="docutils literal"><span class="pre">tools</span></tt> Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="AChemKit.tools.chem_pp.html">AChemKit.tools.chem_pp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AChemKit.tools.chem_to_dot.html">AChemKit.tools.chem_to_dot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AChemKit.tools.chem_to_pdf.html">AChemKit.tools.chem_to_pdf</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="AChemKit.tools.html#module-AChemKit.tools.chem_pp"><tt class="docutils literal"><span class="pre">chem_pp</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AChemKit.tools.html#module-AChemKit.tools.chem_to_dot"><tt class="docutils literal"><span class="pre">chem_to_dot</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AChemKit.tools.html#module-AChemKit.tools.chem_to_pdf"><tt class="docutils literal"><span class="pre">chem_to_pdf</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AChemKit.tools.html#module-AChemKit.tools.log_to_chem"><tt class="docutils literal"><span class="pre">log_to_chem</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="AChemKit.utils.html">utils Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="AChemKit.utils.html#id1"><tt class="docutils literal"><span class="pre">utils</span></tt> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AChemKit.utils.html#module-AChemKit.utils.simpledot"><tt class="docutils literal"><span class="pre">simpledot</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">AChemKit Package</a><ul>
+<li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">AChemKit</span></tt> Package</a></li>
+<li><a class="reference internal" href="#module-AChemKit.bucket"><tt class="docutils literal"><span class="pre">bucket</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-AChemKit.properties"><tt class="docutils literal"><span class="pre">properties</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-AChemKit.randomnet"><tt class="docutils literal"><span class="pre">randomnet</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-AChemKit.randomnet_test"><tt class="docutils literal"><span class="pre">randomnet_test</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-AChemKit.reactionnet"><tt class="docutils literal"><span class="pre">reactionnet</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-AChemKit.reactionnet_test"><tt class="docutils literal"><span class="pre">reactionnet_test</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-AChemKit.wnx"><tt class="docutils literal"><span class="pre">wnx</span></tt> Module</a></li>
+<li><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="fileformats.html"
+                        title="previous chapter">File Formats</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="AChemKit.tools.html"
+                        title="next chapter">tools Package</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/AChemKit.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="AChemKit.tools.html" title="tools Package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="fileformats.html" title="File Formats"
+             >previous</a> |</li>
+        <li><a href="index.html">AChemKit v0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Adam Faulconbridge.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

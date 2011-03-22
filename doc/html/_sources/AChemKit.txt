@@ -1,0 +1,75 @@
+AChemKit Package
+================
+
+:mod:`AChemKit` Package
+-----------------------
+
+.. automodule:: AChemKit.__init__
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`bucket` Module
+--------------------
+
+.. automodule:: AChemKit.bucket
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`properties` Module
+------------------------
+
+.. automodule:: AChemKit.properties
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`randomnet` Module
+-----------------------
+
+.. automodule:: AChemKit.randomnet
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`randomnet_test` Module
+----------------------------
+
+.. automodule:: AChemKit.randomnet_test
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`reactionnet` Module
+-------------------------
+
+.. automodule:: AChemKit.reactionnet
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`reactionnet_test` Module
+------------------------------
+
+.. automodule:: AChemKit.reactionnet_test
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`wnx` Module
+-----------------
+
+.. automodule:: AChemKit.wnx
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+    AChemKit.tools
+    AChemKit.utils
+

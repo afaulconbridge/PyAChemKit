@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>&lt;no title&gt; &mdash; AChemKit v0.1 documentation</title>
+    <title>AChemKit.randomnet.Uniform &mdash; AChemKit v0.1 documentation</title>
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -23,8 +23,9 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="AChemKit v0.1 documentation" href="index.html" />
-    <link rel="next" title="AChemKit.reactionnet" href="AChemKit.reactionnet.html" />
-    <link rel="prev" title="File Formats" href="fileformats.html" /> 
+    <link rel="up" title="AChemKit Package" href="AChemKit.html" />
+    <link rel="next" title="AChemKit.randomnet.Linear" href="AChemKit.randomnet.Linear.html" />
+    <link rel="prev" title="AChemKit.tools.chem_to_pdf" href="AChemKit.tools.chem_to_pdf.html" /> 
   </head>
   <body>
     <div class="related">
@@ -37,12 +38,13 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="AChemKit.reactionnet.html" title="AChemKit.reactionnet"
+          <a href="AChemKit.randomnet.Linear.html" title="AChemKit.randomnet.Linear"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="fileformats.html" title="File Formats"
+          <a href="AChemKit.tools.chem_to_pdf.html" title="AChemKit.tools.chem_to_pdf"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">AChemKit v0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">AChemKit v0.1 documentation</a> &raquo;</li>
+          <li><a href="AChemKit.html" accesskey="U">AChemKit Package</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -51,35 +53,12 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <span class="target" id="module-AChemKit"></span><p>Detailed documentation for all the components of AChemKit.
-It is generated directly from the source code, so should be up-to-date.</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr><td><a class="reference internal" href="AChemKit.reactionnet.html#AChemKit.reactionnet" title="AChemKit.reactionnet"><tt class="xref py py-obj docutils literal"><span class="pre">AChemKit.reactionnet</span></tt></a></td>
-<td>Core for all ReactionNetwork classes</td>
-</tr>
-<tr><td><a class="reference internal" href="AChemKit.randomnet.html#AChemKit.randomnet" title="AChemKit.randomnet"><tt class="xref py py-obj docutils literal"><span class="pre">AChemKit.randomnet</span></tt></a></td>
-<td>Functions that construct random <tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt> instances by various methods.</td>
-</tr>
-<tr><td><a class="reference internal" href="AChemKit.properties.html#AChemKit.properties" title="AChemKit.properties"><tt class="xref py py-obj docutils literal"><span class="pre">AChemKit.properties</span></tt></a></td>
-<td>Functions for testing properties of particular reaction networks.</td>
-</tr>
-<tr><td><a class="reference internal" href="AChemKit.utils.html#AChemKit.utils" title="AChemKit.utils"><tt class="xref py py-obj docutils literal"><span class="pre">AChemKit.utils</span></tt></a></td>
-<td>Various utility functions and classes.</td>
-</tr>
-<tr><td><a class="reference internal" href="AChemKit.tools.html#AChemKit.tools" title="AChemKit.tools"><tt class="xref py py-obj docutils literal"><span class="pre">AChemKit.tools</span></tt></a></td>
-<td>AChemKit comes with a number of complete command-line driven tools for working with various file types.</td>
-</tr>
-</tbody>
-</table>
-<dl class="function">
+  <div class="section" id="achemkit-randomnet-uniform">
+<h1>AChemKit.randomnet.Uniform<a class="headerlink" href="#achemkit-randomnet-uniform" title="Permalink to this headline">¶</a></h1>
+<dl class="staticmethod">
 <dt id="AChemKit.randomnet.Uniform">
-<tt class="descclassname">AChemKit.randomnet.</tt><tt class="descname">Uniform</tt><big>(</big><em>nmols</em>, <em>nreactions</em>, <em>nreactants</em>, <em>nproducts</em>, <em>rates=1.0</em>, <em>cls=&lt;class 'AChemKit.reactionnet.ReactionNetwork'&gt;</em>, <em>rng=None</em><big>)</big><a class="headerlink" href="#AChemKit.randomnet.Uniform" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generates a random <tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt> by assigning reaction randomly between all molecular species.</p>
+<em class="property">static </em><tt class="descclassname">randomnet.</tt><tt class="descname">Uniform</tt><big>(</big><em>nmols</em>, <em>nreactions</em>, <em>nreactants</em>, <em>nproducts</em>, <em>rates=1.0</em>, <em>cls=&lt;class 'AChemKit.reactionnet.ReactionNetwork'&gt;</em>, <em>rng=None</em><big>)</big><a class="headerlink" href="#AChemKit.randomnet.Uniform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a random <a class="reference internal" href="AChemKit.html#AChemKit.reactionnet.ReactionNetwork" title="AChemKit.reactionnet.ReactionNetwork"><tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt></a> by assigning reaction randomly between all molecular species.</p>
 <p>Arguments:</p>
 <dl class="docutils">
 <dt>nmols</dt>
@@ -87,7 +66,7 @@ It is generated directly from the source code, so should be up-to-date.</p>
 </dl>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last"><tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt> tracks molecules by their reactions, so if a molecule is not part of any reaction
+<p class="last"><a class="reference internal" href="AChemKit.html#AChemKit.reactionnet.ReactionNetwork" title="AChemKit.reactionnet.ReactionNetwork"><tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt></a> tracks molecules by their reactions, so if a molecule is not part of any reaction
 it will not appear at all e.g. in <tt class="xref py py-meth docutils literal"><span class="pre">seen()</span></tt>. This could lead to differences from <cite>nmols</cite>.</p>
 </div>
 <dl class="docutils">
@@ -96,8 +75,8 @@ it will not appear at all e.g. in <tt class="xref py py-meth docutils literal"><
 </dl>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The value of <cite>nreactions</cite> is the number of times a reaction will be added to the <tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt>. If it
-is already in the <tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt>, it will be replaced. This can lead to <tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt> with less
+<p class="last">The value of <cite>nreactions</cite> is the number of times a reaction will be added to the <a class="reference internal" href="AChemKit.html#AChemKit.reactionnet.ReactionNetwork" title="AChemKit.reactionnet.ReactionNetwork"><tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt></a>. If it
+is already in the <a class="reference internal" href="AChemKit.html#AChemKit.reactionnet.ReactionNetwork" title="AChemKit.reactionnet.ReactionNetwork"><tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt></a>, it will be replaced. This can lead to <a class="reference internal" href="AChemKit.html#AChemKit.reactionnet.ReactionNetwork" title="AChemKit.reactionnet.ReactionNetwork"><tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt></a> with less
 than <cite>nreactions</cite> reactions.</p>
 </div>
 <dl class="docutils">
@@ -124,7 +103,7 @@ than <cite>nreactions</cite> reactions.</p>
 </div>
 </dd>
 <dt>cls</dt>
-<dd>Alternative class to use for constructing the return rather than <tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt>.</dd>
+<dd>Alternative class to use for constructing the return rather than <a class="reference internal" href="AChemKit.html#AChemKit.reactionnet.ReactionNetwork" title="AChemKit.reactionnet.ReactionNetwork"><tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt></a>.</dd>
 <dt>rng</dt>
 <dd>Random number generator to use. If not specifed, one will be generated at random.</dd>
 </dl>
@@ -135,6 +114,7 @@ than <cite>nreactions</cite> reactions.</p>
 <p><tt class="docutils literal"><span class="pre">Uniform(5,3,((2,1),(1,2)),</span> <span class="pre">None)</span></tt> will generate 5 molecules with 3 reactions between them where each reaction has either two reactants and one product or one reactant and two products.</p>
 </dd></dl>
 
+</div>
 
 
           </div>
@@ -143,14 +123,14 @@ than <cite>nreactions</cite> reactions.</p>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="fileformats.html"
-                        title="previous chapter">File Formats</a></p>
+  <p class="topless"><a href="AChemKit.tools.chem_to_pdf.html"
+                        title="previous chapter">AChemKit.tools.chem_to_pdf</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="AChemKit.reactionnet.html"
-                        title="next chapter">AChemKit.reactionnet</a></p>
+  <p class="topless"><a href="AChemKit.randomnet.Linear.html"
+                        title="next chapter">AChemKit.randomnet.Linear</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="_sources/autoAChemKit.txt"
+    <li><a href="_sources/AChemKit.randomnet.Uniform.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -180,12 +160,13 @@ than <cite>nreactions</cite> reactions.</p>
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="AChemKit.reactionnet.html" title="AChemKit.reactionnet"
+          <a href="AChemKit.randomnet.Linear.html" title="AChemKit.randomnet.Linear"
              >next</a> |</li>
         <li class="right" >
-          <a href="fileformats.html" title="File Formats"
+          <a href="AChemKit.tools.chem_to_pdf.html" title="AChemKit.tools.chem_to_pdf"
              >previous</a> |</li>
-        <li><a href="index.html">AChemKit v0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">AChemKit v0.1 documentation</a> &raquo;</li>
+          <li><a href="AChemKit.html" >AChemKit Package</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

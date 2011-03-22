@@ -1,6 +1,43 @@
-AChemKit.tools
-==============
+tools Package
+=============
 
-.. currentmodule:: AChemKit
+:mod:`tools` Package
+--------------------
 
-.. autodata:: tools
+.. automodule:: AChemKit.tools
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`chem_pp` Module
+---------------------
+
+.. automodule:: AChemKit.tools.chem_pp
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`chem_to_dot` Module
+-------------------------
+
+.. automodule:: AChemKit.tools.chem_to_dot
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`chem_to_pdf` Module
+-------------------------
+
+.. automodule:: AChemKit.tools.chem_to_pdf
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`log_to_chem` Module
+-------------------------
+
+.. automodule:: AChemKit.tools.log_to_chem
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

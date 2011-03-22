@@ -1,0 +1,152 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>AChemKit.randomnet.Linear &mdash; AChemKit v0.1 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="AChemKit v0.1 documentation" href="index.html" />
+    <link rel="up" title="AChemKit Package" href="AChemKit.html" />
+    <link rel="next" title="To-Dos" href="TODO.html" />
+    <link rel="prev" title="AChemKit.randomnet.Uniform" href="AChemKit.randomnet.Uniform.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="TODO.html" title="To-Dos"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="AChemKit.randomnet.Uniform.html" title="AChemKit.randomnet.Uniform"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">AChemKit v0.1 documentation</a> &raquo;</li>
+          <li><a href="AChemKit.html" accesskey="U">AChemKit Package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="achemkit-randomnet-linear">
+<h1>AChemKit.randomnet.Linear<a class="headerlink" href="#achemkit-randomnet-linear" title="Permalink to this headline">¶</a></h1>
+<dl class="staticmethod">
+<dt id="AChemKit.randomnet.Linear">
+<em class="property">static </em><tt class="descclassname">randomnet.</tt><tt class="descname">Linear</tt><big>(</big><em>natoms</em>, <em>maxlength</em>, <em>pform</em>, <em>pbreak</em>, <em>directed=True</em>, <em>rates=1.0</em>, <em>cls=&lt;class 'AChemKit.reactionnet.ReactionNetwork'&gt;</em>, <em>rng=None</em><big>)</big><a class="headerlink" href="#AChemKit.randomnet.Linear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a random <a class="reference internal" href="AChemKit.html#AChemKit.reactionnet.ReactionNetwork" title="AChemKit.reactionnet.ReactionNetwork"><tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt></a> from molecules that are strings of atoms and can join together or break apart.</p>
+<p>Based on the paper Autocatalytic sets of proteins. 1986. Journal of Theoretical Biology 119:1-24 by Kauffman, Stuart A.  but without the explicit catalytic activity.</p>
+<p>Arguments:</p>
+<dl class="docutils">
+<dt>natoms</dt>
+<dd>Number of atoms to use. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><a class="reference internal" href="AChemKit.html#AChemKit.reactionnet.ReactionNetwork" title="AChemKit.reactionnet.ReactionNetwork"><tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt></a> tracks molecules by their reactions, so if a molecule is not part of any reaction
+it will not appear at all e.g. in <tt class="xref py py-meth docutils literal"><span class="pre">seen()</span></tt>.</p>
+</div>
+<dl class="docutils">
+<dt>maxlength</dt>
+<dd>Maximum number of atoms in a molecule. If this is None, then they are unbounded; this might cause problems with a computational explosion. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).</dd>
+<dt>pform</dt>
+<dd>Probability that a pair of molecules will join together per orientation. Must be between 0 and 1. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).</dd>
+<dt>pbreak</dt>
+<dd>Probability that any pair of atoms will break. Must be between 0 and 1.</dd>
+<dt>directed</dt>
+<dd>If false, molecules have no intrinsic direction so AlphBeta is equivlanet to BetaAlpha.
+<strong>NOT IMPLEMENTED</strong></dd>
+<dt>rates</dt>
+<dd>Rate of each reaction in the reaction network. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).</dd>
+<dt>cls</dt>
+<dd>Alternative class to use for constructing the return rather than <a class="reference internal" href="AChemKit.html#AChemKit.reactionnet.ReactionNetwork" title="AChemKit.reactionnet.ReactionNetwork"><tt class="xref py py-class docutils literal"><span class="pre">reactionnet.ReactionNetwork</span></tt></a>.</dd>
+<dt>rng</dt>
+<dd>Random number generator to use. If not specifed, one will be generated at random.</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="AChemKit.randomnet.Uniform.html"
+                        title="previous chapter">AChemKit.randomnet.Uniform</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="TODO.html"
+                        title="next chapter">To-Dos</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/AChemKit.randomnet.Linear.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="TODO.html" title="To-Dos"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="AChemKit.randomnet.Uniform.html" title="AChemKit.randomnet.Uniform"
+             >previous</a> |</li>
+        <li><a href="index.html">AChemKit v0.1 documentation</a> &raquo;</li>
+          <li><a href="AChemKit.html" >AChemKit Package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Adam Faulconbridge.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

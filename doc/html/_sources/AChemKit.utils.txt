@@ -1,6 +1,19 @@
-AChemKit.utils
-==============
+utils Package
+=============
 
-.. currentmodule:: AChemKit
+:mod:`utils` Package
+--------------------
 
-.. autodata:: utils
+.. automodule:: AChemKit.utils
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`simpledot` Module
+-----------------------
+
+.. automodule:: AChemKit.utils.simpledot
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
