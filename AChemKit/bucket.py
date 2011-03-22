@@ -2,8 +2,6 @@
 Library for working with `buckets`; instances of a simulation of an Artificial Chemistry. 
 
 Various tools for going between ReactionNetwork  and Buckets, as well an analysing buckets.
-
-
 """
 
 import re
