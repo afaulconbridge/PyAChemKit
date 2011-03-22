@@ -7,9 +7,9 @@ from nedbatchelder.com/code/coverage
 from unittest import TestSuite, TestLoader, TextTestRunner
 
     
-from coverage import coverage
-cov = coverage(cover_pylib=False)
-cov.start()
+#from coverage import coverage
+#cov = coverage(cover_pylib=False)
+#cov.start()
 
 if __name__ == "__main__":
     #because we want coverage, we do not want to auto-discover tests!
@@ -29,5 +29,5 @@ if __name__ == "__main__":
     
     TextTestRunner(verbosity=2).run(suite)
 
-cov.stop()
-cov.save()
+#cov.stop()
+#cov.save()

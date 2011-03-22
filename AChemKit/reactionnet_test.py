@@ -1,11 +1,12 @@
 """
 This is the test harness for ``reactionnet.py``.
+
 """
 #this will not be required once a proper installer exists
 import sys
 sys.path.append(".")
 
-import unittest as unittest
+import unittest
 
 from AChemKit.reactionnet import ReactionNetwork
 
