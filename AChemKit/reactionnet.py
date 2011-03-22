@@ -242,7 +242,7 @@ class ReactionNetwork(object):
                 attribs["label"] = str(molspecies)
             elif names == "id":
                 pass
-            elif names =="blank":
+            elif names == "blank":
                 attribs["label"] = " "
                 attribs["shape"] = "circle"
             else:

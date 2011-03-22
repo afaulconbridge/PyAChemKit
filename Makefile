@@ -8,6 +8,7 @@ help:
 	@echo "  doclatex   Generate documentation in LaTeX"
 	@echo "  test       Run tests"
 	@echo "  pylint     Run pylint for code quality"
+	@echo "  coverage   Run coverage for test quality"
 	@echo "  benchmark  Run benchmarks"
 	@echo "  clean      Remove all generated files"
 	@echo "  all        Run clean, test, and doc"
@@ -37,6 +38,10 @@ doclatex:
 	
 test:
 	python rununittest.py
+	
+coverage:
+	coverage run rununittest.py
+	coverage report
 
 pylint:
 	pylint --rcfile=pylint.rc -f parseable AChemKit > pylint.txt

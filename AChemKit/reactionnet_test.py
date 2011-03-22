@@ -5,7 +5,7 @@ This is the test harness for ``reactionnet.py``.
 import sys
 sys.path.append(".")
 
-import unittest2 as unittest
+import unittest as unittest
 
 from AChemKit.reactionnet import ReactionNetwork
 

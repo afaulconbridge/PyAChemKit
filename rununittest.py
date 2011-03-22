@@ -4,12 +4,18 @@ added to accordingly. It uses unittest to do this as well as coverage script
 from nedbatchelder.com/code/coverage
 """
 
-import unittest2 as unittest
+from unittest import TestSuite, TestLoader, TextTestRunner
+
+    
+from coverage import coverage
+cov = coverage(cover_pylib=False)
+cov.start()
 
 if __name__ == "__main__":
     #because we want coverage, we do not want to auto-discover tests!
-    suite = unittest.TestSuite()
-    loader = unittest.TestLoader()
+    suite = TestSuite()
+    loader = TestLoader()
+    
     import AChemKit
     import AChemKit.reactionnet
     
@@ -21,4 +27,7 @@ if __name__ == "__main__":
     
     import AChemKit.randomnet
     
-    unittest.TextTestRunner(verbosity=2).run(suite)
+    TextTestRunner(verbosity=2).run(suite)
+
+cov.stop()
+cov.save()
