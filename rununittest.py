@@ -15,6 +15,7 @@ if __name__ == "__main__":
     
     import AChemKit.reactionnet_test
     suite.addTest(loader.loadTestsFromTestCase(AChemKit.reactionnet_test.TestReactionNetwork))
+    suite.addTest(loader.loadTestsFromTestCase(AChemKit.reactionnet_test.TestReactionNetwork_from_string))
     
     import AChemKit.bucket
     
