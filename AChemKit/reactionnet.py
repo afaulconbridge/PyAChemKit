@@ -110,7 +110,9 @@ class ReactionNetwork(object):
             reactionstrings.sort()
             self._str = ""
             for reaction in reactionstrings:
-                self._str += reaction+"\n"
+                self._str += reaction
+                if reaction is not reactionstrings[-1]:
+                    self._str += "\n"
         return self._str
 
     def __eq__(self, other):
@@ -233,7 +235,7 @@ class ReactionNetwork(object):
 
 
         for molspecies in molplot:
-            m = "M%d" % self.seen.index(molspecies)
+            m_id = "M%d" % self.seen.index(molspecies)
             attribs = {}
             if names == "full":
                 #should try to escape this
@@ -250,7 +252,7 @@ class ReactionNetwork(object):
                 attribs["label"] = " "
                 attribs["shape"] = "point"
 
-            dot[m] = attribs
+            dot[m_id ] = attribs
 
         for reactants, products in reactplot:
             #if this is the second of a reversible reaction, then dont show it
@@ -258,27 +260,27 @@ class ReactionNetwork(object):
                 continue
 
 
-            r = "R % d"% self.reactions.index((reactants, products))
-            dot[r] = {"shape":"point"}
+            r_id = "R % d"% self.reactions.index((reactants, products))
+            dot[r_id] = {"shape":"point"}
 
             if rates == True or (rates is None and self.rates[(reactants, products)] != 1.0):
-                dot[r] = {"label":self.rates[(reactants, products)]}
+                dot[r_id] = {"label":self.rates[(reactants, products)]}
                 #make it inverted colors
-                dot[r]["style"] = "filled"
-                dot[r]["fontcolor"] = "white"
-                dot[r]["fillcolor"] = "black"
+                dot[r_id]["style"] = "filled"
+                dot[r_id]["fontcolor"] = "white"
+                dot[r_id]["fillcolor"] = "black"
                 #do stuff to make shape work on more versions of graphviz
                 #dot[r]["regular"] = "true"
                 #dot[r]["shape"] = "polygon"
-                dot[r]["shape"] = "box"
+                dot[r_id]["shape"] = "box"
                 #no need to have margins as big as the ovals
-                dot[r]["margin"] = "0.01,0.01"
-                dot[r]["width"] = "0.0"
-                dot[r]["height"] = "0.0"
+                dot[r_id]["margin"] = "0.01,0.01"
+                dot[r_id]["width"] = "0.0"
+                dot[r_id]["height"] = "0.0"
 
             for i in xrange(len(reactants)):
                 reactant = reactants[i]
-                m = "M % d" % self.seen.index(reactant)
+                m_id = "M % d" % self.seen.index(reactant)
                 #see if this is a catalyst
                 #remember to allow for multiple copies of the same molecular species
                 #to act as a collective catalyst
@@ -294,11 +296,11 @@ class ReactionNetwork(object):
                         attribs["arrowtail"] = "normalinvempty"
                 #dictionary notation does not allow multiple parralel edges
                 #therefore use the add method
-                dot.add((m, r), attribs)
+                dot.add((m_id, r_id), attribs)
 
             for i in xrange(len(products)):
                 product = products[i]
-                m = "M % d" % self.seen.index(product)
+                m_id = "M % d" % self.seen.index(product)
                 #see if this is a catalyst
                 #remeber to allow for multiple copies of the same molecular species
                 #to act as a collective catalyst
@@ -311,7 +313,7 @@ class ReactionNetwork(object):
 
                     #dictionary notation does not allow multiple parralel edges
                     #therefore use the add method
-                    dot.add((r, m), attribs)
+                    dot.add((r_id, m_id), attribs)
         return dot
 
     @classmethod
