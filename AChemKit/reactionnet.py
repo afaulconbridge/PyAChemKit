@@ -128,9 +128,9 @@ class ReactionNetwork(object):
     def __ne__(self, other):
         return not self.__eq__(other)
 
-    def __hash__(self, other):
+    def __hash__(self):
         if self._hash == None:
-            self._hash = hash(tuple(sorted(self.rates.keys())))
+            self._hash = hash(tuple(sorted(self.rates.keys())))+hash(tuple(sorted(self.rates.values())))
         return self._hash
 
     @property
