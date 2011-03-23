@@ -5,11 +5,6 @@ These are intended to be used in automated pipelines, such as `Makefiles <http:/
 
 These can be used as stand-alone programs, or examined as usage examples for the AChemKit :ref:`API`.
 
-.. autosummary::
-   :toctree:
-
-   AChemKit.tools.chem_pp
-   AChemKit.tools.chem_to_dot
-   AChemKit.tools.chem_to_pdf
-
 """
+
+__all__ = ["chem_pp", "chem_to_dot", "chem_to_pdf", "log_to_chem"]

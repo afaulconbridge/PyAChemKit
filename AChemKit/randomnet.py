@@ -25,7 +25,7 @@ __module__ = "AChemKit.randomnet"
 
 def Uniform(nmols, nreactions, nreactants, nproducts, rates = 1.0, cls = ReactionNetwork, rng = None):
     """
-    Generates a random :class:`reactionnet.ReactionNetwork` by assigning reaction randomly between all molecular species.
+    Generates a random :class:`AChemKit.reactionnet.ReactionNetwork` by assigning reaction randomly between all molecular species.
 
     Arguments:
 
@@ -34,7 +34,7 @@ def Uniform(nmols, nreactions, nreactants, nproducts, rates = 1.0, cls = Reactio
 
     .. note::
 
-        :class:`reactionnet.ReactionNetwork` tracks molecules by their reactions, so if a molecule is not part of any reaction
+        :class:`AChemKit.reactionnet.ReactionNetwork` tracks molecules by their reactions, so if a molecule is not part of any reaction
         it will not appear at all e.g. in :meth:`seen`. This could lead to differences from `nmols`.
 
     nreactions
@@ -42,8 +42,8 @@ def Uniform(nmols, nreactions, nreactants, nproducts, rates = 1.0, cls = Reactio
 
     .. note::
 
-        The value of `nreactions` is the number of times a reaction will be added to the :class:`reactionnet.ReactionNetwork`. If it
-        is already in the :class:`reactionnet.ReactionNetwork`, it will be replaced. This can lead to :class:`reactionnet.ReactionNetwork` with less
+        The value of `nreactions` is the number of times a reaction will be added to the :class:`AChemKit.reactionnet.ReactionNetwork`. If it
+        is already in the :class:`AChemKit.reactionnet.ReactionNetwork`, it will be replaced. This can lead to :class:`AChemKit.reactionnet.ReactionNetwork` with less
         than `nreactions` reactions.
 
     nreactants
@@ -89,9 +89,9 @@ def Uniform(nmols, nreactions, nreactants, nproducts, rates = 1.0, cls = Reactio
         rng = random.Random(random.random())
 
     try:
-        nmols = rng.choice(nmols)
+        rng.choice(nmols)
     except TypeError:
-        pass
+        nmols = tuple(["M%d"%i for i in xrange(nmols)])
 
     try:
         nreactions = rng.choice(nreactions)
@@ -119,12 +119,11 @@ def Uniform(nmols, nreactions, nreactants, nproducts, rates = 1.0, cls = Reactio
     except TypeError:
         rates = itertools.repeat(rates, nreactions)
 
-    mols = ["M%d"%i for i in xrange(nmols)]
     outrates = {}
     for thisnreactants, thisnproducts, thisrate in zip(nreactants, nproducts, rates):
 
-        reactants = [rng.choice(mols) for j in xrange(thisnreactants)]
-        products = [rng.choice(mols) for j in xrange(thisnproducts)]
+        reactants = [rng.choice(nmols) for j in xrange(thisnreactants)]
+        products = [rng.choice(nmols) for j in xrange(thisnproducts)]
         reactants = sorted(reactants)
         products = sorted(products)
         reactants = tuple(reactants)
