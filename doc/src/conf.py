@@ -99,7 +99,7 @@ keep_warnings = True
 
 #Default flags to be applied to all autodoc directives
 #requires sphinx >= 1.0
-autodoc_default_flags = ['members', 'undoc-members', 'show-inheritance']
+autodoc_default_flags = ['members', 'undoc-members'] #, 'show-inheritance' ] # this might be broken
 
 # This value selects what content will be inserted into the main body of an autoclass directive. The possible values are:
 # "class" Only the class’ docstring is inserted. This is the default. You can still document __init__ as a separate method using automethod or the members option to autoclass.

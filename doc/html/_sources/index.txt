@@ -6,6 +6,6 @@ Welcome to AChemKit's documentation!
    
    README
    fileformats
-   AChemKit
+   modules
    TODO
 
