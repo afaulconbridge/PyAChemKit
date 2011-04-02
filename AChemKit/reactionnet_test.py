@@ -8,7 +8,7 @@ sys.path.append(".")
 
 import unittest
 
-from AChemKit.reactionnet import ReactionNetwork
+from reactionnet import ReactionNetwork
 
 __module__ = "AChemKit.reactionnet_test"
 

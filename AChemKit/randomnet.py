@@ -10,6 +10,7 @@ import re
 
 
 from AChemKit.reactionnet import ReactionNetwork
+from AChemKit.utils.utils import get_sample
 
 
 def combinations_with_replacement(iterable, r):
@@ -55,7 +56,7 @@ def Uniform(nmols, nreactions, nreactants, nproducts, rates = 1.0, cls = Reactio
     nproducts
         Number of products for each reaction in the reaction network. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).
 
-        If this is None, then `nreactants` must be a tuple of (`nreactants`, `nproducts`) or a list of tuples.
+        If this is None, then `nreactants` must be a list/tuple of tuples of (`nreactants`, `nproducts`) pairs that will be uniformly sampled from. Or `nreactants` must be a dictionary with keys of (`nreactants`, `nproducts`) and values of weightings, which will be sampled from.
 
         .. note::
             If this is a tuple/list it will be sampled for each reaction.
@@ -73,7 +74,7 @@ def Uniform(nmols, nreactions, nreactants, nproducts, rates = 1.0, cls = Reactio
         Random number generator to use. If not specifed, one will be generated at random.
 
 
-    These arguments can be a single value or a tuple/list which will be uniformly sampled from.
+    These arguments can be a single value, a tuple/list which will be uniformly sampled from, or a dictionary of value/weighting which will be sampled from
 
     For example:
 
@@ -88,42 +89,33 @@ def Uniform(nmols, nreactions, nreactants, nproducts, rates = 1.0, cls = Reactio
     if rng is None:
         rng = random.Random(random.random())
 
-    try:
-        rng.choice(nmols)
-    except TypeError:
-        nmols = tuple(["M%d"%i for i in xrange(nmols)])
+    if isinstance(nmols, int):
+        nmols = ["M%d"%i for i in xrange(nmols)]
 
-    try:
-        nreactions = rng.choice(nreactions)
-    except TypeError:
-        pass
-
-    try:
-        #its a tuple not a generator because its the same variable name
-        nreactants = [rng.choice(nreactants) for i in xrange(nreactions)]
-    except TypeError:
-        nreactants = itertools.repeat(nreactants, nreactions)
+    nreactions = get_sample(nreactions, rng)
+    
 
     if nproducts is None:
         #its a tuple not a generator because its the same variable name
-        nproducts = [x[1] for x in nreactants]
-        nreactants = [x[0] for x in nreactants]
+        newnreactants = []
+        newnproducts = []
+        for nreactant, nproduct in [get_sample(nreactants, rng) for i in xrange(nreactions)]:
+            newnreactants.append(nreactant)
+            newnproducts.append(nproduct)
+        nproducts = newnreactants
+        nreactants = newnproducts
     else:
-        try:
-            nproducts = [rng.choice(nproducts) for i in xrange(nreactions)]
-        except TypeError:
-            nproducts = itertools.repeat(nproducts, nreactions)
+        #its a tuple not a generator because its the same variable name
+        nreactants = [get_sample(nreactants, rng) for i in xrange(nreactions)]
+        nproducts = [get_sample(nproducts, rng) for i in xrange(nreactions)]
 
-    try:
-        rates = [rng.choice(rates) for i in xrange(nreactions)]
-    except TypeError:
-        rates = itertools.repeat(rates, nreactions)
+    rates = [get_sample(rates, rng) for i in xrange(nreactions)]
 
     outrates = {}
     for thisnreactants, thisnproducts, thisrate in zip(nreactants, nproducts, rates):
 
-        reactants = [rng.choice(nmols) for j in xrange(thisnreactants)]
-        products = [rng.choice(nmols) for j in xrange(thisnproducts)]
+        reactants = [get_sample(nmols, rng)  for j in xrange(thisnreactants)]
+        products = [get_sample(nmols, rng)  for j in xrange(thisnproducts)]
         reactants = sorted(reactants)
         products = sorted(products)
         reactants = tuple(reactants)
@@ -144,7 +136,7 @@ def Linear(natoms, maxlength, pform, pbreak, directed = True, rates = 1.0, cls =
     Arguments:
 
     natoms
-        Number of atoms to use. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).
+        Number of atoms to use. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution), or a dict of value:weight which will be sampled from.
 
     .. note::
 
@@ -152,20 +144,19 @@ def Linear(natoms, maxlength, pform, pbreak, directed = True, rates = 1.0, cls =
         it will not appear at all e.g. in :meth:`seen`.
 
     maxlength
-        Maximum number of atoms in a molecule. If this is None, then they are unbounded; this might cause problems with a computational explosion. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).
+        Maximum number of atoms in a molecule. If this is None, then they are unbounded; this might cause problems with a computational explosion. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution), or a dict of value:weight which will be sampled from.
 
     pform
-        Probability that a pair of molecules will join together per orientation. Must be between 0 and 1. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).
+        Probability that a pair of molecules will join together per orientation. Must be between 0 and 1. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution), or a dict of value:weight which will be sampled from.
 
     pbreak
-        Probability that any pair of atoms will break. Must be between 0 and 1.
+        Probability that any pair of atoms will break. Must be between 0 and 1.Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution), or a dict of value:weight which will be sampled from.
 
     directed
         If false, molecules have no intrinsic direction so AlphBeta is equivlanet to BetaAlpha.
-        **NOT IMPLEMENTED**
 
     rates
-        Rate of each reaction in the reaction network. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).
+        Rate of each reaction in the reaction network. Can be a single value, or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution), or a dict of value:weight which will be sampled from.
 
     cls
         Alternative class to use for constructing the return rather than :class:`reactionnet.ReactionNetwork`.
@@ -180,21 +171,14 @@ def Linear(natoms, maxlength, pform, pbreak, directed = True, rates = 1.0, cls =
         rng = random.Random(random.random())
 
 
-    try:
-        natoms = rng.choice(natoms)
-    except TypeError:
-        pass
-
-    try:
-        maxlength = rng.choice(maxlength)
-    except TypeError:
-        pass
-
-    #make sure rates is a tuple
-    try:
-        rates = rng.choice(rates)
-    except TypeError:
-        rates = [rates]
+    natoms = get_sample(natoms, rng)
+    maxlength = get_sample(maxlength, rng)
+    pform = get_sample(pform, rng)
+    pbreak = get_sample(pbreak, rng)
+    assert pform > 0
+    assert pform < 1
+    assert pbreak > 0
+    assert pbreak < 1
 
     #these are lists not sets because sets have machine-dependant ordering, which prevents reproducibility for the same random seed.
     molecules = []
@@ -203,6 +187,8 @@ def Linear(natoms, maxlength, pform, pbreak, directed = True, rates = 1.0, cls =
     #create some inital atoms
     #of the form Abc where first letter is capitalized
     alpha = "abcdefghijklmnopqrstuvwxyz"
+    assert natoms > 0 
+    assert natoms < len(alpha)
     for i in xrange(natoms):
         name = alpha[i%len(alpha)]
         while i >= len(alpha):
@@ -212,6 +198,8 @@ def Linear(natoms, maxlength, pform, pbreak, directed = True, rates = 1.0, cls =
         new.append(name)
 
     outrates = {}
+    
+    assert maxlength > 0 
 
     def mol_to_atoms(mol):
         return tuple(filter(lambda x: len(x) > 0, re.split(r"([A-Z][a-z]*)", mol)))
@@ -257,8 +245,7 @@ def Linear(natoms, maxlength, pform, pbreak, directed = True, rates = 1.0, cls =
                     reaction = ((z,), tuple(sorted((a,b))))
 
                     if reaction not in outrates:
-                        outrates[reaction] = 0.0
-                    outrates[reaction] += rng.choice(rates)
+                        outrates[reaction] = get_sample(rates, rng)
 
                     if a not in molecules and a not in new:
                         new.append(a)
@@ -279,7 +266,7 @@ def Linear(natoms, maxlength, pform, pbreak, directed = True, rates = 1.0, cls =
                         if not directed:
                             z = mol_order(z)
 
-                        #because we may have revereed them, we have to oder them again
+                        #because we may have revereed them, we have to order them again
                         if not directed:
                             reactants = tuple(sorted((mol_order(x), mol_order(y))))
                         else:
@@ -289,9 +276,7 @@ def Linear(natoms, maxlength, pform, pbreak, directed = True, rates = 1.0, cls =
                         reaction = (reactants, products)
 
                         if reaction not in outrates:
-                            outrates[reaction] = 0.0
-
-                        outrates[reaction] += rng.choice(rates)
+                            outrates[reaction] = get_sample(rates, rng)
 
                         if z not in molecules and z not in new:
                             new.append(z)
