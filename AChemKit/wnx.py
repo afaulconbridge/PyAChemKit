@@ -37,9 +37,10 @@ def MultiDiGraph_make_flow(G, sizeprop = 0.5, catalysts = True):
     """
     Creates a `flow` network from a MultiDiGraph (usually created by ReactionNetwork_to_MultiDiGraph).
     
-    `sizeprop` is the proportion if the larger molecule that must be contained in the smaller one
+    `sizeprop` is the proportion if the larger molecule that must be contained in the smaller one.
     
-    `catalysts` determines if catalsysts should be considered when looking at edges between reactants and products
+    `catalysts` determines if catalsysts should be considered when looking at edges between reactants and products.
+    If this is false, then molecules that are both in the reactants and the products are removed and do not flow.
     """
     
     F = networkx.DiGraph()
