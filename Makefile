@@ -11,8 +11,15 @@ help:
 	@echo "  benchmark  Run benchmarks"
 	@echo "  clean      Remove all generated files"
 	@echo "  all        Run clean, test, and doc"
+	@echo "  setup      Try to install / update required modules"
 
 all: clean doc
+
+
+setup: 
+	sudo apt-get install python-dev python-setuptools 
+	#sudo apt-get install texlive-full #needed to build pdf docs, but big so not done by defualt
+	sudo easy_install -U coverage networkx sphinx
 
 clean: 
 	-rm -f test.txt
