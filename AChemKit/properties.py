@@ -95,6 +95,21 @@ def has_varying_rates(rn):
     return False
 
 
+def has_divergence(rn):
+    """
+    Tests for divergent reactions.
+    
+    Divergent reactions are where the same reactants have multiple possible collections of products
+    """
+    
+    seen_reactants = set()
+    for reactants, products in rn.reactions:
+        if reactants in seen_reactants:
+            return True
+        else:
+            seen_reactants.add(reactants)
+    return False
+
 
 def not_conservation_mass(rn):
     """
