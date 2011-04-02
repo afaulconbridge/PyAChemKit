@@ -19,7 +19,7 @@ from AChemKit.utils.simpledot import SimpleDot
 class ReactionNetwork(object):
     """
     A dictionary of reactions where each key is a reaction
-    composed of (tuple(sorted(reactants)), sorted(tuple(products))) and each
+    composed of (reactants, products) and each
     value is the rate.
 
     ReactionNetwork objects are immutable and hashable.
@@ -44,10 +44,6 @@ class ReactionNetwork(object):
     def __init__(self, rates):
         for rate in rates.values():
             assert rate > 0.0
-        for reactants, products in rates:
-            assert tuple(sorted(reactants)) == reactants
-            assert tuple(sorted(products)) == products
-
         self.rates = rates
 
     @property
@@ -85,7 +81,7 @@ class ReactionNetwork(object):
         if reactants == products:
             return ""
 
-        for reactantsstring in sorted([str(x) for x in reactants]):
+        for reactantsstring in [str(x) for x in reactants]:
             reactionstring += str(reactantsstring)+" + "
         #remove trailing " + "
         reactionstring = reactionstring[:-3]
@@ -95,7 +91,7 @@ class ReactionNetwork(object):
         else:
             reactionstring += "\t-"+str(rate)+">\t"
 
-        for productsstring in sorted([str(x) for x in products]):
+        for productsstring in [str(x) for x in products]:
             reactionstring += productsstring+" + "
         #remove trailing " + "
         reactionstring = reactionstring[:-3]

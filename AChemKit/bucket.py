@@ -66,7 +66,7 @@ class Bucket(object):
     _reactionnet = None
 
     def __init__(self, events):
-        self.events = tuple(sorted(list(events)))
+        self.events = events
 
     @classmethod
     def from_string(cls, instr):
@@ -112,10 +112,10 @@ class Bucket(object):
             reactants, products = match.groups()
 
             reactants = reactants.split("+")
-            reactants = tuple(sorted( [x.strip() for x in reactants if len(x.strip()) > 0] ))
+            reactants = tuple( x.strip() for x in reactants if len(x.strip()) > 0 )
 
             products = products.split("+")
-            products = tuple(sorted( [x.strip() for x in products if len(x.strip()) > 0] ))
+            products = tuple( x.strip() for x in products if len(x.strip()) > 0 )
 
             for reactant in reactants:
                 assert " " not in reactant
@@ -135,16 +135,53 @@ class Bucket(object):
         if self._reactionnet == None:
             #need to create a rates structure, then convert it to a reactionnet
             rates = {}
+            seenreactants = {}
+            
+            count = 0
+            reacted = 0
+            synthesysed = 0
+            
             for event in self.events:
-                reaction = (event.reactants, event.products)
+                reactants = event[1]
+                products = event[2]
+                reaction = (reactants, products)
                 if reaction not in rates:
                     rates[reaction] = 0
                 rates[reaction] += 1
+                
+                reactants_sorted = tuple(sorted(reactants))
+                if reactants_sorted not in seenreactants:
+                    seenreactants[reactants_sorted] = 0
+                seenreactants[reactants_sorted] += 1
                 #if event.reactants == event.products:
                 #    print "Bounce"
+                
+                count += 1
+                if reactants != products:
+                    reacted += 1
+                if len(products) < len(reactants):
+                    synthesysed += 1
+                    
+            print count, reacted, synthesysed
+
+            
 
             #should correct the rates by the total number of collisions of those reactants
             #BUT current old data does not track bounces :`(
+            
+            #correct the rate by the number of times this occured
+            for reaction in rates:
+                reactants, products = reaction
+                reactants_sorted = tuple(sorted(reactants))
+                #print reaction, rates[reaction], seenreactants[reactants_sorted]
+                assert float(rates[reaction]) <= float(seenreactants[reactants_sorted])
+                rates[reaction] = float(rates[reaction]) / float(seenreactants[reactants_sorted])
+                
+            #remove bounces
+            for reaction in rates.keys():
+                reactants, products = reaction
+                if reactants == products:
+                    del rates[reaction]
 
             self._reactionnet = ReactionNetwork(rates)
 
