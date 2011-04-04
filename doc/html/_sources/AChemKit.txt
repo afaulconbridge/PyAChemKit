@@ -57,6 +57,54 @@ AChemKit Package
     :undoc-members:
     :show-inheritance:
 
+:mod:`reactionnetdot` Module
+----------------------------
+
+.. automodule:: AChemKit.reactionnetdot
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`sims_gillespie` Module
+----------------------------
+
+.. automodule:: AChemKit.sims_gillespie
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`sims_gillespie_test` Module
+---------------------------------
+
+.. automodule:: AChemKit.sims_gillespie_test
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`sims_simple` Module
+-------------------------
+
+.. automodule:: AChemKit.sims_simple
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`sims_simple_test (Adam-netbook's conflicted copy 2011-04-02)` Module
+--------------------------------------------------------------------------
+
+.. automodule:: AChemKit.sims_simple_test (Adam-netbook's conflicted copy 2011-04-02)
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`sims_simple_test` Module
+------------------------------
+
+.. automodule:: AChemKit.sims_simple_test
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 :mod:`wnx` Module
 -----------------
 
