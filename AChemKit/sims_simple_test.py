@@ -12,40 +12,45 @@ import random
 import sims_simple
 import reactionnet
 import randomnet
+import bucket
 
 __module__ = "AChemKit.sims_simple_test"
         
 class TestItterative(unittest.TestCase):
     
     def setUp(self): 
-        self.rates = {(("A", "B"), ("B", "C")):2.0}
-        self.net = reactionnet.ReactionNetwork(self.rates)
-        self.net = randomnet.Uniform(10, 10, (1,2), (1,2))
-        self.mols = ["A", "B", "B"]
+        self.net = randomnet.Uniform(5, 10, (1,2), (1,2))
+        self.mols = [mol for mol in self.net.seen*10]
         self.achem = sims_simple.AChemReactionNetwork(self.net)
         
         
     def test_basic(self):
         #this isnt a true test, but it runs some code and gets a result
-        a = sims_simple.simulate_itterative(self.achem, self.mols, 100)
-        b = sims_simple.simulate_itterative(self.achem, self.mols, 100, random.Random())
-        self.assertEqual(1,1)
+        events = sims_simple.simulate_itterative(self.achem, self.mols, 1000)
+        buck = bucket.Bucket(events)
+        print self.net
+        print "-"*25
+        print str(buck.reactionnet)
+        self.assertEqual(set(buck.reactionnet.reactions), set(self.net.reactions))
         
 class TestStepwise(TestItterative):
         
     def test_basic(self):
         #this isnt a true test, but it runs some code and gets a result
-        a = sims_simple.simulate_stepwise(self.achem, self.mols, 10)
-        b = sims_simple.simulate_stepwise(self.achem, self.mols, 10, random.Random())
-        self.assertEqual(1,1)
+        events = sims_simple.simulate_stepwise(self.achem, self.mols, 100)
+        buck = bucket.Bucket(events)
+        print self.net
+        print "-"*25
+        print str(buck.reactionnet)
+        self.assertEqual(buck.reactionnet.reactions, self.net.reactions)
         
 class TestStepwiseMultiprocessing(TestItterative):
         
     def test_basic(self):
         #this isnt a true test, but it runs some code and gets a result
-        a = sims_simple.simulate_stepwise_multiprocessing(self.achem, self.mols, 10)
-        b = sims_simple.simulate_stepwise_multiprocessing(self.achem, self.mols, 10, random.Random())
-        self.assertEqual(1,1)
+        events = sims_simple.simulate_stepwise_multiprocessing(self.achem, self.mols, 100, random.Random())
+        buck = bucket.Bucket(events)
+        self.assertEqual(buck.reactionnet.reactions, self.net.reactions)
     
 if __name__=="__main__":
     unittest.main()

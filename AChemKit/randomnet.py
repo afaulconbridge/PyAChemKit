@@ -175,10 +175,10 @@ def Linear(natoms, maxlength, pform, pbreak, directed = True, rates = 1.0, cls =
     maxlength = get_sample(maxlength, rng)
     pform = get_sample(pform, rng)
     pbreak = get_sample(pbreak, rng)
-    assert pform > 0
-    assert pform < 1
-    assert pbreak > 0
-    assert pbreak < 1
+    assert pform >= 0.0
+    assert pform <= 1.0
+    assert pbreak >= 0.0
+    assert pbreak <= 1.0
 
     #these are lists not sets because sets have machine-dependant ordering, which prevents reproducibility for the same random seed.
     molecules = []
@@ -188,7 +188,6 @@ def Linear(natoms, maxlength, pform, pbreak, directed = True, rates = 1.0, cls =
     #of the form Abc where first letter is capitalized
     alpha = "abcdefghijklmnopqrstuvwxyz"
     assert natoms > 0 
-    assert natoms < len(alpha)
     for i in xrange(natoms):
         name = alpha[i%len(alpha)]
         while i >= len(alpha):

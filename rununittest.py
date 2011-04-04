@@ -15,6 +15,7 @@ from unittest import TestSuite, TestLoader, TextTestRunner
 from AChemKit import reactionnet_test
 from AChemKit import randomnet_test
 from AChemKit import sims_simple_test
+from AChemKit import sims_gillespie_test
 from AChemKit.utils import utils_test
 
 if __name__ == "__main__":
@@ -31,8 +32,10 @@ if __name__ == "__main__":
     suite.addTest(loader.loadTestsFromTestCase(randomnet_test.TestLinear))
         
     suite.addTest(loader.loadTestsFromTestCase(sims_simple_test.TestItterative))
-    suite.addTest(loader.loadTestsFromTestCase(sims_simple_test.TestStepwise))
-    suite.addTest(loader.loadTestsFromTestCase(sims_simple_test.TestStepwiseMultiprocessing))
+    #suite.addTest(loader.loadTestsFromTestCase(sims_simple_test.TestStepwise))
+    #suite.addTest(loader.loadTestsFromTestCase(sims_simple_test.TestStepwiseMultiprocessing))
+    
+    #suite.addTest(loader.loadTestsFromTestCase(sims_gillespie_test.TestGillespie))
     
     TextTestRunner(verbosity=2).run(suite)
 

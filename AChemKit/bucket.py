@@ -170,7 +170,7 @@ class Bucket(object):
             #BUT current old data does not track bounces :`(
             
             #correct the rate by the number of times this occured
-            for reaction in rates:
+            for reaction in tuple(rates.keys()):
                 reactants, products = reaction
                 reactants_sorted = tuple(sorted(reactants))
                 #print reaction, rates[reaction], seenreactants[reactants_sorted]
@@ -178,7 +178,7 @@ class Bucket(object):
                 rates[reaction] = float(rates[reaction]) / float(seenreactants[reactants_sorted])
                 
             #remove bounces
-            for reaction in rates.keys():
+            for reaction in tuple(rates.keys()):
                 reactants, products = reaction
                 if reactants == products:
                     del rates[reaction]

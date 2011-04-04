@@ -1,5 +1,8 @@
 
 # -*- coding: UTF-8 -*-
+
+import random
+
 import sims_simple
 
 
@@ -12,7 +15,7 @@ def simulate_gillespie_iter(achem, mols, maxtime, rng=None):
     This is an implementation of the Gillespie algorithm. It is a simulation
     of a well-mixed container.
     
-    Is an iterator to reduce memory consumption. See simulate_gibson_bruck
+    Is an iterator to reduce memory consumption. See simulate_gillespie
     for this function wrapped in a tuple.
     """
     
@@ -32,13 +35,16 @@ def simulate_gillespie_iter(achem, mols, maxtime, rng=None):
         
     raise StopIteration
 
+def simulate_gillespie(achem, mols, maxtime, rng=None):
+    return tuple(simulate_gillespie_iter(achem, mols, maxtime, rng))
+
 class Gillespie(object):
     
     def __init__(self, achem, mols, rng, intervalscaling = 100.0):
         self.achem = achem
         self.mols = mols
         self.rng = rng
-        self.intervalscaling = intervalscaling #temperature/pressure analogy
+        self.intervalscaling = intervalscaling #temperature/pressure analog
         
         self.possiblenoreactants = None
         if isinstance(self.achem.noreactants, int) or isinstance(self.achem.noreactants, float):
@@ -74,10 +80,9 @@ class Gillespie(object):
 
         noreactants = sims_simple.get_sample(self.achem.noreactants, self.rng)
         
-        
         if len(self.mols) >= noreactants:
             #shuffle
-            mols = tuple(self.rng.sample(self.mols, len(self.mols)))
+            self.mols = tuple(self.rng.sample(self.mols, len(self.mols)))
             reactants = self.mols[:noreactants]
             self.mols = self.mols[noreactants:]
 
