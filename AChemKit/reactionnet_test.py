@@ -58,26 +58,6 @@ class TestReactionNetwork(unittest.TestCase):
         target = """A + B\t-2.0>\tB + C"""
         self.assertEqual(str(self.net), target)
         
-    def test_to_dot_str(self):
-        """
-        Test for dot conversion by string representation
-        
-        Assumes that the dot representation itself is valid
-        """
-        target = """digraph G {
-	node [margin="0.02,0.02", fontsize=10.0, width=0.3, height=0.0];
-	edge [len=0.25, dir="both"];
-	graph [K=0.25, layout="sfdp", overlap="false"];
-	M0 [label="A"];
-	M1 [label="B"];
-	M2 [label="C"];
-	R  0 [style="filled", label=2.0, width="0.0", shape="box", fillcolor="black", fontcolor="white", height="0.0", margin="0.01,0.01"];
-	M  0 -> R  0 [arrowhead="none", arrowtail="invempty"];
-	M  1 -> R  0 [color="grey", arrowhead="none", arrowtail="none"];
-	R  0 -> M  2 [arrowhead="normal", arrowtail="none"];
-}"""
-        self.assertEqual(str(self.net.dot), target)
-        
     def test_equal(self):
         """
         As ReactionNetwork has a custom __eq__ function, it is tested
