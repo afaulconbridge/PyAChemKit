@@ -1,11 +1,9 @@
 from reactionnet import ReactionNetwork
 from AChemKit.utils.simpledot import SimpleDot
 
-
-
 class ReactionNetworkDot(ReactionNetwork):
     """
-    This is a subclass of :class:`AchemKit.reactionnet.ReactionNetworkk` 
+    This is a subclass of :py:class:`AChemKit.reactionnet.ReactionNetwork` 
     that adds a `.dot` representation. It is in a subclass so that on
     machines where dot is not installed, the basic class can still be
     used.
@@ -14,7 +12,7 @@ class ReactionNetworkDot(ReactionNetwork):
     @property
     def dot(self):
         """
-        Property wrapper around :meth:`AChemKit.reactionnetot.ReactionNetworkDot.to_dot` to provide attribute-like access.
+        Property wrapper around :py:meth:`~AChemKit.reactionnetdot.ReactionNetworkDot.to_dot` to provide attribute-like access.
         """
         if self._dot is None:
             self._dot = self.to_dot()
@@ -22,7 +20,7 @@ class ReactionNetworkDot(ReactionNetwork):
 
     def to_dot(self, names=None, rates=None, shown = (), hidden = ()):
         """
-        Return a `.dot` format string constructed using a :class:`AChemKit.utils.simpledot.SimpleDot`
+        Return a `.dot` format string constructed using a :py:class:`AChemKit.utils.simpledot.SimpleDot`
         view of this reaction network.
 
         Molecular species are shown as either full names, identifier numbers, or as blank circles.
@@ -33,7 +31,7 @@ class ReactionNetworkDot(ReactionNetwork):
 
         "id"
             This will use a shortened identifier of that molecules index in the
-            :meth:`seen` tuple.
+            :py:attr:`~AChemKit.reactionnet.ReactionNetwork.seen` tuple.
 
         "blank"
             This will not name any molecules, but will put an empty circle instead.

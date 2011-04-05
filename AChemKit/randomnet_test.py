@@ -13,8 +13,6 @@ import unittest
 from AChemKit.randomnet import Uniform, Linear
 import random
 
-__module__ = "AChemKit.randomnetnet_test"
-
 class TestUniform(unittest.TestCase):
     
     def setUp(self):
@@ -142,7 +140,7 @@ class TestLinear(unittest.TestCase):
         net = Linear(2, {3:2,5:2.1}, 0.2, 0.2)
         net = Linear(2, {3:2,5:2.1}, 0.2, 0.2, rng = self.rng)
 
-    def test_pfrom_tuple(self):
+    def test_pform_tuple(self):
         net = Linear(2, (3,5), (0.2, 0.5), 0.2)
         net = Linear(2, (3,5), (0.2, 0.5), 0.2, rng = self.rng)
 

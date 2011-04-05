@@ -9,7 +9,3 @@ try:
     psyco.full()
 except ImportError:
     pass
-
-__module__ = "AChemKit"
-
-__all__ = ["reactionnet", "bucket", "randomnet", "properties", "utils", "tools"]

@@ -34,16 +34,16 @@ clean:
 doc: dochtml doclatex
 
 dochtml:
-	python doc/src/generate_modules.py -d doc/src/ -s rst -f AChemKit
+	python doc/src/generate_modules.py -d doc/src/ -s rst -f -m 10 AChemKit
 	sphinx-build -b html -n doc/src doc/html
 
 doclatex:
-	python doc/src/generate_modules.py -d doc/src/ -s rst -f AChemKit
+	python doc/src/generate_modules.py -d doc/src/ -s rst -f -m 10 AChemKit
 	sphinx-build -b latex -n doc/src doc/latex
 	pdflatex -output-directory doc/latex  doc/latex/AChemKit > /dev/null
 	pdflatex -output-directory doc/latex  doc/latex/AChemKit > /dev/null
 	pdflatex -output-directory doc/latex  doc/latex/AChemKit > /dev/null
-		
+
 test:
 	coverage run rununittest.py
 	coverage report

@@ -1,6 +1,6 @@
 #! /bin/python
 """
-Functions that construct random :class:`reactionnet.ReactionNetwork` instances by various methods.
+Functions that construct random :py:class:`~AChemKit.reactionnet.ReactionNetwork` instances by various methods.
 
 This is designed to provide null hypothesis data for various situations and metrics. As with random graphs, there is no single best way to generate a random reaction network.
 """
@@ -21,12 +21,9 @@ def combinations_with_replacement(iterable, r):
             yield tuple(pool[i] for i in indices)
 
 
-#__all__ = ["Uniform", "Linear"]
-__module__ = "AChemKit.randomnet"
-
 def Uniform(nmols, nreactions, nreactants, nproducts, rates = 1.0, cls = ReactionNetwork, rng = None):
     """
-    Generates a random :class:`AChemKit.reactionnet.ReactionNetwork` by assigning reaction randomly between all molecular species.
+    Generates a random :py:class:`~AChemKit.reactionnet.ReactionNetwork` by assigning reaction randomly between all molecular species.
 
     Arguments:
 
@@ -35,16 +32,16 @@ def Uniform(nmols, nreactions, nreactants, nproducts, rates = 1.0, cls = Reactio
 
     .. note::
 
-        :class:`AChemKit.reactionnet.ReactionNetwork` tracks molecules by their reactions, so if a molecule is not part of any reaction
-        it will not appear at all e.g. in :meth:`seen`. This could lead to differences from `nmols`.
+        :py:class:`AChemKit.reactionnet.ReactionNetwork` tracks molecules by their reactions, so if a molecule is not part of any reaction
+        it will not appear at all e.g. in :py:attr:`~AChemKit.reactionnet.ReactionNetwork.seen`. This could lead to differences from `nmols`.
 
     nreactions
         Number of reaction in the reaction network. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).
 
     .. note::
 
-        The value of `nreactions` is the number of times a reaction will be added to the :class:`AChemKit.reactionnet.ReactionNetwork`. If it
-        is already in the :class:`AChemKit.reactionnet.ReactionNetwork`, it will be replaced. This can lead to :class:`AChemKit.reactionnet.ReactionNetwork` with less
+        The value of `nreactions` is the number of times a reaction will be added to the :py:class:`~AChemKit.reactionnet.ReactionNetwork`. If it
+        is already in the :py:class:`~AChemKit.reactionnet.ReactionNetwork`, it will be replaced. This can lead to :class:`AChemKit.reactionnet.ReactionNetwork` with less
         than `nreactions` reactions.
 
     nreactants
@@ -68,7 +65,7 @@ def Uniform(nmols, nreactions, nreactants, nproducts, rates = 1.0, cls = Reactio
             If this is a tuple/list it will be sampled for each reaction.
 
     cls
-        Alternative class to use for constructing the return rather than :class:`reactionnet.ReactionNetwork`.
+        Alternative class to use for constructing the return rather than :py:class:`AChemKit.reactionnet.ReactionNetwork`.
 
     rng
         Random number generator to use. If not specifed, one will be generated at random.
@@ -128,7 +125,7 @@ def Uniform(nmols, nreactions, nreactants, nproducts, rates = 1.0, cls = Reactio
 
 def Linear(natoms, maxlength, pform, pbreak, directed = True, rates = 1.0, cls = ReactionNetwork, rng = None):
     """
-    Generates a random :class:`reactionnet.ReactionNetwork` from molecules that are strings of atoms and can join together or break apart.
+    Generates a random :py:class:`~AChemKit.reactionnet.ReactionNetwork` from molecules that are strings of atoms and can join together or break apart.
 
     Based on the paper Autocatalytic sets of proteins. 1986. Journal of Theoretical Biology 119:1-24 by Kauffman, Stuart A.  but without the explicit catalytic activity.
 
@@ -140,8 +137,8 @@ def Linear(natoms, maxlength, pform, pbreak, directed = True, rates = 1.0, cls =
 
     .. note::
 
-        :class:`reactionnet.ReactionNetwork` tracks molecules by their reactions, so if a molecule is not part of any reaction
-        it will not appear at all e.g. in :meth:`seen`.
+        :py:class:`AChemKit.reactionnet.ReactionNetwork` tracks molecules by their reactions, so if a molecule is not part of any reaction
+        it will not appear at all e.g. in :py:attr:`~AChemKit.reactionnet.ReactionNetwork.seen`.
 
     maxlength
         Maximum number of atoms in a molecule. If this is None, then they are unbounded; this might cause problems with a computational explosion. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution), or a dict of value:weight which will be sampled from.
@@ -159,14 +156,13 @@ def Linear(natoms, maxlength, pform, pbreak, directed = True, rates = 1.0, cls =
         Rate of each reaction in the reaction network. Can be a single value, or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution), or a dict of value:weight which will be sampled from.
 
     cls
-        Alternative class to use for constructing the return rather than :class:`reactionnet.ReactionNetwork`.
+        Alternative class to use for constructing the return rather than :py:class:`AChemKit.reactionnet.ReactionNetwork`.
 
     rng
         Random number generator to use. If not specifed, one will be generated at random.
 
     """
-    __module__ = "AChemKit"
-
+    
     if rng is None:
         rng = random.Random(random.random())
 

@@ -3,13 +3,12 @@
 """
 Functions for testing properties of particular reaction networks.
 
-These functions expect an object of class :class:`AChemKit.reactionnet.ReactionNetwork`
+These functions expect an object of class :py:class:`AChemKit.reactionnet.ReactionNetwork`
 or subclass or something with an equivalent API. It does not enforce
 this however, so you may use custom classes with the same API.
 
 Some of these properties have logical prerequisites, but these are not tested
 for explicitly.
-
 
 """
 

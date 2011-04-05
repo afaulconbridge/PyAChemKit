@@ -2,9 +2,9 @@
 """
 Core for all ReactionNetwork classes
 
-Of particular note are the alternative constructors of :class:`AChemKit.reactionnet.ReactionNetwork`,
-:meth:`AChemKit.reactionnet.ReactionNetwork.from_file`, :meth:`AChemKit.reactionnet.ReactionNetwork.from_filename` and
-:meth:`AChemKit.reactionnet.ReactionNetwork.from_string`.
+Of particular note are the alternative constructors of :py:class:`~AChemKit.reactionnet.ReactionNetwork`,
+:py:meth:`~AChemKit.reactionnet.ReactionNetwork.from_file`, :py:meth:`~AChemKit.reactionnet.ReactionNetwork.from_filename` and
+:py:meth:`~AChemKit.reactionnet.ReactionNetwork.from_string`.
 """
 
 #regular expression to detect reaction when reading from string-based inputs
@@ -12,7 +12,6 @@ import re
 #used to converge from_string into from_file paradigm
 import StringIO
 
-__module__ = "AChemKit.reactionnet"
 
 class ReactionNetwork(object):
     """
@@ -20,9 +19,9 @@ class ReactionNetwork(object):
     composed of (reactants, products) and each
     value is the rate.
 
-    ReactionNetwork objects are immutable and hashable.
+    :py:class:`~AChemKit.reactionnet.ReactionNetwork` objects are immutable and hashable.
 
-    ReactionNetwork objects support __eq__ and __ne__, but none of the other
+    :py:class:`~AChemKit.reactionnet.ReactionNetwork` objects support :py:meth:`~AChemKit.reactionnet.ReactionNetwork.__eq__` and :py:meth:`~AChemKit.reactionnet.ReactionNetwork.__ne__`, but none of the other
     rich comparison operators (__lt__, __le__, __gt__, __ge__).
 
     Different subclassess could be implemented to generate reaction networks on
@@ -36,8 +35,6 @@ class ReactionNetwork(object):
     _dot = None
     _str = None
     _hash = None
-
-    __module__ = "AChemKit.reactionnet"
 
     def __init__(self, rates):
         for rate in rates.values():
@@ -113,6 +110,10 @@ class ReactionNetwork(object):
         return self._str
 
     def __eq__(self, other):
+        """
+        Two instances of :py:class:`~.ReactionNetwork` are equal if and 
+        only if the :py:meth:`~.ReactonNetwork.rates` are equal.
+        """
         if other is None:
             return False
         if other.__class__ != self.__class__:
@@ -123,6 +124,10 @@ class ReactionNetwork(object):
             return False
 
     def __ne__(self, other):
+        """
+        Two instances of :py:class:`~.ReactionNetwork` are equal if and 
+        only if the :py:meth:`~.ReactonNetwork.rates` are equal.
+        """
         return not self.__eq__(other)
 
     def __hash__(self):
@@ -133,21 +138,21 @@ class ReactionNetwork(object):
     @classmethod
     def from_string(cls, instr):
         """
-        Wrapper around :meth:`from_file` that uses :class:`~StringIO.StringIO`.
+        Wrapper around :py:meth:`AChemKit.reactionnet.ReactionNetwork.from_file` that uses :class:`~StringIO.StringIO`.
         """
         return cls.from_file(StringIO.StringIO(instr))
 
     @classmethod
     def from_filename(cls, infilename):
         """
-        Wrapper around :meth:`from_file` that opens the provided filename as a file to read.
+        Wrapper around :py:meth:`AChemKit.reactionnet.ReactionNetwork.from_file` that opens the provided filename as a file to read.
         """
         return cls.from_file(open(infilename, "r"))
 
     @classmethod
     def from_file(cls, infile):
         """
-        Alternative constructor that accepts a :class:`file` object (or equivalent).
+        Alternative constructor that accepts a :py:func:`file` object (or equivalent).
 
         Source must be formatted as a .chem file, see :ref:`chem_file_format`.
         """
@@ -213,4 +218,3 @@ class ReactionNetwork(object):
             else:
                 raise ValueError, "Invalid reaction at line %d : %s" % (linecount, rawline)
         return ReactionNetwork(rates)
-

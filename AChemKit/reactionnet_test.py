@@ -10,14 +10,12 @@ import unittest
 
 from reactionnet import ReactionNetwork
 
-__module__ = "AChemKit.reactionnet_test"
-
 class TestReactionNetwork(unittest.TestCase):
     """
     This is the main class to test ReactionNetwork class. 
     
     It relies on setUp to generate a ReactionNetwork instance which
-    is then probed by the test_ functions
+    is then probed by the other functions
     """
     def setUp(self): 
         self.rates = {(("A", "B"), ("B", "C")):2.0}

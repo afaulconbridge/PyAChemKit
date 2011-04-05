@@ -15,8 +15,6 @@ import reactionnet
 import randomnet
 import bucket
 
-__module__ = "AChemKit.sims_simple_test"
-        
 class TestGillespie(unittest.TestCase):
     
     def setUp(self): 

@@ -1,7 +1,8 @@
 """
-Library for working with `buckets`; instances of a simulation of an Artificial Chemistry. 
+Library for working with :py:class:`~.Bucket` objects; instances of a simulation of an Artificial Chemistry. 
 
-Various tools for going between ReactionNetwork  and Buckets, as well an analysing buckets.
+Various tools for going between :py:class:`~.ReactionNetwork` and :py:class:`~.Bucket` objects, as well an analysing 
+the data within :py:class:`~.Bucket` objects.
 """
 
 import re
@@ -14,9 +15,11 @@ from reactionnet import ReactionNetwork
 
 class Event(object):
     """
-    Mini-class for tracking events (instances of a reaction) within a bucket.
+    Mini-class for tracking events (instances of a reaction) within a :py:class:`~.Bucket`.
 
-    Supports comparisons, is hashable, is immutable
+    Supports comparisons, is hashable, is immutable.
+    
+    Currently unused, but kept around in case it is reused later.
     """
 
     def __init__(self, time, reactants, products):
@@ -71,21 +74,21 @@ class Bucket(object):
     @classmethod
     def from_string(cls, instr):
         """
-        Wrapper around :meth:`from_file` that uses :class:`~StringIO.StringIO`.
+        Wrapper around :py:meth:`~.from_file` that uses :py:class:`~StringIO.StringIO`.
         """
         return cls.from_file(StringIO.StringIO(instr))
 
     @classmethod
     def from_filename(cls, infilename):
         """
-        Wrapper around :meth:`from_file` that opens the provided filename as a file to read.
+        Wrapper around :py:meth:`~.from_file` that opens the provided filename as a file to read.
         """
         return cls.from_file(open(infilename, "r"))
 
     @classmethod
     def from_file(cls, file):
         """
-        Alternative constructor that accepts a :class:`file` object (or equivalent).
+        Alternative constructor that accepts a :py:func:`file` object (or equivalent).
 
         Source must be formatted as a bucket log  file, see :ref:`bucket_file_format`.
         """
@@ -132,6 +135,13 @@ class Bucket(object):
 
     @property
     def reactionnet(self):
+        """
+        A property that generates and caches a :py:class:`~.ReactionNetwork` object
+        representing the reaction network exhibited by this bucket.
+        
+        Rates are calculated based on repeats of events in this bucket. This may have a large sampling
+        error depending on how many repeates there were.
+        """
         if self._reactionnet == None:
             #need to create a rates structure, then convert it to a reactionnet
             rates = {}

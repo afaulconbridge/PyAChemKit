@@ -89,14 +89,6 @@ AChemKit Package
     :undoc-members:
     :show-inheritance:
 
-:mod:`sims_simple_test (Adam-netbook's conflicted copy 2011-04-02)` Module
---------------------------------------------------------------------------
-
-.. automodule:: AChemKit.sims_simple_test (Adam-netbook's conflicted copy 2011-04-02)
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 :mod:`sims_simple_test` Module
 ------------------------------
 
