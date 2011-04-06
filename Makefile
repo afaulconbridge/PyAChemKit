@@ -1,35 +1,26 @@
 
-.PHONY: doc dochtml doclatex clean test benchmark
+.PHONY: all test pylint benchmark doc dochtml doclatex setup
 
 help:
 	@echo "Please use one of the following:"
+	@echo "  all        Run test and doc"
+	@echo "  test       Run tests and test coverage"
+	@echo "  pylint     Run pylint for code quality"
+	@echo "  benchmark  Performance of different variants (NOT IMPLEMENTED)"
 	@echo "  doc        Generate documentation (HTML + LaTeX)"
 	@echo "  dochtml    Generate documentation in HTML"
 	@echo "  doclatex   Generate documentation in LaTeX"
-	@echo "  test       Run tests and test coverage"
-	@echo "  pylint     Run pylint for code quality"
-	@echo "  benchmark  Run benchmarks"
-	@echo "  clean      Remove all generated files"
-	@echo "  all        Run clean, test, and doc"
 	@echo "  setup      Try to install / update required modules"
 
-all: clean doc
+all: doc test
 
+test:
+	coverage run rununittest.py
+	coverage report
+	coverage xml
 
-setup: 
-	sudo apt-get install python-dev python-setuptools 
-	#sudo apt-get install texlive-full #needed to build pdf docs, but big so not done by defualt
-	sudo easy_install -U coverage pylint sphinx networkx
-
-clean: 
-	-rm -f test.txt
-	-rm -f AChemKit.pdf
-	-rm -f AChemKit/*.pyc
-	-rm -f AChemKit/utils/*.pyc
-	-rm -f AChemKit/tools/*.pyc
-	-rm -f AChemKit/tests/*.pyc
-	-rm -f AChemKit/benchmarks/*.pyc
-	-rm -rf docs/AChemKit.*.rst
+pylint:
+	pylint --rcfile=pylint.rc -f parseable AChemKit > pylint.txt
 
 doc: dochtml doclatex
 
@@ -44,13 +35,7 @@ doclatex:
 	pdflatex -output-directory doc/latex  doc/latex/AChemKit > /dev/null
 	pdflatex -output-directory doc/latex  doc/latex/AChemKit > /dev/null
 
-test:
-	coverage run rununittest.py
-	coverage report
-	coverage xml
-
-pylint:
-	pylint --rcfile=pylint.rc -f parseable AChemKit > pylint.txt
-
-benchmark: 
-	@echo "BENCHMAKRING NOT PROPERLY IMPLEMENTED"
+setup: 
+	sudo apt-get install python-dev python-setuptools 
+	#sudo apt-get install texlive-full #needed to build pdf docs, but big so not done by defualt
+	sudo easy_install -U coverage pylint sphinx networkx
