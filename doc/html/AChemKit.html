@@ -106,7 +106,6 @@ error depending on how many repeates there were.</p>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
 <p>Mini-class for tracking events (instances of a reaction) within a <a class="reference internal" href="#AChemKit.bucket.Bucket" title="AChemKit.bucket.Bucket"><tt class="xref py py-class docutils literal"><span class="pre">Bucket</span></tt></a>.</p>
 <p>Supports comparisons, is hashable, is immutable.</p>
-<p>Currently unused, but kept around in case it is reused later.</p>
 </dd></dl>
 
 </div>
@@ -188,6 +187,36 @@ not apply - it cannot be said for certain.</p>
 this function will not work.</p>
 <p>NEEDS TO BE WRITTEN</p>
 <p>(Credit to Adam Nellis for algorithm)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-AChemKit.properties_wnx">
+<span id="properties-wnx-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">properties_wnx</span></tt> Module<a class="headerlink" href="#module-AChemKit.properties_wnx" title="Permalink to this headline">¶</a></h2>
+<p>Various functions that interact with NetworkX (<a class="reference external" href="http://networkx.lanl.gov/">http://networkx.lanl.gov/</a>)</p>
+<dl class="function">
+<dt id="AChemKit.properties_wnx.MultiDiGraph_make_flow">
+<tt class="descclassname">AChemKit.properties_wnx.</tt><tt class="descname">MultiDiGraph_make_flow</tt><big>(</big><em>G</em>, <em>sizeprop=0.5</em>, <em>catalysts=True</em><big>)</big><a class="headerlink" href="#AChemKit.properties_wnx.MultiDiGraph_make_flow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a <cite>flow</cite> network from a MultiDiGraph (usually created by ReactionNetwork_to_MultiDiGraph).</p>
+<p><cite>sizeprop</cite> is the proportion if the larger molecule that must be contained in the smaller one.</p>
+<p><cite>catalysts</cite> determines if catalsysts should be considered when looking at edges between reactants and products.
+If this is false, then molecules that are both in the reactants and the products are removed and do not flow.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="AChemKit.properties_wnx.ReactionNetwork_to_MultiDiGraph">
+<tt class="descclassname">AChemKit.properties_wnx.</tt><tt class="descname">ReactionNetwork_to_MultiDiGraph</tt><big>(</big><em>net</em><big>)</big><a class="headerlink" href="#AChemKit.properties_wnx.ReactionNetwork_to_MultiDiGraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a ReactionNetwork (or class with same interface) to a MultiDiGraph.</p>
+<p>Converts each reaction into a node, and each molecular species into a node.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="AChemKit.properties_wnx.find_cycles">
+<tt class="descclassname">AChemKit.properties_wnx.</tt><tt class="descname">find_cycles</tt><big>(</big><em>G</em><big>)</big><a class="headerlink" href="#AChemKit.properties_wnx.find_cycles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find some of the cycles in G.</p>
+<p>Does this by splitting it into strongly connected subgraphs, then for each edge of each node
+find the shorted path exists that goes the other way. If it does, then it is a cycle.</p>
+<p>Once cycles are found, they are ordered so the lowest node is first. Repeated cycles are ignored.</p>
+<p>Ineffeicient algorithm, needs optimization for large highly-connected graphs.</p>
 </dd></dl>
 
 </div>
@@ -592,13 +621,6 @@ Also checks that they are in sorted order.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="AChemKit.reactionnet_test.TestReactionNetwork.test_to_dot_str">
-<tt class="descname">test_to_dot_str</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.reactionnet_test.TestReactionNetwork.test_to_dot_str" title="Permalink to this definition">¶</a></dt>
-<dd><p>Test for dot conversion by string representation</p>
-<p>Assumes that the dot representation itself is valid</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="AChemKit.reactionnet_test.TestReactionNetwork.test_to_string">
 <tt class="descname">test_to_string</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.reactionnet_test.TestReactionNetwork.test_to_string" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check that it converts to a string correctly</p>
@@ -666,6 +688,34 @@ are indicated with a grey line.</p>
 <p>Reversible reactions (defined as a pair of reactions where reactants of one are the
 products of the other and visa versa) are combined and indicated with double arrows
 resembling a diamond shape.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-AChemKit.reactionnetdot_test">
+<span id="reactionnetdot-test-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">reactionnetdot_test</span></tt> Module<a class="headerlink" href="#module-AChemKit.reactionnetdot_test" title="Permalink to this headline">¶</a></h2>
+<p>This is the test harness for <a class="reference internal" href="#module-AChemKit.reactionnetdot" title="AChemKit.reactionnetdot"><tt class="xref py py-mod docutils literal"><span class="pre">AChemKit.reactionnetdot</span></tt></a>.</p>
+<dl class="class">
+<dt id="AChemKit.reactionnetdot_test.TestReactionNetworkDot">
+<em class="property">class </em><tt class="descclassname">AChemKit.reactionnetdot_test.</tt><tt class="descname">TestReactionNetworkDot</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#AChemKit.reactionnetdot_test.TestReactionNetworkDot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/2.7/library/unittest.html#unittest.TestCase" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">unittest.TestCase</span></tt></a></p>
+<p>This is the main class to test ReactionNetwork class.</p>
+<p>It relies on setUp to generate a ReactionNetwork instance which
+is then probed by the other functions</p>
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p>
+<dl class="method">
+<dt id="AChemKit.reactionnetdot_test.TestReactionNetworkDot.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.reactionnetdot_test.TestReactionNetworkDot.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.reactionnetdot_test.TestReactionNetworkDot.test_to_dot_str">
+<tt class="descname">test_to_dot_str</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.reactionnetdot_test.TestReactionNetworkDot.test_to_dot_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test for dot conversion by string representation</p>
+<p>Assumes that the dot representation itself is valid</p>
 </dd></dl>
 
 </dd></dl>
@@ -864,36 +914,6 @@ not have a method with the specified name.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-AChemKit.wnx">
-<span id="wnx-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">wnx</span></tt> Module<a class="headerlink" href="#module-AChemKit.wnx" title="Permalink to this headline">¶</a></h2>
-<p>Various functions that interact with NetworkX (<a class="reference external" href="http://networkx.lanl.gov/">http://networkx.lanl.gov/</a>)</p>
-<dl class="function">
-<dt id="AChemKit.wnx.MultiDiGraph_make_flow">
-<tt class="descclassname">AChemKit.wnx.</tt><tt class="descname">MultiDiGraph_make_flow</tt><big>(</big><em>G</em>, <em>sizeprop=0.5</em>, <em>catalysts=True</em><big>)</big><a class="headerlink" href="#AChemKit.wnx.MultiDiGraph_make_flow" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a <cite>flow</cite> network from a MultiDiGraph (usually created by ReactionNetwork_to_MultiDiGraph).</p>
-<p><cite>sizeprop</cite> is the proportion if the larger molecule that must be contained in the smaller one.</p>
-<p><cite>catalysts</cite> determines if catalsysts should be considered when looking at edges between reactants and products.
-If this is false, then molecules that are both in the reactants and the products are removed and do not flow.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="AChemKit.wnx.ReactionNetwork_to_MultiDiGraph">
-<tt class="descclassname">AChemKit.wnx.</tt><tt class="descname">ReactionNetwork_to_MultiDiGraph</tt><big>(</big><em>net</em><big>)</big><a class="headerlink" href="#AChemKit.wnx.ReactionNetwork_to_MultiDiGraph" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts a ReactionNetwork (or class with same interface) to a MultiDiGraph.</p>
-<p>Converts each reaction into a node, and each molecular species into a node.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="AChemKit.wnx.find_cycles">
-<tt class="descclassname">AChemKit.wnx.</tt><tt class="descname">find_cycles</tt><big>(</big><em>G</em><big>)</big><a class="headerlink" href="#AChemKit.wnx.find_cycles" title="Permalink to this definition">¶</a></dt>
-<dd><p>Find some of the cycles in G.</p>
-<p>Does this by splitting it into strongly connected subgraphs, then for each edge of each node
-find the shorted path exists that goes the other way. If it does, then it is a cycle.</p>
-<p>Once cycles are found, they are ordered so the lowest node is first. Repeated cycles are ignored.</p>
-<p>Ineffeicient algorithm, needs optimization for large highly-connected graphs.</p>
-</dd></dl>
-
-</div>
 <div class="section" id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
@@ -908,6 +928,8 @@ find the shorted path exists that goes the other way. If it does, then it is a c
 </li>
 <li class="toctree-l1"><a class="reference internal" href="AChemKit.utils.html">utils Package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="AChemKit.utils.html#id1"><tt class="docutils literal"><span class="pre">utils</span></tt> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AChemKit.utils.html#module-AChemKit.utils.bag"><tt class="docutils literal"><span class="pre">bag</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AChemKit.utils.html#module-AChemKit.utils.bag_test"><tt class="docutils literal"><span class="pre">bag_test</span></tt> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="AChemKit.utils.html#module-AChemKit.utils.simpledot"><tt class="docutils literal"><span class="pre">simpledot</span></tt> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="AChemKit.utils.html#module-AChemKit.utils.utils"><tt class="docutils literal"><span class="pre">utils</span></tt> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="AChemKit.utils.html#module-AChemKit.utils.utils_test"><tt class="docutils literal"><span class="pre">utils_test</span></tt> Module</a></li>
@@ -930,16 +952,17 @@ find the shorted path exists that goes the other way. If it does, then it is a c
 <li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">AChemKit</span></tt> Package</a></li>
 <li><a class="reference internal" href="#module-AChemKit.bucket"><tt class="docutils literal"><span class="pre">bucket</span></tt> Module</a></li>
 <li><a class="reference internal" href="#module-AChemKit.properties"><tt class="docutils literal"><span class="pre">properties</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-AChemKit.properties_wnx"><tt class="docutils literal"><span class="pre">properties_wnx</span></tt> Module</a></li>
 <li><a class="reference internal" href="#module-AChemKit.randomnet"><tt class="docutils literal"><span class="pre">randomnet</span></tt> Module</a></li>
 <li><a class="reference internal" href="#module-AChemKit.randomnet_test"><tt class="docutils literal"><span class="pre">randomnet_test</span></tt> Module</a></li>
 <li><a class="reference internal" href="#module-AChemKit.reactionnet"><tt class="docutils literal"><span class="pre">reactionnet</span></tt> Module</a></li>
 <li><a class="reference internal" href="#module-AChemKit.reactionnet_test"><tt class="docutils literal"><span class="pre">reactionnet_test</span></tt> Module</a></li>
 <li><a class="reference internal" href="#module-AChemKit.reactionnetdot"><tt class="docutils literal"><span class="pre">reactionnetdot</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-AChemKit.reactionnetdot_test"><tt class="docutils literal"><span class="pre">reactionnetdot_test</span></tt> Module</a></li>
 <li><a class="reference internal" href="#module-AChemKit.sims_gillespie"><tt class="docutils literal"><span class="pre">sims_gillespie</span></tt> Module</a></li>
 <li><a class="reference internal" href="#module-AChemKit.sims_gillespie_test"><tt class="docutils literal"><span class="pre">sims_gillespie_test</span></tt> Module</a></li>
 <li><a class="reference internal" href="#module-AChemKit.sims_simple"><tt class="docutils literal"><span class="pre">sims_simple</span></tt> Module</a></li>
 <li><a class="reference internal" href="#module-AChemKit.sims_simple_test"><tt class="docutils literal"><span class="pre">sims_simple_test</span></tt> Module</a></li>
-<li><a class="reference internal" href="#module-AChemKit.wnx"><tt class="docutils literal"><span class="pre">wnx</span></tt> Module</a></li>
 <li><a class="reference internal" href="#subpackages">Subpackages</a><ul>
 </ul>
 </li>

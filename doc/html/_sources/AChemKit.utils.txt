@@ -1,32 +1,48 @@
 utils Package
 =============
 
-:mod:`utils` Package
---------------------
+:py:mod:`utils` Package
+-----------------------
 
 .. automodule:: AChemKit.utils
     :members:
     :undoc-members:
     :show-inheritance:
 
-:mod:`simpledot` Module
------------------------
+:py:mod:`bag` Module
+--------------------
+
+.. automodule:: AChemKit.utils.bag
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:py:mod:`bag_test` Module
+-------------------------
+
+.. automodule:: AChemKit.utils.bag_test
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:py:mod:`simpledot` Module
+--------------------------
 
 .. automodule:: AChemKit.utils.simpledot
     :members:
     :undoc-members:
     :show-inheritance:
 
-:mod:`utils` Module
--------------------
+:py:mod:`utils` Module
+----------------------
 
 .. automodule:: AChemKit.utils.utils
     :members:
     :undoc-members:
     :show-inheritance:
 
-:mod:`utils_test` Module
-------------------------
+:py:mod:`utils_test` Module
+---------------------------
 
 .. automodule:: AChemKit.utils.utils_test
     :members:

@@ -60,6 +60,202 @@
 <h2><tt class="xref py py-mod docutils literal"><span class="pre">utils</span></tt> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-AChemKit.utils"></span><p>Various utility functions and classes.</p>
 </div>
+<div class="section" id="module-AChemKit.utils.bag">
+<span id="bag-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">bag</span></tt> Module<a class="headerlink" href="#module-AChemKit.utils.bag" title="Permalink to this headline">¶</a></h2>
+<p>A collection of classes providing containers. These use the abstract
+base classes (ABCs) from <a class="reference external" href="http://docs.python.org/2.7/library/collections.html#module-collections" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">collections</span></tt></a> module to satisfy 
+isinstance() criteria for API provision.</p>
+<dl class="class">
+<dt id="AChemKit.utils.bag.Bag">
+<em class="property">class </em><tt class="descclassname">AChemKit.utils.bag.</tt><tt class="descname">Bag</tt><big>(</big><em>iterable</em><big>)</big><a class="headerlink" href="#AChemKit.utils.bag.Bag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#AChemKit.utils.bag.FrozenBag" title="AChemKit.utils.bag.FrozenBag"><tt class="xref py py-class docutils literal"><span class="pre">AChemKit.utils.bag.FrozenBag</span></tt></a>, <tt class="xref py py-class docutils literal"><span class="pre">_abcoll.MutableSet</span></tt></p>
+<p>A Bag is like a set, but can contain duplicates.</p>
+<p>Also, a Bag is like a list, but is always ordered.</p>
+<dl class="method">
+<dt id="AChemKit.utils.bag.Bag.add">
+<tt class="descname">add</tt><big>(</big><em>item</em><big>)</big><a class="headerlink" href="#AChemKit.utils.bag.Bag.add" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.utils.bag.Bag.discard">
+<tt class="descname">discard</tt><big>(</big><em>item</em><big>)</big><a class="headerlink" href="#AChemKit.utils.bag.Bag.discard" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="AChemKit.utils.bag.FrozenBag">
+<em class="property">class </em><tt class="descclassname">AChemKit.utils.bag.</tt><tt class="descname">FrozenBag</tt><big>(</big><em>iterable</em><big>)</big><a class="headerlink" href="#AChemKit.utils.bag.FrozenBag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">_abcoll.Set</span></tt></p>
+<p>A Bag is like a set, but can contain duplicates.</p>
+<p>Also, a Bag is like a list, but is always ordered.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="AChemKit.utils.bag.OrderedBag">
+<em class="property">class </em><tt class="descclassname">AChemKit.utils.bag.</tt><tt class="descname">OrderedBag</tt><big>(</big><em>iterable</em><big>)</big><a class="headerlink" href="#AChemKit.utils.bag.OrderedBag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#AChemKit.utils.bag.OrderedFrozenBag" title="AChemKit.utils.bag.OrderedFrozenBag"><tt class="xref py py-class docutils literal"><span class="pre">AChemKit.utils.bag.OrderedFrozenBag</span></tt></a>, <tt class="xref py py-class docutils literal"><span class="pre">_abcoll.MutableSet</span></tt></p>
+<p>Like a Bag, but iterating will keep the order things were put in. New items
+are added to the end of the OrderedBag - if you need anything else you can
+convert it to a tuple or list and make a new bag.</p>
+<p>Comparisons are still as for a Bag so OrderedBag([1,2,1]) == OrderedBag([2,1,1])
+will return True.</p>
+<dl class="method">
+<dt id="AChemKit.utils.bag.OrderedBag.add">
+<tt class="descname">add</tt><big>(</big><em>item</em><big>)</big><a class="headerlink" href="#AChemKit.utils.bag.OrderedBag.add" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.utils.bag.OrderedBag.discard">
+<tt class="descname">discard</tt><big>(</big><em>item</em><big>)</big><a class="headerlink" href="#AChemKit.utils.bag.OrderedBag.discard" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="AChemKit.utils.bag.OrderedFrozenBag">
+<em class="property">class </em><tt class="descclassname">AChemKit.utils.bag.</tt><tt class="descname">OrderedFrozenBag</tt><big>(</big><em>iterable</em><big>)</big><a class="headerlink" href="#AChemKit.utils.bag.OrderedFrozenBag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">_abcoll.Set</span></tt></p>
+<p>Like a FrozenBag, but iterating will keep the order things were put in.</p>
+<p>Comparisons are still as for a FrozenBag so OrderedFrozenBag([1,2,1]) == OrderedFrozenBag([2,1,1])
+will return True.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-AChemKit.utils.bag_test">
+<span id="bag-test-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">bag_test</span></tt> Module<a class="headerlink" href="#module-AChemKit.utils.bag_test" title="Permalink to this headline">¶</a></h2>
+<p>This is the test harness for <a class="reference internal" href="#module-AChemKit.utils.bag" title="AChemKit.utils.bag"><tt class="xref py py-mod docutils literal"><span class="pre">AChemKit.utils.bag</span></tt></a>.</p>
+<dl class="class">
+<dt id="AChemKit.utils.bag_test.TestBag">
+<em class="property">class </em><tt class="descclassname">AChemKit.utils.bag_test.</tt><tt class="descname">TestBag</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#AChemKit.utils.bag_test.TestBag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#AChemKit.utils.bag_test.TestFrozenBag" title="AChemKit.utils.bag_test.TestFrozenBag"><tt class="xref py py-class docutils literal"><span class="pre">AChemKit.utils.bag_test.TestFrozenBag</span></tt></a></p>
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p>
+<dl class="attribute">
+<dt id="AChemKit.utils.bag_test.TestBag.cls">
+<tt class="descname">cls</tt><a class="headerlink" href="#AChemKit.utils.bag_test.TestBag.cls" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Bag</span></tt></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.utils.bag_test.TestBag.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.utils.bag_test.TestBag.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.utils.bag_test.TestBag.test_add">
+<tt class="descname">test_add</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.utils.bag_test.TestBag.test_add" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.utils.bag_test.TestBag.test_discard">
+<tt class="descname">test_discard</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.utils.bag_test.TestBag.test_discard" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.utils.bag_test.TestBag.test_hash">
+<tt class="descname">test_hash</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.utils.bag_test.TestBag.test_hash" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="AChemKit.utils.bag_test.TestFrozenBag">
+<em class="property">class </em><tt class="descclassname">AChemKit.utils.bag_test.</tt><tt class="descname">TestFrozenBag</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#AChemKit.utils.bag_test.TestFrozenBag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/2.7/library/unittest.html#unittest.TestCase" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">unittest.TestCase</span></tt></a></p>
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p>
+<dl class="attribute">
+<dt id="AChemKit.utils.bag_test.TestFrozenBag.cls">
+<tt class="descname">cls</tt><a class="headerlink" href="#AChemKit.utils.bag_test.TestFrozenBag.cls" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">FrozenBag</span></tt></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.utils.bag_test.TestFrozenBag.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.utils.bag_test.TestFrozenBag.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.utils.bag_test.TestFrozenBag.test_eq">
+<tt class="descname">test_eq</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.utils.bag_test.TestFrozenBag.test_eq" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.utils.bag_test.TestFrozenBag.test_hash">
+<tt class="descname">test_hash</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.utils.bag_test.TestFrozenBag.test_hash" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.utils.bag_test.TestFrozenBag.test_iter">
+<tt class="descname">test_iter</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.utils.bag_test.TestFrozenBag.test_iter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.utils.bag_test.TestFrozenBag.test_len">
+<tt class="descname">test_len</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.utils.bag_test.TestFrozenBag.test_len" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.utils.bag_test.TestFrozenBag.test_repr">
+<tt class="descname">test_repr</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.utils.bag_test.TestFrozenBag.test_repr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.utils.bag_test.TestFrozenBag.test_str">
+<tt class="descname">test_str</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.utils.bag_test.TestFrozenBag.test_str" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="AChemKit.utils.bag_test.TestOrderedBag">
+<em class="property">class </em><tt class="descclassname">AChemKit.utils.bag_test.</tt><tt class="descname">TestOrderedBag</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#AChemKit.utils.bag_test.TestOrderedBag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#AChemKit.utils.bag_test.TestOrderedFrozenBag" title="AChemKit.utils.bag_test.TestOrderedFrozenBag"><tt class="xref py py-class docutils literal"><span class="pre">AChemKit.utils.bag_test.TestOrderedFrozenBag</span></tt></a>, <a class="reference internal" href="#AChemKit.utils.bag_test.TestBag" title="AChemKit.utils.bag_test.TestBag"><tt class="xref py py-class docutils literal"><span class="pre">AChemKit.utils.bag_test.TestBag</span></tt></a></p>
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p>
+<dl class="attribute">
+<dt id="AChemKit.utils.bag_test.TestOrderedBag.cls">
+<tt class="descname">cls</tt><a class="headerlink" href="#AChemKit.utils.bag_test.TestOrderedBag.cls" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">OrderedBag</span></tt></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.utils.bag_test.TestOrderedBag.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.utils.bag_test.TestOrderedBag.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="AChemKit.utils.bag_test.TestOrderedFrozenBag">
+<em class="property">class </em><tt class="descclassname">AChemKit.utils.bag_test.</tt><tt class="descname">TestOrderedFrozenBag</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#AChemKit.utils.bag_test.TestOrderedFrozenBag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#AChemKit.utils.bag_test.TestFrozenBag" title="AChemKit.utils.bag_test.TestFrozenBag"><tt class="xref py py-class docutils literal"><span class="pre">AChemKit.utils.bag_test.TestFrozenBag</span></tt></a></p>
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p>
+<dl class="attribute">
+<dt id="AChemKit.utils.bag_test.TestOrderedFrozenBag.cls">
+<tt class="descname">cls</tt><a class="headerlink" href="#AChemKit.utils.bag_test.TestOrderedFrozenBag.cls" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">OrderedFrozenBag</span></tt></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.utils.bag_test.TestOrderedFrozenBag.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.utils.bag_test.TestOrderedFrozenBag.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.utils.bag_test.TestOrderedFrozenBag.test_iter">
+<tt class="descname">test_iter</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.utils.bag_test.TestOrderedFrozenBag.test_iter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="module-AChemKit.utils.simpledot">
 <span id="simpledot-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">simpledot</span></tt> Module<a class="headerlink" href="#module-AChemKit.utils.simpledot" title="Permalink to this headline">¶</a></h2>
 <p>A library to manage <cite>.dot</cite> files</p>
@@ -180,6 +376,8 @@ not have a method with the specified name.</p>
   <ul>
 <li><a class="reference internal" href="#">utils Package</a><ul>
 <li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">utils</span></tt> Package</a></li>
+<li><a class="reference internal" href="#module-AChemKit.utils.bag"><tt class="docutils literal"><span class="pre">bag</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-AChemKit.utils.bag_test"><tt class="docutils literal"><span class="pre">bag_test</span></tt> Module</a></li>
 <li><a class="reference internal" href="#module-AChemKit.utils.simpledot"><tt class="docutils literal"><span class="pre">simpledot</span></tt> Module</a></li>
 <li><a class="reference internal" href="#module-AChemKit.utils.utils"><tt class="docutils literal"><span class="pre">utils</span></tt> Module</a></li>
 <li><a class="reference internal" href="#module-AChemKit.utils.utils_test"><tt class="docutils literal"><span class="pre">utils_test</span></tt> Module</a></li>

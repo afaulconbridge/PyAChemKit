@@ -94,9 +94,9 @@ def create_package_file(root, master_package, subroot, py_files, opts, subs):
         py_file = os.path.splitext(py_file)[0]
         py_path = makename(subroot, py_file)
         if is_package:
-            heading = ':mod:`%s` Package' % package
+            heading = ':py:mod:`%s` Package' % package
         else:
-            heading = ':mod:`%s` Module' % py_file
+            heading = ':py:mod:`%s` Module' % py_file
         text += format_heading(2, heading)
         text += format_directive(is_package and subroot or py_path, master_package)
         text += '\n'
