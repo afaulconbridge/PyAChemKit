@@ -18,6 +18,8 @@ from AChemKit import randomnet_test
 from AChemKit import sims_simple_test
 from AChemKit import sims_gillespie_test
 from AChemKit.utils import utils_test
+from AChemKit.utils import bag_test
+
 
 
 if __name__ == "__main__":
@@ -26,10 +28,11 @@ if __name__ == "__main__":
     loader = TestLoader()
     
     suite.addTest(loader.loadTestsFromTestCase(utils_test.TestGetSample))
-    suite.addTest(loader.loadTestsFromTestCase(utils_test.TestFrozenBag))
-    suite.addTest(loader.loadTestsFromTestCase(utils_test.TestBag))
-    suite.addTest(loader.loadTestsFromTestCase(utils_test.TestOrderedFrozenBag))
-    suite.addTest(loader.loadTestsFromTestCase(utils_test.TestOrderedBag))
+    
+    suite.addTest(loader.loadTestsFromTestCase(bag_test.TestFrozenBag))
+    suite.addTest(loader.loadTestsFromTestCase(bag_test.TestBag))
+    suite.addTest(loader.loadTestsFromTestCase(bag_test.TestOrderedFrozenBag))
+    suite.addTest(loader.loadTestsFromTestCase(bag_test.TestOrderedBag))
     
     suite.addTest(loader.loadTestsFromTestCase(reactionnet_test.TestReactionNetwork))
     suite.addTest(loader.loadTestsFromTestCase(reactionnet_test.TestReactionNetwork_from_string))
@@ -38,10 +41,10 @@ if __name__ == "__main__":
     suite.addTest(loader.loadTestsFromTestCase(randomnet_test.TestUniform))
     suite.addTest(loader.loadTestsFromTestCase(randomnet_test.TestLinear))
         
-    #suite.addTest(loader.loadTestsFromTestCase(sims_simple_test.TestItterative))
-    #suite.addTest(loader.loadTestsFromTestCase(sims_simple_test.TestStepwise))
-    #suite.addTest(loader.loadTestsFromTestCase(sims_simple_test.TestStepwiseMultiprocessing))
+    suite.addTest(loader.loadTestsFromTestCase(sims_simple_test.TestItterative))
+    suite.addTest(loader.loadTestsFromTestCase(sims_simple_test.TestStepwise))
+    suite.addTest(loader.loadTestsFromTestCase(sims_simple_test.TestStepwiseMultiprocessing))
     
-    #suite.addTest(loader.loadTestsFromTestCase(sims_gillespie_test.TestGillespie))
+    suite.addTest(loader.loadTestsFromTestCase(sims_gillespie_test.TestGillespie))
     
     TextTestRunner(verbosity=2).run(suite)
