@@ -9,3 +9,12 @@ try:
     psyco.full()
 except ImportError:
     pass
+    
+from . import reactionnet
+from . import reactionnetdot
+from . import properties
+from . import properties_wnx
+from . import randomnet
+from . import bucket
+from . import sims_simple
+from . import sims_gillespie
