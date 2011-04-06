@@ -19,7 +19,7 @@ all: clean doc
 setup: 
 	sudo apt-get install python-dev python-setuptools 
 	#sudo apt-get install texlive-full #needed to build pdf docs, but big so not done by defualt
-	sudo easy_install -U coverage networkx sphinx
+	sudo easy_install -U coverage pylint sphinx networkx
 
 clean: 
 	-rm -f test.txt
@@ -47,6 +47,7 @@ doclatex:
 test:
 	coverage run rununittest.py
 	coverage report
+	coverage xml
 
 pylint:
 	pylint --rcfile=pylint.rc -f parseable AChemKit > pylint.txt
