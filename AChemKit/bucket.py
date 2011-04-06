@@ -6,54 +6,30 @@ the data within :py:class:`~.Bucket` objects.
 """
 
 import re
+import collections
 
 from reactionnet import ReactionNetwork
-
-
-
-
+from utils.bag import OrderedFrozenBag
 
 class Event(object):
     """
     Mini-class for tracking events (instances of a reaction) within a :py:class:`~.Bucket`.
 
     Supports comparisons, is hashable, is immutable.
-    
-    Currently unused, but kept around in case it is reused later.
     """
 
     def __init__(self, time, reactants, products):
         self.time = time
-        self.reactants = tuple(sorted(list(reactants)))
-        self.products = tuple(sorted(list(products)))
+        self.reactants = OrderedFrozenBag(reactants)
+        self.products = OrderedFrozenBag(products)
 
     def __eq__(self, other):
         if self.time == other.time and self.reactants == other.reactants and self.products == other.products:
             return True
         return False
 
-    def __ne__(self, other):
-        if self.time == other.time and self.reactants == other.reactants and self.products == other.products:
-            return False
-        return True
-
     def __lt__(self, other):
         if self.time < other.time:
-            return True
-        return False
-
-    def __le__(self, other):
-        if self == other or self.time < other.time:
-            return True
-        return False
-
-    def __gt__(self, other):
-        if self.time > other.time:
-            return True
-        return False
-
-    def __ge__(self, other):
-        if self == other or self.time > other.time:
             return True
         return False
 
@@ -67,9 +43,16 @@ class Bucket(object):
     Event history of a simulation of an Artificial Chemistry.
     """
     _reactionnet = None
+    events = []
 
     def __init__(self, events):
-        self.events = events
+        self.events = []
+        for event in events:
+            if not isinstance(event, Event):
+                event = Event(*event)
+            self.events.append(event)
+        self.events.sort()
+        self.events = tuple(self.events)
 
     @classmethod
     def from_string(cls, instr):
@@ -147,13 +130,9 @@ class Bucket(object):
             rates = {}
             seenreactants = {}
             
-            count = 0
-            reacted = 0
-            synthesysed = 0
-            
             for event in self.events:
-                reactants = event[1]
-                products = event[2]
+                reactants = event.reactants
+                products = event.products
                 reaction = (reactants, products)
                 if reaction not in rates:
                     rates[reaction] = 0
@@ -166,16 +145,6 @@ class Bucket(object):
                 #if event.reactants == event.products:
                 #    print "Bounce"
                 
-                count += 1
-                if reactants != products:
-                    reacted += 1
-                if len(products) < len(reactants):
-                    synthesysed += 1
-                    
-            print count, reacted, synthesysed
-
-            
-
             #should correct the rates by the total number of collisions of those reactants
             #BUT current old data does not track bounces :`(
             
