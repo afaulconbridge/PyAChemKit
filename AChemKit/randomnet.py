@@ -28,7 +28,7 @@ def Uniform(nmols, nreactions, nreactants, nproducts, rates = 1.0, cls = Reactio
     Arguments:
 
     nmols
-        Number of molecules in the reaction network. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).
+        Number of molecules in the reaction network.
 
     .. note::
 
@@ -36,7 +36,7 @@ def Uniform(nmols, nreactions, nreactants, nproducts, rates = 1.0, cls = Reactio
         it will not appear at all e.g. in :py:attr:`~AChemKit.reactionnet.ReactionNetwork.seen`. This could lead to differences from `nmols`.
 
     nreactions
-        Number of reaction in the reaction network. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).
+        Number of reaction in the reaction network. 
 
     .. note::
 
