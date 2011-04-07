@@ -15,9 +15,9 @@ help:
 all: doc test
 
 test:
-	coverage run rununittest.py
-	coverage report
-	coverage xml
+	coverage run rununittest.py --include="AChemKit/*"
+	coverage report --include="AChemKit/*"
+	coverage xml --include="AChemKit/*"
 
 pylint:
 	pylint --rcfile=pylint.rc -f parseable AChemKit > pylint.txt
