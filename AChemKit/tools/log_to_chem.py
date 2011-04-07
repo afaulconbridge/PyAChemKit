@@ -20,8 +20,16 @@ __module__ = "AChemKit.tools"
 #this is depcrecated in python 2.7 in favour of argparse
 #however, we want python 2.5 compatibility so its still here
 import optparse
+#need to do some path mangling so this can be run as a stand-alone program
 
-from .. import bucket.Bucket as Bucket
+import os
+import sys
+sys.path.append(os.path.abspath(os.path.join("..", "..")))
+sys.path.append(os.path.abspath(os.path.join("..")))
+sys.path.append(os.path.abspath(os.path.join(".")))
+
+import AChemKit
+from AChemKit.bucket import Bucket
 
 if __name__=="__main__":
 
@@ -50,5 +58,3 @@ if __name__=="__main__":
         outfile = open(options.outfile, "w")
         outfile.write(chemstr)
         outfile.close()
-
-

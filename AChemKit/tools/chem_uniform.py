@@ -4,7 +4,7 @@ This is a command-line tool for generating `.chem` files using the :py:func:`~AC
 
 """
 
-#need to do some path mangling so this can be run as a stand-alone
+#need to do some path mangling so this can be run as a stand-alone program
 
 import os
 import sys
