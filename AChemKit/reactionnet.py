@@ -12,6 +12,7 @@ import re
 #used to converge from_string into from_file paradigm
 import StringIO
 
+from .utils.bag import OrderedFrozenBag
 
 class ReactionNetwork(object):
     """
@@ -200,10 +201,10 @@ class ReactionNetwork(object):
                         outputs.append(molspecies)
 
                 inputs.sort()
-                inputs = tuple(inputs)
+                inputs = OrderedFrozenBag(inputs)
 
                 outputs.sort()
-                outputs = tuple(outputs)
+                outputs = OrderedFrozenBag(outputs)
 
                 if (inputs, outputs) in rates:
                     #raise ValueError, "Duplicate reaction at line %d : %s" % (linecount, rawline)

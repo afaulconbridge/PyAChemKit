@@ -13,20 +13,22 @@ import sims_simple
 import reactionnet
 import randomnet
 import bucket
+from utils.bag import OrderedFrozenBag
 
-__module__ = "AChemKit.sims_simple_test"
         
 class TestItterative(unittest.TestCase):
     
     def setUp(self): 
-        self.net = randomnet.Uniform(5, 10, (1,2), (1,2))
+        #self.net = randomnet.Uniform(5, 10, (1,2), (1,2))
+        self.rates = {(OrderedFrozenBag(["A", "B"]), OrderedFrozenBag(["B", "C"])):0.1}
+        self.net = reactionnet.ReactionNetwork(self.rates)
         self.mols = [mol for mol in self.net.seen*10]
         self.achem = sims_simple.AChemReactionNetwork(self.net)
         
         
     def test_basic(self):
         #this isnt a true test, but it runs some code and gets a result
-        events = sims_simple.simulate_itterative(self.achem, self.mols, 1000)
+        events = sims_simple.simulate_itterative(self.achem, self.mols, 100)
         buck = bucket.Bucket(events)
         print self.net
         print "-"*25

@@ -41,8 +41,8 @@ if __name__ == "__main__":
     suite.addTest(loader.loadTestsFromTestCase(randomnet_test.TestUniform))
     suite.addTest(loader.loadTestsFromTestCase(randomnet_test.TestLinear))
         
-    #suite.addTest(loader.loadTestsFromTestCase(sims_simple_test.TestItterative))
-    #suite.addTest(loader.loadTestsFromTestCase(sims_simple_test.TestStepwise))
+    suite.addTest(loader.loadTestsFromTestCase(sims_simple_test.TestItterative))
+    suite.addTest(loader.loadTestsFromTestCase(sims_simple_test.TestStepwise))
     #suite.addTest(loader.loadTestsFromTestCase(sims_simple_test.TestStepwiseMultiprocessing))
     
     #suite.addTest(loader.loadTestsFromTestCase(sims_gillespie_test.TestGillespie))

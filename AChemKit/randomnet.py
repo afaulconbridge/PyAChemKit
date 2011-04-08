@@ -11,6 +11,7 @@ import re
 
 from .reactionnet import ReactionNetwork
 from .utils.utils import get_sample
+from .utils.bag import OrderedFrozenBag
 
 
 def combinations_with_replacement(iterable, r):
@@ -113,10 +114,8 @@ def Uniform(nmols, nreactions, nreactants, nproducts, rates = 1.0, cls = Reactio
 
         reactants = [get_sample(nmols, rng)  for j in xrange(thisnreactants)]
         products = [get_sample(nmols, rng)  for j in xrange(thisnproducts)]
-        reactants = sorted(reactants)
-        products = sorted(products)
-        reactants = tuple(reactants)
-        products = tuple(products)
+        reactants = OrderedFrozenBag(reactants)
+        products = OrderedFrozenBag(products)
 
         outrates[(reactants, products)] = thisrate
 
@@ -265,10 +264,10 @@ def Linear(natoms, maxlength, pform, pbreak, directed = True, rates = 1.0, cls =
 
                         #because we may have revereed them, we have to order them again
                         if not directed:
-                            reactants = tuple(sorted((mol_order(x), mol_order(y))))
+                            reactants = OrderedFrozenBag(sorted((mol_order(x), mol_order(y))))
                         else:
-                            reactants = tuple(sorted((x, y)))
-                        products = tuple(sorted((z,)))
+                            reactants = OrderedFrozenBag(sorted((x, y)))
+                        products = OrderedFrozenBag(sorted((z,)))
 
                         reaction = (reactants, products)
 

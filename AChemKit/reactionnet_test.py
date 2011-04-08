@@ -9,6 +9,7 @@ sys.path.append(".")
 import unittest
 
 from reactionnet import ReactionNetwork
+from utils.bag import OrderedFrozenBag
 
 class TestReactionNetwork(unittest.TestCase):
     """
@@ -18,12 +19,12 @@ class TestReactionNetwork(unittest.TestCase):
     is then probed by the other functions
     """
     def setUp(self): 
-        self.rates = {(("A", "B"), ("B", "C")):2.0}
+        self.rates = {(OrderedFrozenBag(["A", "B"]), OrderedFrozenBag(["B", "C"])):2.0}
         self.net = ReactionNetwork(self.rates)
         
         self.othernet = ReactionNetwork(self.rates)
         
-        self.wrongrates = {(("A", "B"), ("B", "C")):3.0}
+        self.wrongrates = {(OrderedFrozenBag(["A", "B"]), OrderedFrozenBag(["B", "C"])):3.0}
         self.wrongnet = ReactionNetwork(self.wrongrates)
 
     def test_seen(self):
@@ -39,17 +40,17 @@ class TestReactionNetwork(unittest.TestCase):
         Also checks that they are in sorted order
         TODO check sorted order between reactions
         """
-        self.assertEqual(self.net.reactions, ((("A", "B"), ("B", "C")),))
+        self.assertEqual(self.net.reactions, ((OrderedFrozenBag(["A", "B"]), OrderedFrozenBag(["B", "C"])),) )
         
     def test_rates(self):
-        self.assertEqual(self.net.rates[("A", "B"), ("B", "C")], 2.0)
+        self.assertEqual(self.net.rates[OrderedFrozenBag(["A", "B"]), OrderedFrozenBag(["B", "C"])], 2.0)
         
     def test_reaction_to_string(self):
         """
         Check that it convert a reaction to a string correctly
         """
         target = """A + B\t-2.0>\tB + C"""
-        self.assertEqual(self.net.reaction_to_string((("A", "B"), ("B", "C")), 2.0), target)
+        self.assertEqual(self.net.reaction_to_string((OrderedFrozenBag(["A", "B"]), OrderedFrozenBag(["B", "C"])), 2.0), target)
         
     def test_to_string(self):
         """

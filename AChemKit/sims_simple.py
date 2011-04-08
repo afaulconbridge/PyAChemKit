@@ -6,6 +6,7 @@ except ImportError:
     import pickle as pickle
     
 from .utils.utils import get_sample
+from .utils.bag import OrderedFrozenBag
 
 class AChemAbstract(object):
     """
@@ -87,10 +88,10 @@ def simulate_itterative_iter(achem, mols, maxtime, rng = None):
         reactants = mols[:noreactants]
         mols = mols[noreactants:]
         
-        products = tuple(achem.react(*reactants))
-        mols += products
+        products = achem.react(*reactants)
+        mols += tuple(products)
         
-        yield (time, reactants, products)
+        yield (time, OrderedFrozenBag(reactants), OrderedFrozenBag(products))
         
         time += 1.0
         
@@ -127,12 +128,12 @@ def simulate_stepwise_iter(achem, mols, maxtime, rng=None):
                 reactants = mols[:noreactants]
                 mols = mols[noreactants:]
                 
-                products = achem.react(*reactants)
+                products = tuple(achem.react(*reactants))
                 newmols += products
                 #reactants = tuple(str(reactant) for reactant in reactants)
                 #products = tuple(str(product ) for product in products)
                 
-                yield (time, reactants, products)
+                yield (time, OrderedFrozenBag(reactants), OrderedFrozenBag(products))
             else:
                 newmols += mols
                 mols = ()
@@ -181,7 +182,7 @@ def simulate_stepwise_multiprocessing_iter(achem, mols, maxtime, rng=None):
         while len(mols) > 0:
             noreactants = get_sample(achem.noreactants, rng)
             if noreactants <= len(mols):
-                reactants = mols[:noreactants]
+                reactants = OrderedFrozenBag(mols[:noreactants])
                 mols = mols[noreactants:]
                 allreactants.append(reactants)
             else:
@@ -194,7 +195,7 @@ def simulate_stepwise_multiprocessing_iter(achem, mols, maxtime, rng=None):
             #reactants = tuple(str(reactant) for reactant in reactants)
             #products = tuple(str(product ) for product in products)
             
-            yield (time, reactants, products)
+            yield (time, reactants, OrderedFrozenBag(products))
         mols = newmols
         time += 1.0
     p.terminate()

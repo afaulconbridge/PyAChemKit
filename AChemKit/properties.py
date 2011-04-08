@@ -1,5 +1,3 @@
-#! /bin/python
-
 """
 Functions for testing properties of particular reaction networks.
 
@@ -62,6 +60,23 @@ def has_catalysis_direct(rn):
     """
     for thing in itertools.ifilter(lambda (reactants, products):len(set(reactants).intersection(products)) > 0, rn.reactions):
         return True
+    return False
+
+
+def has_autocatalysis_direct(rn):
+    """
+    Tests for reactions where some species is both consumed and produced by the same reaction, and is produced more than 
+    it is consumed.
+
+    For example::
+
+        A + C -> A + A
+
+    """
+    for reactants, products in rn.reactions:
+        for reactant in reactants:
+            if products.count(reactant) > reactants.count(reactant):
+                return True
     return False
 
 
