@@ -44,11 +44,11 @@ The source code additionally requires the following:
 * Coverage          http://nedbatchelder.com/code/coverage/
 
 
-For a Debian-based Linux distrbution --- e.g. Debian, Ubuntu --- these can be installed / updated with::
+For a debian-based linux distrbution, these can be installed with::
 
-    make setup
-    
-(Note, LaTeX is not installed via this method because it is very large. Run ``sudo apt-get install texlive-full``)
+    sudo apt-get install python graphviz texlive
+    sudo easy_install Sphinx #only v0.6 in apt
+    sudo easy_install pygments #required by sphinx
 
 
 There is a makefile that will run some useful tasks for you (generate documentation, test, benchmark). This can be accessed by running the following command::

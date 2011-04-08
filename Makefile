@@ -11,6 +11,7 @@ help:
 	@echo "  dochtml    Generate documentation in HTML"
 	@echo "  doclatex   Generate documentation in LaTeX"
 	@echo "  setup      Try to install / update required modules"
+	@echo "  distribute Perform a distribution"
 
 all: doc test
 
@@ -36,6 +37,12 @@ doclatex:
 	pdflatex -output-directory doc/latex  doc/latex/AChemKit > /dev/null
 
 setup: 
-	sudo apt-get install python-dev python-setuptools 
+	sudo apt-get install python-dev python-setuptools dos2unix
 	#sudo apt-get install texlive-full #needed to build pdf docs, but big so not done by defualt
 	sudo easy_install -U coverage pylint sphinx networkx
+
+distribute:
+	@cp doc/src/README.rst README.txt
+	@unix2dos README.txt
+	@cp doc/latex/AChemKit.pdf AChemKit.pdf
+	python setup.py register sdist upload

@@ -17,11 +17,17 @@ PyAChemKit.geany
 
 #specific to PyAChemKit
 
+#PyPi distribution
+AChemKit.pdf #this is just a copy for distribution
+MANIFEST
+dist/
+
 
 #documentation build directorys
 doc/latex/
 #doc/html/ #dont ignore this so it can be put on the git website in branch gh-pages
 !doc/latex/AChemKit.pdf
+
 
 #autobuild doc sources
 doc/src/AChemKit*.rst
