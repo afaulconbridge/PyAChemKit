@@ -13,7 +13,6 @@ except ImportError:
 from . import reactionnet
 from . import reactionnetdot
 from . import properties
-from . import properties_wnx
 from . import randomnet
 from . import bucket
 from . import sims_simple

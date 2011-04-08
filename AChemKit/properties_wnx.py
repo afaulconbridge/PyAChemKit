@@ -7,7 +7,7 @@ import itertools
 
 import networkx
 
-import reactionnet
+from . import reactionnet
 
 def ReactionNetwork_to_MultiDiGraph(net):
     """

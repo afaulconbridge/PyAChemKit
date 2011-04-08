@@ -15,15 +15,9 @@ Options:
 
 """
 
-__module__ = "AChemKit.tools"
-
 #this is depcrecated in python 2.7 in favour of argparse
 #however, we want python 2.5 compatibility so its still here
 import optparse
-
-#temporarilly mangle the path to access it properly
-import sys
-sys.path.append("/home/adam/Dropbox/AChemKit")
 
 from AChemKit.reactionnet import ReactionNetwork
 
@@ -51,5 +45,3 @@ if __name__=="__main__":
         outfile = open(options.outfile, "w")
         outfile.write(chemstr)
         outfile.close()
-
-

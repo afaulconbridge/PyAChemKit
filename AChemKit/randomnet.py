@@ -9,8 +9,8 @@ import itertools
 import re
 
 
-from AChemKit.reactionnet import ReactionNetwork
-from AChemKit.utils.utils import get_sample
+from .reactionnet import ReactionNetwork
+from .utils.utils import get_sample
 
 
 def combinations_with_replacement(iterable, r):
@@ -196,8 +196,10 @@ def Linear(natoms, maxlength, pform, pbreak, directed = True, rates = 1.0, cls =
     
     assert maxlength > 0 
 
-    def mol_to_atoms(mol):
-        return tuple(filter(lambda x: len(x) > 0, re.split(r"([A-Z][a-z]*)", mol)))
+    def mol_to_atoms(mol, cache = {}):
+        if mol not in cache:
+            cache[mol] = tuple(filter(lambda x: len(x) > 0, re.split(r"([A-Z][a-z]*)", mol)))
+        return cache[mol] 
 
     def mol_len(mol):
         #return len(mol)

@@ -1,5 +1,5 @@
 from reactionnet import ReactionNetwork
-from AChemKit.utils.simpledot import SimpleDot
+from .utils.simpledot import SimpleDot
 
 class ReactionNetworkDot(ReactionNetwork):
     """

@@ -4,17 +4,7 @@ This is a command-line tool for generating `.chem` files using the :py:func:`~AC
 
 """
 
-#need to do some path mangling so this can be run as a stand-alone program
-
-import os
-import sys
-sys.path.append(os.path.abspath(os.path.join("..", "..")))
-sys.path.append(os.path.abspath(os.path.join("..")))
-sys.path.append(os.path.abspath(os.path.join(".")))
-#print sys.path
 import random
-
-
 import argparse
 
 import AChemKit
@@ -24,12 +14,12 @@ if __name__=="__main__":
 
     parser = argparse.ArgumentParser(description="Generates `.chem` using Uniform algorithm.")
     parser.add_argument("-o", "--outfile", action="store", type=argparse.FileType('w'), help="write to OUTFILE in .chem format (if ommited, use stdout)", metavar="OUTFILE")
-    parser.add_argument("-n", "--nmols", action="store", type=int, help="possible number of molecules", default=10)
-    parser.add_argument("-m", "--nreactions", action="store", type=int, help="possible number of reactions", default=10)
+    parser.add_argument("-n", "--nmols", action="store", type=int, help="number of molecules", default=10)
+    parser.add_argument("-m", "--nreactions", action="store", type=int, help="number of reactions", default=10)
     parser.add_argument("-r", "--nreactants", action="append", help="possible number of reactants", default=[2])
     parser.add_argument("-p", "--nproducts", action="append", help="possible number of products", default=[2])
     parser.add_argument("-t", "--rates", action="append", help="possible reaction rates", default=[1.0])
-    parser.add_argument("-s", "--seed", action="store", help="pseudo-random seed", default=None)
+    parser.add_argument("-s", "--seed", action="store", type=int, help="pseudo-random seed", default=None)
     args = parser.parse_args()
     
     nmols = args.nmols
@@ -59,6 +49,7 @@ if __name__=="__main__":
     
 """.format(repr(nmols), repr(nreactions), repr(nreactants), repr(nproducts), repr(rates), args.seed)
     chemstr += str(net)
+    chemstr += "\n"
 
     if args.outfile is None:
         #print to standard out

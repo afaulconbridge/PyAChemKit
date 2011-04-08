@@ -87,7 +87,6 @@ def has_varying_rates(rn):
     To get the range of rates a reaction network spans, use::
 
         span = max(rn.rates.values())-min(rn.rates.values())
-
     """
     if len(set(rn.rates.values())) > 1:
         return True
@@ -98,7 +97,12 @@ def has_divergence(rn):
     """
     Tests for divergent reactions.
     
-    Divergent reactions are where the same reactants have multiple possible collections of products
+    Divergent reactions are where the same reactants have multiple possible collections of products.
+    
+    For example::
+
+        AB + C -> ABC
+        AB + C -> A + B + C
     """
     
     seen_reactants = set()
@@ -129,4 +133,3 @@ def not_conservation_mass(rn):
     """
 
     return False
-

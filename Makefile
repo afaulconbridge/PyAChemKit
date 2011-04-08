@@ -41,8 +41,12 @@ setup:
 	#sudo apt-get install texlive-full #needed to build pdf docs, but big so not done by defualt
 	sudo easy_install -U coverage pylint sphinx networkx
 
-distribute:
+distribute: test doc
 	@cp doc/src/README.rst README.txt
 	@unix2dos README.txt
 	@cp doc/latex/AChemKit.pdf AChemKit.pdf
 	python setup.py register sdist upload
+
+install: test
+	python setup.py sdist
+	sudo python setup.py install

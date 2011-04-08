@@ -9,6 +9,14 @@ tools Package
     :undoc-members:
     :show-inheritance:
 
+:py:mod:`chem_linear` Module
+----------------------------
+
+.. automodule:: AChemKit.tools.chem_linear
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 :py:mod:`chem_pp` Module
 ------------------------
 
@@ -29,6 +37,14 @@ tools Package
 ----------------------------
 
 .. automodule:: AChemKit.tools.chem_to_pdf
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:py:mod:`chem_uniform` Module
+-----------------------------
+
+.. automodule:: AChemKit.tools.chem_uniform
     :members:
     :undoc-members:
     :show-inheritance:

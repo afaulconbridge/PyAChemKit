@@ -1,10 +1,10 @@
 from distutils.core import setup
 
 setup(name="AChemKit", \
-    version="0.1.0", \
+    version="0.1.2", \
     author="Adam Faulconbridge", \
     author_email="afaulconbridge@googlemail.com", \
-    packages=["AChemKit"], \
+    packages=["AChemKit", "AChemKit/utils", "AChemKit/tools"], \
     classifiers = ["Development Status :: 3 - Alpha", \
         "Intended Audience :: Science/Research", \
         "Intended Audience :: Developers", \

@@ -5,7 +5,7 @@ try:
 except ImportError:
     import pickle as pickle
     
-from utils.utils import get_sample
+from .utils.utils import get_sample
 
 class AChemAbstract(object):
     """

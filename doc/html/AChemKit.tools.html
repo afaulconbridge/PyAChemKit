@@ -62,6 +62,10 @@
 <p>These are intended to be used in automated pipelines, such as <a class="reference external" href="http://www.gnu.org/software/make/">Makefiles</a>.</p>
 <p>These can be used as stand-alone programs, or examined as usage examples for the AChemKit <em class="xref std std-ref">API</em>.</p>
 </div>
+<div class="section" id="module-AChemKit.tools.chem_linear">
+<span id="chem-linear-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">chem_linear</span></tt> Module<a class="headerlink" href="#module-AChemKit.tools.chem_linear" title="Permalink to this headline">¶</a></h2>
+<p>This is a command-line tool for generating <cite>.chem</cite> files using the <a class="reference internal" href="AChemKit.html#AChemKit.randomnet.Linear" title="AChemKit.randomnet.Linear"><tt class="xref py py-func docutils literal"><span class="pre">Linear()</span></tt></a> random reaction network algorithm.</p>
+</div>
 <div class="section" id="module-AChemKit.tools.chem_pp">
 <span id="chem-pp-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">chem_pp</span></tt> Module<a class="headerlink" href="#module-AChemKit.tools.chem_pp" title="Permalink to this headline">¶</a></h2>
 <p>A pretty-printer and syntax checker for <cite>.chem</cite> files</p>
@@ -152,11 +156,13 @@ In particular, they are constructed using <a class="reference internal" href="AC
 </table>
 </div></blockquote>
 </div>
+<div class="section" id="module-AChemKit.tools.chem_uniform">
+<span id="chem-uniform-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">chem_uniform</span></tt> Module<a class="headerlink" href="#module-AChemKit.tools.chem_uniform" title="Permalink to this headline">¶</a></h2>
+<p>This is a command-line tool for generating <cite>.chem</cite> files using the <a class="reference internal" href="AChemKit.html#AChemKit.randomnet.Uniform" title="AChemKit.randomnet.Uniform"><tt class="xref py py-func docutils literal"><span class="pre">Uniform()</span></tt></a> random reaction network algorithm.</p>
+</div>
 <div class="section" id="module-AChemKit.tools.log_to_chem">
 <span id="log-to-chem-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">log_to_chem</span></tt> Module<a class="headerlink" href="#module-AChemKit.tools.log_to_chem" title="Permalink to this headline">¶</a></h2>
-<p>Produces a <cite>.dot</cite> output from a provided <cite>.chem</cite> format input</p>
-<p>The output files in <cite>.dot</cite> format are suitable for future processing using Graphviz tools.
-In particular, they are constructed using <a class="reference internal" href="AChemKit.utils.html#AChemKit.utils.simpledot.SimpleDot" title="AChemKit.utils.simpledot.SimpleDot"><tt class="xref py py-class docutils literal"><span class="pre">AChemKit.utils.simpledot.SimpleDot</span></tt></a>.</p>
+<p>Produces a <cite>.chem</cite> output from a provided <cite>.log</cite> format input</p>
 <p>For information in <cite>.chem</cite> files see <a class="reference internal" href="fileformats.html#chem-file-format"><em>.chem Format</em></a>.</p>
 <p>Usage: chem_to_dot.py [options]</p>
 <p>Options:</p>
@@ -196,9 +202,11 @@ In particular, they are constructed using <a class="reference internal" href="AC
   <ul>
 <li><a class="reference internal" href="#">tools Package</a><ul>
 <li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">tools</span></tt> Package</a></li>
+<li><a class="reference internal" href="#module-AChemKit.tools.chem_linear"><tt class="docutils literal"><span class="pre">chem_linear</span></tt> Module</a></li>
 <li><a class="reference internal" href="#module-AChemKit.tools.chem_pp"><tt class="docutils literal"><span class="pre">chem_pp</span></tt> Module</a></li>
 <li><a class="reference internal" href="#module-AChemKit.tools.chem_to_dot"><tt class="docutils literal"><span class="pre">chem_to_dot</span></tt> Module</a></li>
 <li><a class="reference internal" href="#module-AChemKit.tools.chem_to_pdf"><tt class="docutils literal"><span class="pre">chem_to_pdf</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-AChemKit.tools.chem_uniform"><tt class="docutils literal"><span class="pre">chem_uniform</span></tt> Module</a></li>
 <li><a class="reference internal" href="#module-AChemKit.tools.log_to_chem"><tt class="docutils literal"><span class="pre">log_to_chem</span></tt> Module</a></li>
 </ul>
 </li>

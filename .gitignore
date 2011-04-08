@@ -21,6 +21,7 @@ PyAChemKit.geany
 AChemKit.pdf #this is just a copy for distribution
 MANIFEST
 dist/
+build/
 
 
 #documentation build directorys

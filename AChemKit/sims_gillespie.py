@@ -3,9 +3,7 @@
 
 import random
 
-import sims_simple
-
-
+from . import sims_simple
 
 def simulate_gillespie_iter(achem, mols, maxtime, rng=None):
     """

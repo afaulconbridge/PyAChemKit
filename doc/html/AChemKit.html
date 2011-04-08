@@ -141,7 +141,11 @@ AB + C -&gt; A + B + C</pre>
 <dt id="AChemKit.properties.has_divergence">
 <tt class="descclassname">AChemKit.properties.</tt><tt class="descname">has_divergence</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.has_divergence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tests for divergent reactions.</p>
-<p>Divergent reactions are where the same reactants have multiple possible collections of products</p>
+<p>Divergent reactions are where the same reactants have multiple possible collections of products.</p>
+<p>For example:</p>
+<div class="highlight-python"><pre>AB + C -&gt; ABC
+AB + C -&gt; A + B + C</pre>
+</div>
 </dd></dl>
 
 <dl class="function">
@@ -264,7 +268,7 @@ it will not appear at all e.g. in <a class="reference internal" href="#AChemKit.
 <p>Arguments:</p>
 <dl class="docutils">
 <dt>nmols</dt>
-<dd>Number of molecules in the reaction network. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).</dd>
+<dd>Number of molecules in the reaction network.</dd>
 </dl>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -273,7 +277,7 @@ it will not appear at all e.g. in <a class="reference internal" href="#AChemKit.
 </div>
 <dl class="docutils">
 <dt>nreactions</dt>
-<dd>Number of reaction in the reaction network. Can be a single value or a tuple/list which will be uniformly sampled from (duplicates can be used to give a non-uniform distribution).</dd>
+<dd>Number of reaction in the reaction network.</dd>
 </dl>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -920,9 +924,11 @@ not have a method with the specified name.</p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="AChemKit.tools.html">tools Package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="AChemKit.tools.html#id1"><tt class="docutils literal"><span class="pre">tools</span></tt> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AChemKit.tools.html#module-AChemKit.tools.chem_linear"><tt class="docutils literal"><span class="pre">chem_linear</span></tt> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="AChemKit.tools.html#module-AChemKit.tools.chem_pp"><tt class="docutils literal"><span class="pre">chem_pp</span></tt> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="AChemKit.tools.html#module-AChemKit.tools.chem_to_dot"><tt class="docutils literal"><span class="pre">chem_to_dot</span></tt> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="AChemKit.tools.html#module-AChemKit.tools.chem_to_pdf"><tt class="docutils literal"><span class="pre">chem_to_pdf</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AChemKit.tools.html#module-AChemKit.tools.chem_uniform"><tt class="docutils literal"><span class="pre">chem_uniform</span></tt> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="AChemKit.tools.html#module-AChemKit.tools.log_to_chem"><tt class="docutils literal"><span class="pre">log_to_chem</span></tt> Module</a></li>
 </ul>
 </li>

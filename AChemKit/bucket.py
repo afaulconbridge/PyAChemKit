@@ -8,8 +8,8 @@ the data within :py:class:`~.Bucket` objects.
 import re
 import collections
 
-from reactionnet import ReactionNetwork
-from utils.bag import OrderedFrozenBag
+from .reactionnet import ReactionNetwork
+from .utils.bag import OrderedFrozenBag
 
 class Event(object):
     """
