@@ -8,6 +8,9 @@ class ReactionNetworkDot(ReactionNetwork):
     machines where dot is not installed, the basic class can still be
     used.
     """
+    
+    def __init__(self, *args, **kwargs):
+        super(ReactionNetworkDot, self).__init__(*args, **kwargs)
 
     @property
     def dot(self):
@@ -104,7 +107,7 @@ class ReactionNetworkDot(ReactionNetwork):
 
         #try to do something smart with names
         if names is None:
-            if max((len(x) for x in molplot)) > 10:
+            if len(molplot) > 0 and max((len(x) for x in molplot)) > 10:
                 names = "id"
             else:
                 names = "full"
@@ -136,7 +139,7 @@ class ReactionNetworkDot(ReactionNetwork):
                 continue
 
 
-            r_id = "R % d"% self.reactions.index((reactants, products))
+            r_id = "R%d" % self.reactions.index((reactants, products))
             dot[r_id] = {"shape":"point"}
 
             if rates == True or (rates is None and self.rates[(reactants, products)] != 1.0):
@@ -156,7 +159,7 @@ class ReactionNetworkDot(ReactionNetwork):
 
             for i in xrange(len(reactants)):
                 reactant = reactants[i]
-                m_id = "M % d" % self.seen.index(reactant)
+                m_id = "M%d" % self.seen.index(reactant)
                 #see if this is a catalyst
                 #remember to allow for multiple copies of the same molecular species
                 #to act as a collective catalyst
@@ -176,7 +179,7 @@ class ReactionNetworkDot(ReactionNetwork):
 
             for i in xrange(len(products)):
                 product = products[i]
-                m_id = "M % d" % self.seen.index(product)
+                m_id = "M%d" % self.seen.index(product)
                 #see if this is a catalyst
                 #remeber to allow for multiple copies of the same molecular species
                 #to act as a collective catalyst

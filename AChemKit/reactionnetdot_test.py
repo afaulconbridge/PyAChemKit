@@ -39,9 +39,9 @@ class TestReactionNetworkDot(unittest.TestCase):
 	M0 [label="A"];
 	M1 [label="B"];
 	M2 [label="C"];
-	R  0 [style="filled", label=2.0, width="0.0", shape="box", fillcolor="black", fontcolor="white", height="0.0", margin="0.01,0.01"];
-	M  0 -> R  0 [arrowhead="none", arrowtail="invempty"];
-	M  1 -> R  0 [color="grey", arrowhead="none", arrowtail="none"];
-	R  0 -> M  2 [arrowhead="normal", arrowtail="none"];
+	R0 [style="filled", label=2.0, width="0.0", shape="box", fillcolor="black", fontcolor="white", height="0.0", margin="0.01,0.01"];
+	M0 -> R0 [arrowhead="none", arrowtail="invempty"];
+	M1 -> R0 [color="grey", arrowhead="none", arrowtail="none"];
+	R0 -> M2 [arrowhead="normal", arrowtail="none"];
 }"""
         self.assertEqual(str(self.net.dot), target)

@@ -218,4 +218,4 @@ class ReactionNetwork(object):
 
             else:
                 raise ValueError, "Invalid reaction at line %d : %s" % (linecount, rawline)
-        return ReactionNetwork(rates)
+        return cls(rates)

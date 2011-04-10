@@ -238,7 +238,7 @@ def Linear(natoms, maxlength, pform, pbreak, directed = True, rates = 1.0, cls =
                         a = mol_order(a)
                         b = mol_order(b)
 
-                    reaction = ((z,), tuple(sorted((a,b))))
+                    reaction = (OrderedFrozenBag((z,)), OrderedFrozenBag(sorted((a,b))))
 
                     if reaction not in outrates:
                         outrates[reaction] = get_sample(rates, rng)
@@ -267,7 +267,7 @@ def Linear(natoms, maxlength, pform, pbreak, directed = True, rates = 1.0, cls =
                             reactants = OrderedFrozenBag(sorted((mol_order(x), mol_order(y))))
                         else:
                             reactants = OrderedFrozenBag(sorted((x, y)))
-                        products = OrderedFrozenBag(sorted((z,)))
+                        products = OrderedFrozenBag((z,))
 
                         reaction = (reactants, products)
 

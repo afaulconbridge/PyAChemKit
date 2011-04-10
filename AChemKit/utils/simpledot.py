@@ -66,8 +66,6 @@ class SimpleDot(DictMixin):
     strict = False
     cluster = False
 
-    __module__ = "AChemKit.utils.simpledot"
-
     def __init__(self, name="G", digraph=True, strict=False, cluster=False):
         self.name = name
         self.digraph = digraph
@@ -254,10 +252,16 @@ class SimpleDot(DictMixin):
         return dot
 
     def plot(self, output='pdf', prog='dot', args=()):
+        """
+        Calls the specified drawing program to turn this into an image.
+        
+        Use args to pass extra arguments, particularly ``-o`` to specify an output filename.
+        
+        Follows the same format as subprocess calls.
+        """
         newargs = (prog, '-T'+output)+tuple(args)
         run = subprocess.Popen(newargs, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
         return run.communicate(self._to_dot())[0]
 
     #todo: put dictionary-like interface
     #e.g. foo["n1"]["style"] = "filled"
-

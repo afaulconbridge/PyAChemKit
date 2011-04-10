@@ -6,6 +6,7 @@ This is a command-line tool for generating `.chem` files using the :py:func:`~AC
 
 import random
 import argparse
+import sys
 
 import AChemKit
 from AChemKit.randomnet import Linear 

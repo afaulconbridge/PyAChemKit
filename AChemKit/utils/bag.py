@@ -40,6 +40,9 @@ class FrozenBag(collections.Set):
         
     def __repr__(self):
         return "{0}({1})".format(str(self.__class__.__name__), repr(self._items))
+        
+    def count(self, item):
+        return self._items.count(item)
     
     
 class Bag(FrozenBag, collections.MutableSet):
@@ -117,6 +120,15 @@ class OrderedFrozenBag(collections.Set):
     def __repr__(self):
         return "{0}({1})".format(str(self.__class__.__name__), repr(self._order))
         
+    def count(self, item):
+        return self._order.count(item)
+        
+    def index(self, item):
+        return self._order.index(item)
+        
+    def __getitem__(self, index):
+        return self._order[index]
+        
 class OrderedBag(OrderedFrozenBag, collections.MutableSet):
     """
     Like a Bag, but iterating will keep the order things were put in. New items
@@ -144,4 +156,3 @@ class OrderedBag(OrderedFrozenBag, collections.MutableSet):
         
     def __hash__(self):
         raise TypeError, "unhashable type: '{0}'".format(str(self.__class__.__name__))
-
