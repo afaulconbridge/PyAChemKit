@@ -37,7 +37,7 @@ doclatex:
 	pdflatex -output-directory doc/latex  doc/latex/AChemKit > /dev/null
 
 setup: 
-	sudo apt-get install python-dev python-setuptools dos2unix
+	sudo apt-get install python-dev python-setuptools tofrodos
 	#sudo apt-get install texlive-full #needed to build pdf docs, but big so not done by defualt
 	sudo easy_install -U coverage pylint sphinx networkx
 
