@@ -11,8 +11,8 @@ class FrozenBag(collections.Set):
     A Bag is like a set, but can contain duplicates.
     
     Also, a Bag is like a list, but is always ordered.
-    """
-    _items = ()
+    """    
+    __slots__ = ["_items"]
     
     def __init__(self, iterable):
         if not isinstance(iterable, collections.Iterable):
@@ -51,8 +51,7 @@ class Bag(FrozenBag, collections.MutableSet):
     
     Also, a Bag is like a list, but is always ordered.
     """
-    
-    _items = []
+    __slots__ = ["_items"]
     
     def __init__(self, iterable):
         if not isinstance(iterable, collections.Iterable):
@@ -77,6 +76,7 @@ class OrderedFrozenBag(collections.Set):
     Comparisons are still as for a FrozenBag so OrderedFrozenBag([1,2,1]) == OrderedFrozenBag([2,1,1])
     will return True.
     """
+    __slots__ = ["_items", "_order", "_bag"]
     
     def __init__(self, iterable):
         if not isinstance(iterable, collections.Iterable):
@@ -138,6 +138,7 @@ class OrderedBag(OrderedFrozenBag, collections.MutableSet):
     Comparisons are still as for a Bag so OrderedBag([1,2,1]) == OrderedBag([2,1,1])
     will return True.    
     """
+    __slots__ = ["_items", "_order", "_bag"]
     
     def __init__(self, iterable):
         if not isinstance(iterable, collections.Iterable):
@@ -152,7 +153,6 @@ class OrderedBag(OrderedFrozenBag, collections.MutableSet):
     def discard(self, item):
         self._order.remove(item)
         self._bag.discard(item)
-        
         
     def __hash__(self):
         raise TypeError, "unhashable type: '{0}'".format(str(self.__class__.__name__))
