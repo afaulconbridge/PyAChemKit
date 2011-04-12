@@ -43,6 +43,12 @@ class FrozenBag(collections.Set):
         
     def count(self, item):
         return self._items.count(item)
+        
+    def __getstate__(self):
+        return self._items
+        
+    def __setstate__(self, state):
+        self._items = state
     
     
 class Bag(FrozenBag, collections.MutableSet):
@@ -128,6 +134,13 @@ class OrderedFrozenBag(collections.Set):
         
     def __getitem__(self, index):
         return self._order[index]
+        
+    def __getstate__(self):
+        return (self._bag, self._order)
+        
+    def __setstate__(self, state):
+        self._bag = state[0]
+        self._order = state[1]
         
 class OrderedBag(OrderedFrozenBag, collections.MutableSet):
     """

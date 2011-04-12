@@ -8,6 +8,10 @@ sys.path.append(".")
 
 import unittest
 from bag import *
+try:
+    import cPickle as pickle
+except ImportError:
+    import pickle
 
 class TestFrozenBag(unittest.TestCase):
     
@@ -38,6 +42,12 @@ class TestFrozenBag(unittest.TestCase):
         
     def test_eq(self):
         self.assertEqual(repr(self.bag), self.strrep)
+        
+    def test_pickle(self):
+        pickstr = pickle.dumps(self.bag)
+        newbag = pickle.loads(pickstr)
+        self.assertEqual(self.bag, newbag)
+        
 
 class TestBag(TestFrozenBag):
     
