@@ -99,7 +99,7 @@ def has_autocatalysis_direct(rn):
     for reaction in get_autocatalysis_direct(rn):
         return True
     return False
-
+    
 
 def get_reversible(rn):
     """
@@ -120,7 +120,8 @@ def has_reversible(rn):
         return True
     return False
 
-def has_divergence(rn):
+
+def get_divergence(rn):
     """
     Tests for divergent reactions.
     
@@ -131,13 +132,18 @@ def has_divergence(rn):
         AB + C -> ABC
         AB + C -> A + B + C
     """
+    reactions = list(rn.reactions)
+    for i in xrange(len(reactions)):
+        reaction = reactions[i]
+        for j in xrange(i+1, len(reactions)):
+            if reactions[j][0] == reaction[0]:
+                yield reaction
+                break
     
-    seen_reactants = set()
-    for reactants, products in rn.reactions:
-        if reactants in seen_reactants:
-            return True
-        else:
-            seen_reactants.add(reactants)
+def has_divergence(rn):
+    "Tests if any reactions are divergent. See :py:func:`~get_divergence` for definition."
+    for reaction in get_divergence(rn):
+        return True
     return False
 
 
