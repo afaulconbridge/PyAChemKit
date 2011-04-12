@@ -164,11 +164,11 @@ def simulate_stepwise_multiprocessing_iter(achem, mols, maxtime, rng=None):
     for mol in mols:
         pickle.dumps(mol)
     pickle.dumps(achem)
-    pickle.dumps(achem.react)
+    #pickle.dumps(achem.react)
     
     import math
     import multiprocessing
-    p = multiprocessing.Pool()
+    #p = multiprocessing.Pool()
     
     mols = tuple(mols)
     if rng is None:
@@ -189,9 +189,13 @@ def simulate_stepwise_multiprocessing_iter(achem, mols, maxtime, rng=None):
                 newmols += mols
                 mols = ()
                 
-        allproducts = p.imap_unordered(achem.react, allreactants)
+        #allproducts = p.imap_unordered(achem.__class__.react, allreactants)
+        allproducts = map(achem.react, allreactants)
         for reactants, products in zip(allreactants, allproducts):
-            newmols += products
+            products = tuple(products)
+            print newmols, products, reactants
+            for p in products:
+                newmols += (p,)
             #reactants = tuple(str(reactant) for reactant in reactants)
             #products = tuple(str(product ) for product in products)
             
