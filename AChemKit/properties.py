@@ -9,15 +9,14 @@ Some of these properties have logical prerequisites, but these are not tested
 for explicitly.
 
 """
+import itertools
 
 #some of these could be accelerated by moving the lambdas to dedicated functions?
 
 
-import itertools
-
-def has_synthesis(rn):
+def get_synthesis(rn):
     """
-    Tests for reactions where reactants combine to produce fewer products.
+    Returns all reactions where reactants combine to produce fewer products.
 
     May also be called a *combination reaction*.
 
@@ -25,30 +24,40 @@ def has_synthesis(rn):
 
         A + B -> AB
         A + B + C -> AB + D
-
+        
+    Works as an iterator filter.
     """
-    for thing in itertools.ifilter(lambda (reactants, products):len(products) < len(reactants), rn.reactions):
-        return True
+    for reaction in itertools.ifilter(lambda (reactants, products):len(products) < len(reactants), rn.reactions):
+        yield reaction
 
+def has_synthesis(rn):
+    "Tests if any reactions are synthesis. See :py:func:`~get_synthesis` for definition."
+    for reaction in get_synthesis(rn):
+        return True
     return False
 
-
-def has_decomposition(rn):
+def get_decomposition(rn):
     """
-    Tests for reactions where reactants combine to produce more products.
+    Returns all reactions where reactants combine to produce more products.
 
     For example::
 
         AB -> A + B
         AB + C -> A + B + C
 
+    Works as an iterator filter.
     """
-    for thing in itertools.ifilter(lambda (reactants, products):len(products) > len(reactants), rn.reactions):
+    for reaction in itertools.ifilter(lambda (reactants, products):len(products) > len(reactants), rn.reactions):
+        yield reaction
+
+def has_decomposition(rn):
+    "Tests if any reactions are decomposition. See :py:func:`~get_decomposition` for definition."
+    for reaction in get_decomposition(rn):
         return True
     return False
 
 
-def has_catalysis_direct(rn):
+def get_catalysis_direct(rn):
     """
     Tests for reactions where some species is both consumed and produced by the same reaction.
 
@@ -58,12 +67,17 @@ def has_catalysis_direct(rn):
         AB + C -> A + B + C
 
     """
-    for thing in itertools.ifilter(lambda (reactants, products):len(set(reactants).intersection(products)) > 0, rn.reactions):
+    for reaction in itertools.ifilter(lambda (reactants, products):len(set(reactants).intersection(products)) > 0, rn.reactions):
+        yield reaction
+
+def has_catalysis_direct(rn):
+    "Tests if any reactions are direct catalysis. See :py:func:`~get_catalysis_direct` for definition."
+    for reaction in get_catalysis_direct(rn):
         return True
     return False
 
 
-def has_autocatalysis_direct(rn):
+def get_autocatalysis_direct(rn):
     """
     Tests for reactions where some species is both consumed and produced by the same reaction, and is produced more than 
     it is consumed.
@@ -73,14 +87,21 @@ def has_autocatalysis_direct(rn):
         A + C -> A + A
 
     """
-    for reactants, products in rn.reactions:
+    for reaction in get_catalysis_direct(rn):
+        reactants, products = reaction
         for reactant in reactants:
             if products.count(reactant) > reactants.count(reactant):
-                return True
+                yield reaction
+                break #stop looking at reactants
+
+def has_autocatalysis_direct(rn):
+    "Tests if any reactions are direct autocatalysis. See :py:func:`~get_autocatalysis_direct` for definition."
+    for reaction in get_autocatalysis_direct(rn):
+        return True
     return False
 
 
-def has_reversible(rn):
+def get_reversible(rn):
     """
     Tests for a pair of reactions where the products of one is the reactants of the other and visa vera.
 
@@ -90,23 +111,14 @@ def has_reversible(rn):
         AB -> A + B
 
     """
-    for thing in itertools.ifilter(lambda (reactants, products):(products, reactants) in rn.reactions, rn.reactions):
+    for reaction in itertools.ifilter(lambda (reactants, products):(products, reactants) in rn.reactions, rn.reactions):
+        yield reaction
+
+def has_reversible(rn):
+    "Tests if any reactions are reversible. See :py:func:`~get_reversible` for definition."
+    for reaction in get_reversible(rn):
         return True
     return False
-
-
-def has_varying_rates(rn):
-    """
-    Tests that the reaction network has different rates for different reactions.
-
-    To get the range of rates a reaction network spans, use::
-
-        span = max(rn.rates.values())-min(rn.rates.values())
-    """
-    if len(set(rn.rates.values())) > 1:
-        return True
-    return False
-
 
 def has_divergence(rn):
     """
@@ -126,6 +138,19 @@ def has_divergence(rn):
             return True
         else:
             seen_reactants.add(reactants)
+    return False
+
+
+def has_varying_rates(rn):
+    """
+    Tests that the reaction network has different rates for different reactions.
+
+    To get the range of rates a reaction network spans, use::
+
+        span = max(rn.rates.values())-min(rn.rates.values())
+    """
+    if len(set(rn.rates.values())) > 1:
+        return True
     return False
 
 
