@@ -25,6 +25,14 @@ AChemKit Package
     :undoc-members:
     :show-inheritance:
 
+:py:mod:`properties_motif` Module
+---------------------------------
+
+.. automodule:: AChemKit.properties_motif
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 :py:mod:`properties_wnx` Module
 -------------------------------
 

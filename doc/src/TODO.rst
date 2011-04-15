@@ -14,6 +14,12 @@ Faster
 	As well as this, algorithmic speed ups and optimizations would be good.
 
 
+Chemical Organization Theory
+prob catalysis 
+RAF sets
+size of F to size of set
+overlapping F for sample RA set
+
 Bugs
 ====
 

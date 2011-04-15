@@ -118,8 +118,18 @@ this however, so you may use custom classes with the same API.</p>
 <p>Some of these properties have logical prerequisites, but these are not tested
 for explicitly.</p>
 <dl class="function">
-<dt id="AChemKit.properties.has_catalysis_direct">
-<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">has_catalysis_direct</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.has_catalysis_direct" title="Permalink to this definition">¶</a></dt>
+<dt id="AChemKit.properties.get_autocatalysis_direct">
+<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">get_autocatalysis_direct</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.get_autocatalysis_direct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests for reactions where some species is both consumed and produced by the same reaction, and is produced more than 
+it is consumed.</p>
+<p>For example:</p>
+<div class="highlight-python"><pre>A + C -&gt; A + A</pre>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="AChemKit.properties.get_catalysis_direct">
+<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">get_catalysis_direct</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.get_catalysis_direct" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tests for reactions where some species is both consumed and produced by the same reaction.</p>
 <p>For example:</p>
 <div class="highlight-python"><pre>A + C -&gt; B + C
@@ -128,18 +138,19 @@ AB + C -&gt; A + B + C</pre>
 </dd></dl>
 
 <dl class="function">
-<dt id="AChemKit.properties.has_decomposition">
-<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">has_decomposition</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.has_decomposition" title="Permalink to this definition">¶</a></dt>
-<dd><p>Tests for reactions where reactants combine to produce more products.</p>
+<dt id="AChemKit.properties.get_decomposition">
+<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">get_decomposition</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.get_decomposition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all reactions where reactants combine to produce more products.</p>
 <p>For example:</p>
 <div class="highlight-python"><pre>AB -&gt; A + B
 AB + C -&gt; A + B + C</pre>
 </div>
+<p>Works as an iterator filter.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="AChemKit.properties.has_divergence">
-<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">has_divergence</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.has_divergence" title="Permalink to this definition">¶</a></dt>
+<dt id="AChemKit.properties.get_divergence">
+<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">get_divergence</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.get_divergence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tests for divergent reactions.</p>
 <p>Divergent reactions are where the same reactants have multiple possible collections of products.</p>
 <p>For example:</p>
@@ -149,8 +160,8 @@ AB + C -&gt; A + B + C</pre>
 </dd></dl>
 
 <dl class="function">
-<dt id="AChemKit.properties.has_reversible">
-<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">has_reversible</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.has_reversible" title="Permalink to this definition">¶</a></dt>
+<dt id="AChemKit.properties.get_reversible">
+<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">get_reversible</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.get_reversible" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tests for a pair of reactions where the products of one is the reactants of the other and visa vera.</p>
 <p>For example:</p>
 <div class="highlight-python"><pre>A + B -&gt; AB
@@ -159,14 +170,51 @@ AB -&gt; A + B</pre>
 </dd></dl>
 
 <dl class="function">
-<dt id="AChemKit.properties.has_synthesis">
-<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">has_synthesis</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.has_synthesis" title="Permalink to this definition">¶</a></dt>
-<dd><p>Tests for reactions where reactants combine to produce fewer products.</p>
+<dt id="AChemKit.properties.get_synthesis">
+<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">get_synthesis</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.get_synthesis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all reactions where reactants combine to produce fewer products.</p>
 <p>May also be called a <em>combination reaction</em>.</p>
 <p>For example:</p>
 <div class="highlight-python"><pre>A + B -&gt; AB
 A + B + C -&gt; AB + D</pre>
 </div>
+<p>Works as an iterator filter.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="AChemKit.properties.has_autocatalysis_direct">
+<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">has_autocatalysis_direct</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.has_autocatalysis_direct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests if any reactions are direct autocatalysis. See <a class="reference internal" href="#AChemKit.properties.get_autocatalysis_direct" title="AChemKit.properties.get_autocatalysis_direct"><tt class="xref py py-func docutils literal"><span class="pre">get_autocatalysis_direct()</span></tt></a> for definition.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="AChemKit.properties.has_catalysis_direct">
+<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">has_catalysis_direct</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.has_catalysis_direct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests if any reactions are direct catalysis. See <a class="reference internal" href="#AChemKit.properties.get_catalysis_direct" title="AChemKit.properties.get_catalysis_direct"><tt class="xref py py-func docutils literal"><span class="pre">get_catalysis_direct()</span></tt></a> for definition.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="AChemKit.properties.has_decomposition">
+<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">has_decomposition</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.has_decomposition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests if any reactions are decomposition. See <a class="reference internal" href="#AChemKit.properties.get_decomposition" title="AChemKit.properties.get_decomposition"><tt class="xref py py-func docutils literal"><span class="pre">get_decomposition()</span></tt></a> for definition.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="AChemKit.properties.has_divergence">
+<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">has_divergence</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.has_divergence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests if any reactions are divergent. See <a class="reference internal" href="#AChemKit.properties.get_divergence" title="AChemKit.properties.get_divergence"><tt class="xref py py-func docutils literal"><span class="pre">get_divergence()</span></tt></a> for definition.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="AChemKit.properties.has_reversible">
+<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">has_reversible</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.has_reversible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests if any reactions are reversible. See <a class="reference internal" href="#AChemKit.properties.get_reversible" title="AChemKit.properties.get_reversible"><tt class="xref py py-func docutils literal"><span class="pre">get_reversible()</span></tt></a> for definition.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="AChemKit.properties.has_synthesis">
+<tt class="descclassname">AChemKit.properties.</tt><tt class="descname">has_synthesis</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties.has_synthesis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests if any reactions are synthesis. See <a class="reference internal" href="#AChemKit.properties.get_synthesis" title="AChemKit.properties.get_synthesis"><tt class="xref py py-func docutils literal"><span class="pre">get_synthesis()</span></tt></a> for definition.</p>
 </dd></dl>
 
 <dl class="function">
@@ -194,33 +242,46 @@ this function will not work.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="module-AChemKit.properties_motif">
+<span id="properties-motif-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">properties_motif</span></tt> Module<a class="headerlink" href="#module-AChemKit.properties_motif" title="Permalink to this headline">¶</a></h2>
+<p>Functions for testing properties of particular reaction networks.</p>
+<p>These functions expect an object of class <a class="reference internal" href="#AChemKit.reactionnet.ReactionNetwork" title="AChemKit.reactionnet.ReactionNetwork"><tt class="xref py py-class docutils literal"><span class="pre">AChemKit.reactionnet.ReactionNetwork</span></tt></a>
+or subclass or something with an equivalent API. It does not enforce
+this however, so you may use custom classes with the same API.</p>
+<p>Some of these properties have logical prerequisites, but these are not tested
+for explicitly.</p>
+<p>Unlike <tt class="xref py py-mod docutils literal"><span class="pre">AChemKit.reactionnet.properties</span></tt>, the functions here are not boolean, but rather
+return grops of things</p>
+<dl class="function">
+<dt id="AChemKit.properties_motif.find_loops">
+<tt class="descclassname">AChemKit.properties_motif.</tt><tt class="descname">find_loops</tt><big>(</big><em>rn</em><big>)</big><a class="headerlink" href="#AChemKit.properties_motif.find_loops" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loops are collections of molecules where a path exists to themselves through linkages of shared
+products and reactants.</p>
+<p>For example:</p>
+<div class="highlight-python"><pre>A -&gt; B
+B -&gt; C
+C -&gt; A</pre>
+</div>
+</dd></dl>
+
+</div>
 <div class="section" id="module-AChemKit.properties_wnx">
 <span id="properties-wnx-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">properties_wnx</span></tt> Module<a class="headerlink" href="#module-AChemKit.properties_wnx" title="Permalink to this headline">¶</a></h2>
 <p>Various functions that interact with NetworkX (<a class="reference external" href="http://networkx.lanl.gov/">http://networkx.lanl.gov/</a>)</p>
+<p>This is used because its a fast graph library with lots of nice algorithms in it.</p>
 <dl class="function">
-<dt id="AChemKit.properties_wnx.MultiDiGraph_make_flow">
-<tt class="descclassname">AChemKit.properties_wnx.</tt><tt class="descname">MultiDiGraph_make_flow</tt><big>(</big><em>G</em>, <em>sizeprop=0.5</em>, <em>catalysts=True</em><big>)</big><a class="headerlink" href="#AChemKit.properties_wnx.MultiDiGraph_make_flow" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a <cite>flow</cite> network from a MultiDiGraph (usually created by ReactionNetwork_to_MultiDiGraph).</p>
-<p><cite>sizeprop</cite> is the proportion if the larger molecule that must be contained in the smaller one.</p>
-<p><cite>catalysts</cite> determines if catalsysts should be considered when looking at edges between reactants and products.
-If this is false, then molecules that are both in the reactants and the products are removed and do not flow.</p>
+<dt id="AChemKit.properties_wnx.make_catalysis_graph">
+<tt class="descclassname">AChemKit.properties_wnx.</tt><tt class="descname">make_catalysis_graph</tt><big>(</big><em>rn</em>, <em>min_shared=3</em><big>)</big><a class="headerlink" href="#AChemKit.properties_wnx.make_catalysis_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>For each reactant and each product in each reaction, they are linked
+if they share at minimum subsequence length and if the reactant
+is a catalsyst.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="AChemKit.properties_wnx.ReactionNetwork_to_MultiDiGraph">
-<tt class="descclassname">AChemKit.properties_wnx.</tt><tt class="descname">ReactionNetwork_to_MultiDiGraph</tt><big>(</big><em>net</em><big>)</big><a class="headerlink" href="#AChemKit.properties_wnx.ReactionNetwork_to_MultiDiGraph" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts a ReactionNetwork (or class with same interface) to a MultiDiGraph.</p>
-<p>Converts each reaction into a node, and each molecular species into a node.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="AChemKit.properties_wnx.find_cycles">
-<tt class="descclassname">AChemKit.properties_wnx.</tt><tt class="descname">find_cycles</tt><big>(</big><em>G</em><big>)</big><a class="headerlink" href="#AChemKit.properties_wnx.find_cycles" title="Permalink to this definition">¶</a></dt>
-<dd><p>Find some of the cycles in G.</p>
-<p>Does this by splitting it into strongly connected subgraphs, then for each edge of each node
-find the shorted path exists that goes the other way. If it does, then it is a cycle.</p>
-<p>Once cycles are found, they are ordered so the lowest node is first. Repeated cycles are ignored.</p>
-<p>Ineffeicient algorithm, needs optimization for large highly-connected graphs.</p>
+<dt id="AChemKit.properties_wnx.make_linkage_graph">
+<tt class="descclassname">AChemKit.properties_wnx.</tt><tt class="descname">make_linkage_graph</tt><big>(</big><em>rn</em>, <em>min_shared=3</em><big>)</big><a class="headerlink" href="#AChemKit.properties_wnx.make_linkage_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>For each reactant and each product in each reaction, they are linked
+if they share at minimum subsequence length.</p>
 </dd></dl>
 
 </div>
@@ -651,7 +712,7 @@ not have a method with the specified name.</p>
 <span id="reactionnetdot-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">reactionnetdot</span></tt> Module<a class="headerlink" href="#module-AChemKit.reactionnetdot" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="AChemKit.reactionnetdot.ReactionNetworkDot">
-<em class="property">class </em><tt class="descclassname">AChemKit.reactionnetdot.</tt><tt class="descname">ReactionNetworkDot</tt><big>(</big><em>rates</em><big>)</big><a class="headerlink" href="#AChemKit.reactionnetdot.ReactionNetworkDot" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">AChemKit.reactionnetdot.</tt><tt class="descname">ReactionNetworkDot</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#AChemKit.reactionnetdot.ReactionNetworkDot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#AChemKit.reactionnet.ReactionNetwork" title="AChemKit.reactionnet.ReactionNetwork"><tt class="xref py py-class docutils literal"><span class="pre">AChemKit.reactionnet.ReactionNetwork</span></tt></a></p>
 <p>This is a subclass of <a class="reference internal" href="#AChemKit.reactionnet.ReactionNetwork" title="AChemKit.reactionnet.ReactionNetwork"><tt class="xref py py-class docutils literal"><span class="pre">AChemKit.reactionnet.ReactionNetwork</span></tt></a> 
 that adds a <cite>.dot</cite> representation. It is in a subclass so that on
@@ -958,6 +1019,7 @@ not have a method with the specified name.</p>
 <li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">AChemKit</span></tt> Package</a></li>
 <li><a class="reference internal" href="#module-AChemKit.bucket"><tt class="docutils literal"><span class="pre">bucket</span></tt> Module</a></li>
 <li><a class="reference internal" href="#module-AChemKit.properties"><tt class="docutils literal"><span class="pre">properties</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-AChemKit.properties_motif"><tt class="docutils literal"><span class="pre">properties_motif</span></tt> Module</a></li>
 <li><a class="reference internal" href="#module-AChemKit.properties_wnx"><tt class="docutils literal"><span class="pre">properties_wnx</span></tt> Module</a></li>
 <li><a class="reference internal" href="#module-AChemKit.randomnet"><tt class="docutils literal"><span class="pre">randomnet</span></tt> Module</a></li>
 <li><a class="reference internal" href="#module-AChemKit.randomnet_test"><tt class="docutils literal"><span class="pre">randomnet_test</span></tt> Module</a></li>

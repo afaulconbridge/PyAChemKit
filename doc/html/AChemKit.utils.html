@@ -89,6 +89,11 @@ isinstance() criteria for API provision.</p>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">_abcoll.Set</span></tt></p>
 <p>A Bag is like a set, but can contain duplicates.</p>
 <p>Also, a Bag is like a list, but is always ordered.</p>
+<dl class="method">
+<dt id="AChemKit.utils.bag.FrozenBag.count">
+<tt class="descname">count</tt><big>(</big><em>item</em><big>)</big><a class="headerlink" href="#AChemKit.utils.bag.FrozenBag.count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -119,6 +124,16 @@ will return True.</p>
 <p>Like a FrozenBag, but iterating will keep the order things were put in.</p>
 <p>Comparisons are still as for a FrozenBag so OrderedFrozenBag([1,2,1]) == OrderedFrozenBag([2,1,1])
 will return True.</p>
+<dl class="method">
+<dt id="AChemKit.utils.bag.OrderedFrozenBag.count">
+<tt class="descname">count</tt><big>(</big><em>item</em><big>)</big><a class="headerlink" href="#AChemKit.utils.bag.OrderedFrozenBag.count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.utils.bag.OrderedFrozenBag.index">
+<tt class="descname">index</tt><big>(</big><em>item</em><big>)</big><a class="headerlink" href="#AChemKit.utils.bag.OrderedFrozenBag.index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
@@ -196,6 +211,11 @@ not have a method with the specified name.</p>
 <dl class="method">
 <dt id="AChemKit.utils.bag_test.TestFrozenBag.test_len">
 <tt class="descname">test_len</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.utils.bag_test.TestFrozenBag.test_len" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.utils.bag_test.TestFrozenBag.test_pickle">
+<tt class="descname">test_pickle</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.utils.bag_test.TestFrozenBag.test_pickle" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -322,18 +342,34 @@ This provides a unified interface.</p>
 <dl class="method">
 <dt id="AChemKit.utils.simpledot.SimpleDot.plot">
 <tt class="descname">plot</tt><big>(</big><em>output='pdf'</em>, <em>prog='dot'</em>, <em>args=()</em><big>)</big><a class="headerlink" href="#AChemKit.utils.simpledot.SimpleDot.plot" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Calls the specified drawing program to turn this into an image.</p>
+<p>Use args to pass extra arguments, particularly <tt class="docutils literal"><span class="pre">-o</span></tt> to specify an output filename.</p>
+<p>Follows the same format as subprocess calls.</p>
+</dd></dl>
 
 </dd></dl>
 
 </div>
 <div class="section" id="module-AChemKit.utils.utils">
 <span id="utils-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">utils</span></tt> Module<a class="headerlink" href="#module-AChemKit.utils.utils" title="Permalink to this headline">¶</a></h2>
-<p>Various small functions that can get combined together.</p>
+<p>Various small functions that can get lumped together into this module.</p>
 <dl class="function">
 <dt id="AChemKit.utils.utils.get_sample">
 <tt class="descclassname">AChemKit.utils.utils.</tt><tt class="descname">get_sample</tt><big>(</big><em>distribution</em>, <em>rng=None</em><big>)</big><a class="headerlink" href="#AChemKit.utils.utils.get_sample" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Samples a provided distribution at random.</p>
+<p>Distribution can be a single number (int or float), always returns the same value</p>
+<p>Distribution can be a sequence (list or tuple) which will be uniformly sampled from
+Duplicates can be used to adjust frequencies.</p>
+<p>Distribution can be a mapping (dict) where the keys are things to be returned and
+values are the relative weightings.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="AChemKit.utils.utils.long_subseq">
+<tt class="descclassname">AChemKit.utils.utils.</tt><tt class="descname">long_subseq</tt><big>(</big><em>data</em><big>)</big><a class="headerlink" href="#AChemKit.utils.utils.long_subseq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given some sequences &#8212; strings, tuples, lists, etc &#8212; return the 
+longest subsequence common to all sequences.</p>
+</dd></dl>
 
 </div>
 <div class="section" id="module-AChemKit.utils.utils_test">

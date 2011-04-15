@@ -1,6 +1,7 @@
 """
+This is a command-line tool for generating `.chem` files using 
+the :py:func:`~AChemKit.randomnet.Linear` random reaction network algorithm.
 
-This is a command-line tool for generating `.chem` files using the :py:func:`~AChemKit.randomnet.Linear` random reaction network algorithm.
 
 """
 
