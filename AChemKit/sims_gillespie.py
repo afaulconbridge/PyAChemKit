@@ -79,12 +79,14 @@ class Gillespie(object):
         noreactants = sims_simple.get_sample(self.achem.noreactants, self.rng)
         
         if len(self.mols) >= noreactants:
-            #shuffle
-            self.mols = tuple(self.rng.sample(self.mols, len(self.mols)))
+            self.mols = list(self.mols)
+            self.rng.shuffle(self.mols)
+            self.mols = tuple(self.mols)
+            
             reactants = self.mols[:noreactants]
             self.mols = self.mols[noreactants:]
 
-            products = tuple(self.achem.react(*reactants))
+            products = tuple(self.achem.react(reactants))
             self.mols += products
             return interval, reactants, products
         else:

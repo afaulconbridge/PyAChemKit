@@ -103,10 +103,10 @@ class OrderedFrozenBag(collections.Set):
         elif not isinstance(iterable, tuple):
             iterable = tuple(iterable)
         self._order = iterable
-        self._bag = FrozenBag(self._order)
         for item in self._order:
             if not isinstance(item, collections.Hashable):
                 raise TypeError, "non-hashable passed"
+        self._bag = FrozenBag(self._order)
         
     def __contains__(self, item):
         return item in self._order
@@ -130,6 +130,7 @@ class OrderedFrozenBag(collections.Set):
         elif self.__class__ is other.__class__:
             return self._bag == other._bag
         else:
+            raise ValueError
             return False
         
     def __lt__(self, other):

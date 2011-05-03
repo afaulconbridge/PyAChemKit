@@ -261,7 +261,7 @@ class ReactionNetwork(object):
                     if a in newmols and newmols.index(b) < newmols.index(a):
                         continue
                     assert OrderedFrozenBag([str(a),str(b)]) not in allreactants, [a, b]
-                    allreactants.add(OrderedFrozenBag([str(a),str(b)]))
+                    #allreactants.add(OrderedFrozenBag([str(a), str(b)]))
                     
                     abrates = allreactions(a,b)
                     
@@ -270,12 +270,15 @@ class ReactionNetwork(object):
                         products = OrderedFrozenBag(products)
                         
                         if reactants != products:
-                            productsstr = FrozenBag((str(x) for x in products))
-                            reactantstr = FrozenBag((str(x) for x in reactants))
+                            productsstr = OrderedFrozenBag((str(x) for x in products))
+                            reactantstr = OrderedFrozenBag((str(x) for x in reactants))
                             assert reactantstr != productsstr, [reactantstr, productsstr]
                             for mol in products:
                                 if mol not in mols and mol not in newmols and mol not in newnewmols:
                                     newnewmols.append(mol)
+                                    if len(mols) + len(newmols) + len(newnewmols) > maxmols:
+                                        raise ValueError, "Maximum molecules reached"
+                                        
                             if (reactants, products) not in rates:
                                 rates[reactants, products] = 0.0
                             rates[reactants, products] += abrates[reactants, products]
@@ -295,15 +298,20 @@ class ReactionNetwork(object):
         strrates = {}
         for reaction in rates:
             reactants, products = reaction
-            productsstr = FrozenBag((str(x) for x in products))
-            reactantstr = FrozenBag((str(x) for x in reactants))
+            productsstr = OrderedFrozenBag((str(x) for x in products))
+            reactantstr = OrderedFrozenBag((str(x) for x in reactants))
             reactionstr = (reactantstr, productsstr)
+            
             if reactionstr in strrates:
                 for key in strrates:
                     if key == reactionstr:
-                        print "key", key
-                        print "reaction", reaction
-                        print "strrates[key]", strrates[key]
+                        reactiona = reaction
+                        reactionb = strrates[key]
+                        print "reaction", reactiona, hash(reactiona[0])
+                        print reactiona[0]._bag._items
+                        
+                        print "strrates[key]", reactionb, hash(reactionb[0])
+                        print reactionb[0]._bag._items
                         
             assert reactionstr not in strrates, reactionstr
             strrates[reactionstr] = reaction

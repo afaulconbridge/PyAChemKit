@@ -34,6 +34,8 @@ class TestFrozenBag(unittest.TestCase):
         
     def test_hash(self):
         self.assertEqual(hash(self.bag), hash(self.bag2))
+        self.assertEqual(hash(self.bag), hash(self.bagb))
+        self.assertEqual(hash(self.cls(("B1", "B2"))), hash(self.cls(("B2", "B1"))))
         
     def test_str(self):
         self.assertEqual(str(self.bag), self.strrep)
@@ -98,3 +100,6 @@ class TestOrderedBag(TestOrderedFrozenBag, TestBag):
 
     def setUp(self):
         super(TestOrderedBag, self).setUp()
+        
+    def test_hash(self):
+        self.assertRaises(TypeError, hash, self.bag)

@@ -15,7 +15,7 @@ import reactionnet
 import randomnet
 import bucket
 from .utils.bag import OrderedFrozenBag
-"""
+
 class TestGillespie(unittest.TestCase):
     
     def setUp(self): 
@@ -34,4 +34,4 @@ class TestGillespie(unittest.TestCase):
         print str(buck.reactionnet)
         self.assertEqual(buck.reactionnet.reactions, self.net.reactions)
         self.assertEqual(1,1)
-"""
+

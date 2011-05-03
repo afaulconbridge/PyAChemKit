@@ -39,7 +39,9 @@ class TestStepwise(TestItterative):
         events = sims_simple.simulate_stepwise(self.achem, self.mols, 100)
         buck = bucket.Bucket(events)
         self.assertEqual(buck.reactionnet.reactions, self.net.reactions)
+        
 """
+#this is broken ATM
 class TestStepwiseMultiprocessing(TestItterative):
         
     def test_basic(self):

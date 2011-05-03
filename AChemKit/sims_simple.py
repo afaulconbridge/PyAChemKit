@@ -161,11 +161,9 @@ def simulate_stepwise_multiprocessing_iter(achem, mols, maxtime, rng=None):
     
     Uses multiprocessing to parallelize reactions. This does not work
     that well because the individual reactions are not that complicated.
-    """
-    for mol in mols:
-        pickle.dumps(mol)
-    pickle.dumps(achem)
     
+    Will only work where achem is a class, not an instance of a class.
+    """    
     import math
     import multiprocessing
     pool = multiprocessing.Pool()
