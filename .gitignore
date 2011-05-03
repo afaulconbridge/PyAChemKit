@@ -12,6 +12,9 @@ pylint.txt
 .coverage
 coverage.xml
 
+#tests report
+nosetests.xml
+
 #geany editor project file
 PyAChemKit.geany
 

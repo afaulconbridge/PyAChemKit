@@ -12,12 +12,15 @@ help:
 	@echo "  doclatex   Generate documentation in LaTeX"
 	@echo "  setup      Try to install / update required modules"
 	@echo "  distribute Perform a distribution"
+	@echo "  install    Install locally"
+	@echo "  clean      Remove temporary files"
 
 all: doc test
 
 test:
 	coverage run rununittest.py --include="AChemKit/*"
 	coverage report --include="AChemKit/*"
+	#@nosetests  --with-xunit --with-coverage --cover-package=AChemKit --where=AChemKit
 	coverage xml --include="AChemKit/*"
 
 pylint:
@@ -50,3 +53,6 @@ distribute: test doc
 install: test
 	python setup.py sdist
 	sudo python setup.py install
+
+clean:
+	rm -rf *.pyc *.pyo *~

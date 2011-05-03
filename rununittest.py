@@ -11,8 +11,13 @@ from AChemKit import *
 from AChemKit.utils import *
 from AChemKit.tools import *
 
+import os
+import sys
+sys.path.insert(0, os.path.abspath("AChemKit"))
+
 #import the test harnessess for particular classes
 from AChemKit import reactionnet_test
+from AChemKit import reactionnet_sqlite_test
 from AChemKit import reactionnetdot_test
 from AChemKit import randomnet_test
 from AChemKit import sims_simple_test
@@ -37,6 +42,8 @@ if __name__ == "__main__":
     suite.addTest(loader.loadTestsFromTestCase(reactionnet_test.TestReactionNetwork))
     suite.addTest(loader.loadTestsFromTestCase(reactionnet_test.TestReactionNetwork_from_string))
     suite.addTest(loader.loadTestsFromTestCase(reactionnetdot_test.TestReactionNetworkDot))
+    #suite.addTest(loader.loadTestsFromTestCase(reactionnet_sqlite_test.TestReactionNetwork))
+    #suite.addTest(loader.loadTestsFromTestCase(reactionnet_sqlite_test.TestReactionNetwork_from_string))
         
     suite.addTest(loader.loadTestsFromTestCase(randomnet_test.TestUniform))
     suite.addTest(loader.loadTestsFromTestCase(randomnet_test.TestLinear))
