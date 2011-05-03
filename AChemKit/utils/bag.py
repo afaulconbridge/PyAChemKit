@@ -5,23 +5,26 @@ isinstance() criteria for API provision.
 """
 
 import collections
+import itertools
 
 class FrozenBag(collections.Set):
     """
     A Bag is like a set, but can contain duplicates.
     
     Also, a Bag is like a list, but is always ordered.
+    
+    Note: objects must be both hashable and sortable. By default, 
+    python objects are sorted by id(), but this is not consistent.
+    As there is no easy way to test this, if you get wierd results
+    this may be the cause.
     """    
     __slots__ = ["_items"]
-    
+        
     def __init__(self, iterable):
         if not isinstance(iterable, collections.Iterable):
             raise TypeError, "non-iterabble passed"
-        self._items = tuple(sorted(list(iterable)))
-        for item in self._items:
-            if not isinstance(item, collections.Hashable):
-                raise TypeError, "non-hashable passed"
-        
+        self._items = tuple(sorted(iterable))
+                
     def __contains__(self, item):
         return item in self._items
         
@@ -49,6 +52,16 @@ class FrozenBag(collections.Set):
         
     def __setstate__(self, state):
         self._items = state
+        
+    def __eq__(self, other):
+        if other is None:
+            return False
+        if other.__class__ is not self.__class__:
+            return False
+        for a,b in itertools.izip(self, other):
+            if a != b:
+                return False
+        return True
     
     
 class Bag(FrozenBag, collections.MutableSet):
@@ -74,7 +87,7 @@ class Bag(FrozenBag, collections.MutableSet):
         
     def __hash__(self):
         raise TypeError, "unhashable type: '{0}'".format(str(self.__class__.__name__))
-        
+                
 class OrderedFrozenBag(collections.Set):
     """
     Like a FrozenBag, but iterating will keep the order things were put in.
@@ -87,7 +100,9 @@ class OrderedFrozenBag(collections.Set):
     def __init__(self, iterable):
         if not isinstance(iterable, collections.Iterable):
             raise TypeError, "non-iterabble passed"
-        self._order = tuple(iterable)
+        elif not isinstance(iterable, tuple):
+            iterable = tuple(iterable)
+        self._order = iterable
         self._bag = FrozenBag(self._order)
         for item in self._order:
             if not isinstance(item, collections.Hashable):
@@ -110,13 +125,12 @@ class OrderedFrozenBag(collections.Set):
         return repr(self)
         
     def __eq__(self, other):
-        if other.__class__ == self.__class__:
+        if other is None:
+            return False
+        elif self.__class__ is other.__class__:
             return self._bag == other._bag
         else:
-            for a,b in zip(self, other):
-                if a != b:
-                    return False
-            return True
+            return False
         
     def __lt__(self, other):
         if other.__class__ != self.__class__:
@@ -152,7 +166,7 @@ class OrderedBag(OrderedFrozenBag, collections.MutableSet):
     will return True.    
     """
     __slots__ = ["_items", "_order", "_bag"]
-    
+        
     def __init__(self, iterable):
         if not isinstance(iterable, collections.Iterable):
             raise TypeError, "non-iterabble passed"
@@ -169,3 +183,13 @@ class OrderedBag(OrderedFrozenBag, collections.MutableSet):
         
     def __hash__(self):
         raise TypeError, "unhashable type: '{0}'".format(str(self.__class__.__name__))
+        
+        
+class OrderedFrozenBagCache(object):
+    cache = {}
+    def __new__(cls, iterable):
+        if not isinstance(iterable, tuple):
+            iterable = tuple(iterable)
+        if iterable not in cls.cache:
+            cls.cache[iterable] = OrderedFrozenBag(iterable)
+        return cls.cache[iterable]

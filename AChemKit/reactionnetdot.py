@@ -142,8 +142,8 @@ class ReactionNetworkDot(ReactionNetwork):
             r_id = "R%d" % self.reactions.index((reactants, products))
             dot[r_id] = {"shape":"point"}
 
-            if rates == True or (rates is None and self.rates[(reactants, products)] != 1.0):
-                dot[r_id] = {"label":self.rates[(reactants, products)]}
+            if rates == True or (rates is None and self.rate(reactants, products) != 1.0):
+                dot[r_id] = {"label":self.rate(reactants, products)}
                 #make it inverted colors
                 dot[r_id]["style"] = "filled"
                 dot[r_id]["fontcolor"] = "white"

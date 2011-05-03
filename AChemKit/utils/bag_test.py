@@ -21,6 +21,7 @@ class TestFrozenBag(unittest.TestCase):
     def setUp(self):
         self.data = (1,2,1,3)
         self.bag = self.cls(self.data)
+        self.bagb = self.cls(self.data)
         self.bag2 = self.cls(reversed(self.data))
         self.bag3 = self.cls(self.data+self.data)
         
@@ -41,7 +42,11 @@ class TestFrozenBag(unittest.TestCase):
         self.assertEqual(repr(self.bag), self.strrep)
         
     def test_eq(self):
-        self.assertEqual(repr(self.bag), self.strrep)
+        self.assertEqual(self.bag, self.bagb)
+        self.assertEqual(self.bag, self.bag2)
+        self.assertNotEqual(self.bag, self.bag3)
+        self.assertNotEqual(self.cls(("B1", "B1")), self.cls(("B1", "B2")))
+        self.assertEqual(self.cls(("B1", "B2")), self.cls(("B2", "B1")))
         
     def test_pickle(self):
         pickstr = pickle.dumps(self.bag)
@@ -58,6 +63,7 @@ class TestBag(TestFrozenBag):
     def setUp(self):
         self.data = [1,2,1,3]
         self.bag = self.cls(self.data)
+        self.bagb = self.cls(self.data)
         self.bag2 = self.cls(reversed(self.data))
         self.bag3 = self.cls(self.data+self.data)
         

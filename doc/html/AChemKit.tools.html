@@ -64,7 +64,56 @@
 </div>
 <div class="section" id="module-AChemKit.tools.chem_linear">
 <span id="chem-linear-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">chem_linear</span></tt> Module<a class="headerlink" href="#module-AChemKit.tools.chem_linear" title="Permalink to this headline">¶</a></h2>
-<p>This is a command-line tool for generating <cite>.chem</cite> files using the <a class="reference internal" href="AChemKit.html#AChemKit.randomnet.Linear" title="AChemKit.randomnet.Linear"><tt class="xref py py-func docutils literal"><span class="pre">Linear()</span></tt></a> random reaction network algorithm.</p>
+<p>This is a command-line tool for generating <cite>.chem</cite> files using 
+the <a class="reference internal" href="AChemKit.html#AChemKit.randomnet.Linear" title="AChemKit.randomnet.Linear"><tt class="xref py py-func docutils literal"><span class="pre">Linear()</span></tt></a> random reaction network algorithm.</p>
+<p>usage: chem_linear.py [options]</p>
+<p>Options:</p>
+<blockquote>
+<div><table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td>show this help message and exit</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-o <var>OUTFILE</var></span>, <span class="option">--outfile <var>OUTFILE</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>write to OUTFILE in .chem format (if ommited, use stdout)</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-a <var>NATOMS</var></span>, <span class="option">--natoms <var>NATOMS</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>number of atoms</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-l <var>LENGTH</var></span>, <span class="option">--length <var>LENGTH</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>maximum number of atoms per molecule</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-f <var>PFORM</var></span>, <span class="option">--pform <var>PFORM</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>probability of bonding</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-b <var>PBREAK</var></span>, <span class="option">--pbreak <var>PBREAK</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>probability of breaking</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-u</span>, <span class="option">--undirected</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>undirected molecules</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-d</span>, <span class="option">--directed</span></kbd></td>
+<td>directed molecules</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-t <var>RATES</var></span>, <span class="option">--rates <var>RATES</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>possible reaction rates</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-s <var>SEED</var></span>, <span class="option">--seed <var>SEED</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>pseudo-random seed</td></tr>
+</tbody>
+</table>
+</div></blockquote>
 </div>
 <div class="section" id="module-AChemKit.tools.chem_pp">
 <span id="chem-pp-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">chem_pp</span></tt> Module<a class="headerlink" href="#module-AChemKit.tools.chem_pp" title="Permalink to this headline">¶</a></h2>

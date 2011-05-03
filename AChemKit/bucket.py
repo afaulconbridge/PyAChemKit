@@ -9,7 +9,7 @@ import re
 import collections
 
 from .reactionnet import ReactionNetwork
-from .utils.bag import OrderedFrozenBag
+from .utils.bag import OrderedFrozenBag, OrderedFrozenBagCache
 
 class Event(object):
     """
@@ -17,11 +17,18 @@ class Event(object):
 
     Supports comparisons, is hashable, is immutable.
     """
+    __slots__ = ["time", "reactants", "products"]
+
 
     def __init__(self, time, reactants, products):
-        self.time = time
-        self.reactants = OrderedFrozenBag(reactants)
-        self.products = OrderedFrozenBag(products)
+        if not isinstance(reactants, OrderedFrozenBag):
+            reactants = OrderedFrozenBag(reactants)
+        if not isinstance(products, OrderedFrozenBag):
+            products = OrderedFrozenBag(products)
+            
+        super(Event, self).__setattr__('time', time)
+        super(Event, self).__setattr__('reactants', reactants)
+        super(Event, self).__setattr__('products', products)
 
     def __eq__(self, other):
         if self.time == other.time and self.reactants == other.reactants and self.products == other.products:
@@ -37,6 +44,11 @@ class Event(object):
         if self._hash == None:
             self._hash = hash(self.time) + hash(self.reactants) + hash(self.products)
         return self._hash
+        
+    def __setattr__(self, name, value):
+        raise TypeError("Cannot change an immutable object")
+    def __delattr__(self):
+        raise TypeError("Cannot change an immutable object")
 
 class Bucket(object):
     """

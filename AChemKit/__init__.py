@@ -17,3 +17,4 @@ from . import randomnet
 from . import bucket
 from . import sims_simple
 from . import sims_gillespie
+from . import utils

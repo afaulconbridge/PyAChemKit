@@ -1,4 +1,3 @@
-#! /bin/python
 """
 Core for all ReactionNetwork classes
 
@@ -12,7 +11,7 @@ import re
 #used to converge from_string into from_file paradigm
 import StringIO
 
-from .utils.bag import OrderedFrozenBag
+from .utils.bag import OrderedFrozenBag, FrozenBag, Bag
 
 class ReactionNetwork(object):
     """
@@ -40,7 +39,14 @@ class ReactionNetwork(object):
     def __init__(self, rates):
         for rate in rates.values():
             assert rate > 0.0
-        self.rates = rates
+        self._rates = {}
+        for reaction in rates:
+            reactants, products = reaction
+            if not isinstance(reactants, OrderedFrozenBag):
+                reactants = OrderedFrozenBag(reactants)
+            if not isinstance(products, OrderedFrozenBag):
+                products = OrderedFrozenBag(products)
+            self._rates[reactants, products] = rates[reaction]
 
     @property
     def seen(self):
@@ -49,7 +55,7 @@ class ReactionNetwork(object):
         """
         if self._seen is None:
             self._seen = set()
-            for reactants, products in self.rates:
+            for reactants, products in self._rates:
                 self._seen.update(reactants)
                 self._seen.update(products)
             self._seen = tuple(sorted(self._seen))
@@ -57,12 +63,20 @@ class ReactionNetwork(object):
 
     @property
     def reactions(self):
-        """
-        Sorted tuple of all reactions in the network
-        """
+        """Sorted tuple of all reactions in the network."""
         if self._reactions is None:
-            self._reactions = tuple(sorted(self.rates.keys()))
+            self._reactions = tuple(sorted(self._rates.keys()))
         return self._reactions
+        
+    def rate(self, reactants, products):
+        """Gets the rate of a particular reaction."""
+        return self._rates[reactants, products]
+        
+    def rates(self):
+        """Itterate over all reactions through tuples
+        of the form (reactants, products, rate)"""
+        for reactants, products in self.reactions:
+            yield (reactants, products, self.rate(reactants, products))
     
     @classmethod
     def reaction_to_string(cls, reaction, rate=1.0):
@@ -98,7 +112,7 @@ class ReactionNetwork(object):
         if self._str is None:
             reactionstrings = []
             for reaction in self.reactions:
-                reactionstr = self.reaction_to_string(reaction, self.rates[reaction])
+                reactionstr = self.reaction_to_string(reaction, self._rates[reaction])
                 if reactionstr != "":
                     reactionstrings.append(reactionstr)
 
@@ -119,7 +133,7 @@ class ReactionNetwork(object):
             return False
         if other.__class__ != self.__class__:
             return False
-        if self.rates == other.rates:
+        if self._rates == other._rates:
             return True
         else:
             return False
@@ -133,7 +147,7 @@ class ReactionNetwork(object):
 
     def __hash__(self):
         if self._hash == None:
-            self._hash = hash(tuple(sorted(self.rates.keys())))+hash(tuple(sorted(self.rates.values())))
+            self._hash = hash(tuple(sorted(self._rates.keys())))+hash(tuple(sorted(self._rates.values())))
         return self._hash
 
     @classmethod
@@ -179,7 +193,7 @@ class ReactionNetwork(object):
                 splitline = re.split(repattern, line)
 
                 if len(splitline) != 3:
-                    raise ValueError, "Invalid reaction at line %d : %s" % (linecount, rawline)
+                    raise ValueError, "Invalid reaction at line %d : %s" % (linecount, rawline, splitline)
 
                 inputstring, rate, outputstring = splitline
 
@@ -207,15 +221,91 @@ class ReactionNetwork(object):
                 outputs = OrderedFrozenBag(outputs)
 
                 if (inputs, outputs) in rates:
-                    #raise ValueError, "Duplicate reaction at line %d : %s" % (linecount, rawline)
+                    raise ValueError, "Duplicate reaction at line %d : %s" % (linecount, rawline)
                     break
 
                 if inputs == outputs:
-                    #raise ValueError, "Invalid reaction at line %d : %s" % (linecount, rawline)
+                    raise ValueError, "Invalid reaction at line %d : %s (%s -> %s)" % (linecount, rawline, str(inputs), str(outputs))
                     break
 
                 rates[(inputs, outputs)] = rate
 
             else:
                 raise ValueError, "Invalid reaction at line %d : %s" % (linecount, rawline)
+        return cls(rates)
+        
+    @classmethod
+    def from_reactions(cls, allreactions, mols, maxdepth=None, maxmols=None):
+        """
+        Generates a reaction network using a function that returns all possible products 
+        for a given set of reactants and an initial set of molecules.
+        
+        allreactions is a function that takes two reactants as parameters, (typically
+        via *args) and returns a dictionary of possible outcomes and their weighting.
+        
+        maxdepth is the number of times all reactions of seen molecules is evaluated. If it 
+        is None, then the process repeats until no more novel molecules are created; this
+        may lead to an infinite loop.
+        """
+        newmols = list(mols)
+        mols = list()
+        rates = {}
+        i = 0
+        allreactants = set()
+        while (maxdepth is None or i < maxdepth)\
+                and (maxmols is None or len(mols) < maxmols)\
+                and len(newmols) > 0:
+            newnewmols = []
+            for a in mols+newmols:
+                for b in newmols:
+                    if a in newmols and newmols.index(b) < newmols.index(a):
+                        continue
+                    assert OrderedFrozenBag([str(a),str(b)]) not in allreactants, [a, b]
+                    allreactants.add(OrderedFrozenBag([str(a),str(b)]))
+                    
+                    abrates = allreactions(a,b)
+                    
+                    for reactants, products in abrates:
+                        reactants = OrderedFrozenBag(reactants)
+                        products = OrderedFrozenBag(products)
+                        
+                        if reactants != products:
+                            productsstr = FrozenBag((str(x) for x in products))
+                            reactantstr = FrozenBag((str(x) for x in reactants))
+                            assert reactantstr != productsstr, [reactantstr, productsstr]
+                            for mol in products:
+                                if mol not in mols and mol not in newmols and mol not in newnewmols:
+                                    newnewmols.append(mol)
+                            if (reactants, products) not in rates:
+                                rates[reactants, products] = 0.0
+                            rates[reactants, products] += abrates[reactants, products]
+            mols.extend(newmols)
+            newmols = newnewmols
+            i += 1
+            
+        molstr = [str(x) for x in mols]
+        for x in molstr:
+            if molstr.count(x) > 1:
+                print ">", molstr
+                for mol in mols:
+                    if str(mol) == x:
+                        print mol
+            assert molstr.count(x) == 1
+                        
+        strrates = {}
+        for reaction in rates:
+            reactants, products = reaction
+            productsstr = FrozenBag((str(x) for x in products))
+            reactantstr = FrozenBag((str(x) for x in reactants))
+            reactionstr = (reactantstr, productsstr)
+            if reactionstr in strrates:
+                for key in strrates:
+                    if key == reactionstr:
+                        print "key", key
+                        print "reaction", reaction
+                        print "strrates[key]", strrates[key]
+                        
+            assert reactionstr not in strrates, reactionstr
+            strrates[reactionstr] = reaction
+            
         return cls(rates)

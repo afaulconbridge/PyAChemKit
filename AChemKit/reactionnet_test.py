@@ -42,8 +42,8 @@ class TestReactionNetwork(unittest.TestCase):
         """
         self.assertEqual(self.net.reactions, ((OrderedFrozenBag(["A", "B"]), OrderedFrozenBag(["B", "C"])),) )
         
-    def test_rates(self):
-        self.assertEqual(self.net.rates[OrderedFrozenBag(["A", "B"]), OrderedFrozenBag(["B", "C"])], 2.0)
+    def test_rate(self):
+        self.assertEqual(self.net.rate(OrderedFrozenBag(["A", "B"]), OrderedFrozenBag(["B", "C"])), 2.0)
         
     def test_reaction_to_string(self):
         """

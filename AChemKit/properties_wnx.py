@@ -23,7 +23,7 @@ def make_linkage_graph(rn, min_shared = 3):
         for reactant in reactants:
             for product in products:
                 if reactant != product and len(long_subseq((reactant, product))) >= min_shared:
-                    G.add_edge(reactant, product, reaction = rn.reaction_to_string(reaction, rn.rates[reaction]))
+                    G.add_edge(reactant, product, reaction = rn.reaction_to_string(reaction, rn.rate(*reaction)))
     return G
 
 def make_catalysis_graph(rn, min_shared = 3):
@@ -53,5 +53,5 @@ def make_catalysis_graph(rn, min_shared = 3):
         
         for catalsyst in catalysts:
             for product in products:
-                G.add_edge(catalsyst, product, reaction = rn.reaction_to_string(reaction, rn.rates[reaction]))
+                G.add_edge(catalsyst, product, reaction = rn.reaction_to_string(reaction, rn.rate(*reaction)))
     return G

@@ -2,7 +2,20 @@
 This is a command-line tool for generating `.chem` files using 
 the :py:func:`~AChemKit.randomnet.Linear` random reaction network algorithm.
 
+usage: chem_linear.py [options]
 
+Options:
+
+  -h, --help                      show this help message and exit
+  -o OUTFILE, --outfile OUTFILE   write to OUTFILE in .chem format (if ommited, use stdout)
+  -a NATOMS, --natoms NATOMS      number of atoms
+  -l LENGTH, --length LENGTH      maximum number of atoms per molecule
+  -f PFORM, --pform PFORM         probability of bonding
+  -b PBREAK, --pbreak PBREAK      probability of breaking
+  -u, --undirected                undirected molecules
+  -d, --directed                  directed molecules
+  -t RATES, --rates RATES         possible reaction rates
+  -s SEED, --seed SEED            pseudo-random seed
 """
 
 import random
