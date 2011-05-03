@@ -18,10 +18,10 @@ help:
 all: doc test
 
 test:
-	#@coverage run rununittest.py --include="AChemKit/*"
-	#@coverage report --include="AChemKit/*"
+	@#coverage run rununittest.py --include="AChemKit/*"
+	@#coverage report --include="AChemKit/*"
 	nosetests  --with-xunit --with-coverage --cover-package=AChemKit --where=AChemKit
-	#@coverage xml --include="AChemKit/*"
+	@#coverage xml --include="AChemKit/*"
 
 pylint:
 	pylint --rcfile=pylint.rc -f parseable AChemKit > pylint.txt
