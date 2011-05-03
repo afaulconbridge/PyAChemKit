@@ -30,9 +30,8 @@ class TestItterative(unittest.TestCase):
         #this isnt a true test, but it runs some code and gets a result
         events = sims_simple.simulate_itterative(self.achem, self.mols, 100)
         buck = bucket.Bucket(events)
-        print buck.reactionnet
         self.assertEqual(set(buck.reactionnet.reactions), set(self.net.reactions))
-"""
+
 class TestStepwise(TestItterative):
         
     def test_basic(self):
@@ -40,8 +39,6 @@ class TestStepwise(TestItterative):
         events = sims_simple.simulate_stepwise(self.achem, self.mols, 100)
         buck = bucket.Bucket(events)
         self.assertEqual(buck.reactionnet.reactions, self.net.reactions)
-"""
-
 """
 class TestStepwiseMultiprocessing(TestItterative):
         

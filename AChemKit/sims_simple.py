@@ -53,7 +53,9 @@ class AChemReactionNetwork(AChemAbstract):
         self.reactionnetwork = reactionnetwork
         self.noreactants = [len(x) for x,y in reactionnetwork.reactions]
         
-    def react(self, *reactants):
+    def react(self, reactants):
+        #need to convert to a bag so that it maps to the reactionnetwork properly
+        reactants = OrderedFrozenBag(reactants)
         possibleproducts = []
         for netreactants, netproducts in self.reactionnetwork.reactions:
             if netreactants == reactants:
@@ -88,7 +90,7 @@ def simulate_itterative_iter(achem, mols, maxtime, rng = None):
         reactants = mols[:noreactants]
         mols = mols[noreactants:]
         
-        products = achem.react(*reactants)
+        products = achem.react(reactants)
         mols += tuple(products)
         
         yield (time, OrderedFrozenBag(reactants), OrderedFrozenBag(products))
@@ -126,9 +128,8 @@ def simulate_stepwise_iter(achem, mols, maxtime, rng=None):
             noreactants = get_sample(achem.noreactants, rng)
             if noreactants <= len(mols):
                 reactants = mols[:noreactants]
-                mols = mols[noreactants:]
-                
-                products = tuple(achem.react(*reactants))
+                mols = mols[noreactants:]                
+                products = tuple(achem.react(reactants))
                 newmols += products
                 #reactants = tuple(str(reactant) for reactant in reactants)
                 #products = tuple(str(product ) for product in products)
@@ -164,16 +165,15 @@ def simulate_stepwise_multiprocessing_iter(achem, mols, maxtime, rng=None):
     for mol in mols:
         pickle.dumps(mol)
     pickle.dumps(achem)
-    #pickle.dumps(achem.react)
     
     import math
     import multiprocessing
-    #p = multiprocessing.Pool()
+    pool = multiprocessing.Pool()
     
     mols = tuple(mols)
     if rng is None:
         rng = random.Random()
-    
+        
     time = 0.0
     while time < maxtime:
         mols = tuple(rng.sample(mols, len(mols)))
@@ -188,22 +188,22 @@ def simulate_stepwise_multiprocessing_iter(achem, mols, maxtime, rng=None):
             else:
                 newmols += mols
                 mols = ()
-                
-        #allproducts = p.imap_unordered(achem.__class__.react, allreactants)
-        allproducts = map(achem.react, allreactants)
+                        
+        allproducts = pool.imap_unordered(achem.react, allreactants)
+        #allproducts = map(achem.react, allreactants)
         for reactants, products in zip(allreactants, allproducts):
-            products = tuple(products)
+            #products = tuple(products)
             print newmols, products, reactants
-            for p in products:
-                newmols += (p,)
+            for mol in products:
+                newmols += (mol,)
             #reactants = tuple(str(reactant) for reactant in reactants)
             #products = tuple(str(product ) for product in products)
             
             yield (time, reactants, OrderedFrozenBag(products))
         mols = newmols
         time += 1.0
-    p.terminate()
-    p.close()
+    pool.terminate()
+    pool.close()
     raise StopIteration
 
 def simulate_stepwise_multiprocessing(achem, mols, maxtime, rng=None):

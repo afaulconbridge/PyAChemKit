@@ -47,3 +47,5 @@ def long_subseq(data):
             if j > len(substr) and all(data[0][i:i+j] in x for x in data):
                 substr = data[0][i:i+j]
     return substr
+    
+    
