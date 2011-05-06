@@ -106,6 +106,21 @@ error depending on how many repeates there were.</p>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
 <p>Mini-class for tracking events (instances of a reaction) within a <a class="reference internal" href="#AChemKit.bucket.Bucket" title="AChemKit.bucket.Bucket"><tt class="xref py py-class docutils literal"><span class="pre">Bucket</span></tt></a>.</p>
 <p>Supports comparisons, is hashable, is immutable.</p>
+<dl class="attribute">
+<dt id="AChemKit.bucket.Event.products">
+<tt class="descname">products</tt><a class="headerlink" href="#AChemKit.bucket.Event.products" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="AChemKit.bucket.Event.reactants">
+<tt class="descname">reactants</tt><a class="headerlink" href="#AChemKit.bucket.Event.reactants" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="AChemKit.bucket.Event.time">
+<tt class="descname">time</tt><a class="headerlink" href="#AChemKit.bucket.Event.time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
@@ -594,9 +609,37 @@ such as visualization or metrics.</p>
 </dd></dl>
 
 <dl class="classmethod">
+<dt id="AChemKit.reactionnet.ReactionNetwork.from_reactions">
+<em class="property">classmethod </em><tt class="descname">from_reactions</tt><big>(</big><em>allreactions</em>, <em>mols</em>, <em>maxdepth=None</em>, <em>maxmols=None</em><big>)</big><a class="headerlink" href="#AChemKit.reactionnet.ReactionNetwork.from_reactions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a reaction network using a function that returns all possible products 
+for a given set of reactants and an initial set of molecules.</p>
+<p>allreactions is a function that takes two reactants as parameters, (typically
+via <a href="#id2"><span class="problematic" id="id3">*</span></a>args) and returns a dictionary of possible outcomes and their weighting.</p>
+<div class="system-message" id="id2">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/usr/local/lib/python2.6/dist-packages/AChemKit/reactionnet.py:docstring of AChemKit.reactionnet.ReactionNetwork.from_reactions</tt>, line 4); <em><a href="#id3">backlink</a></em></p>
+Inline emphasis start-string without end-string.</div>
+<p>maxdepth is the number of times all reactions of seen molecules is evaluated. If it 
+is None, then the process repeats until no more novel molecules are created; this
+may lead to an infinite loop.</p>
+</dd></dl>
+
+<dl class="classmethod">
 <dt id="AChemKit.reactionnet.ReactionNetwork.from_string">
 <em class="property">classmethod </em><tt class="descname">from_string</tt><big>(</big><em>instr</em><big>)</big><a class="headerlink" href="#AChemKit.reactionnet.ReactionNetwork.from_string" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrapper around <a class="reference internal" href="#AChemKit.reactionnet.ReactionNetwork.from_file" title="AChemKit.reactionnet.ReactionNetwork.from_file"><tt class="xref py py-meth docutils literal"><span class="pre">AChemKit.reactionnet.ReactionNetwork.from_file()</span></tt></a> that uses <a class="reference external" href="http://docs.python.org/2.7/library/stringio.html#StringIO.StringIO" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">StringIO</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.reactionnet.ReactionNetwork.rate">
+<tt class="descname">rate</tt><big>(</big><em>reactants</em>, <em>products</em><big>)</big><a class="headerlink" href="#AChemKit.reactionnet.ReactionNetwork.rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the rate of a particular reaction.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="AChemKit.reactionnet.ReactionNetwork.rates">
+<tt class="descname">rates</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.reactionnet.ReactionNetwork.rates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Itterate over all reactions through tuples
+of the form (reactants, products, rate)</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -610,7 +653,7 @@ but can also be used for individual reactions if desired.</p>
 <dl class="attribute">
 <dt id="AChemKit.reactionnet.ReactionNetwork.reactions">
 <tt class="descname">reactions</tt><a class="headerlink" href="#AChemKit.reactionnet.ReactionNetwork.reactions" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sorted tuple of all reactions in the network</p>
+<dd><p>Sorted tuple of all reactions in the network.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -660,8 +703,8 @@ wrong.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="AChemKit.reactionnet_test.TestReactionNetwork.test_rates">
-<tt class="descname">test_rates</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.reactionnet_test.TestReactionNetwork.test_rates" title="Permalink to this definition">¶</a></dt>
+<dt id="AChemKit.reactionnet_test.TestReactionNetwork.test_rate">
+<tt class="descname">test_rate</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.reactionnet_test.TestReactionNetwork.test_rate" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -870,7 +913,7 @@ approaches to see which ones best reconstruct the original Reaction
 Network.</p>
 <dl class="method">
 <dt id="AChemKit.sims_simple.AChemReactionNetwork.react">
-<tt class="descname">react</tt><big>(</big><em>*reactants</em><big>)</big><a class="headerlink" href="#AChemKit.sims_simple.AChemReactionNetwork.react" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">react</tt><big>(</big><em>reactants</em><big>)</big><a class="headerlink" href="#AChemKit.sims_simple.AChemReactionNetwork.react" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -925,6 +968,7 @@ second.</p>
 for this function wrapped in a tuple.</p>
 <p>Uses multiprocessing to parallelize reactions. This does not work
 that well because the individual reactions are not that complicated.</p>
+<p>Will only work where achem is a class, not an instance of a class.</p>
 </dd></dl>
 
 </div>
@@ -960,20 +1004,6 @@ not have a method with the specified name.</p>
 <dl class="method">
 <dt id="AChemKit.sims_simple_test.TestStepwise.test_basic">
 <tt class="descname">test_basic</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.sims_simple_test.TestStepwise.test_basic" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="AChemKit.sims_simple_test.TestStepwiseMultiprocessing">
-<em class="property">class </em><tt class="descclassname">AChemKit.sims_simple_test.</tt><tt class="descname">TestStepwiseMultiprocessing</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#AChemKit.sims_simple_test.TestStepwiseMultiprocessing" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#AChemKit.sims_simple_test.TestItterative" title="AChemKit.sims_simple_test.TestItterative"><tt class="xref py py-class docutils literal"><span class="pre">AChemKit.sims_simple_test.TestItterative</span></tt></a></p>
-<p>Create an instance of the class that will use the named test
-method when executed. Raises a ValueError if the instance does
-not have a method with the specified name.</p>
-<dl class="method">
-<dt id="AChemKit.sims_simple_test.TestStepwiseMultiprocessing.test_basic">
-<tt class="descname">test_basic</tt><big>(</big><big>)</big><a class="headerlink" href="#AChemKit.sims_simple_test.TestStepwiseMultiprocessing.test_basic" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

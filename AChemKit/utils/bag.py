@@ -22,7 +22,7 @@ class FrozenBag(collections.Set):
         
     def __init__(self, iterable):
         if not isinstance(iterable, collections.Iterable):
-            raise TypeError, "non-iterabble passed"
+            raise TypeError, "non-iterabble passed ("+repr(iterable)+")"
         self._items = tuple(sorted(iterable))
                 
     def __contains__(self, item):
@@ -58,6 +58,8 @@ class FrozenBag(collections.Set):
             return False
         if other.__class__ is not self.__class__:
             return False
+        if len(self) != len(other):
+            return False
         for a,b in itertools.izip(self, other):
             if a != b:
                 return False
@@ -74,7 +76,7 @@ class Bag(FrozenBag, collections.MutableSet):
     
     def __init__(self, iterable):
         if not isinstance(iterable, collections.Iterable):
-            raise TypeError, "non-iterabble passed"
+            raise TypeError, "non-iterabble passed ("+repr(iterable)+")"
         self._items = sorted(list(iterable))
         
     def add(self, item):
@@ -99,13 +101,13 @@ class OrderedFrozenBag(collections.Set):
     
     def __init__(self, iterable):
         if not isinstance(iterable, collections.Iterable):
-            raise TypeError, "non-iterabble passed"
+            raise TypeError, "non-iterabble passed ("+repr(iterable)+")"
         elif not isinstance(iterable, tuple):
             iterable = tuple(iterable)
         self._order = iterable
         for item in self._order:
             if not isinstance(item, collections.Hashable):
-                raise TypeError, "non-hashable passed"
+                raise TypeError, "non-hashable passed ("+repr(item)+")"
         self._bag = FrozenBag(self._order)
         
     def __contains__(self, item):
@@ -130,7 +132,7 @@ class OrderedFrozenBag(collections.Set):
         elif self.__class__ is other.__class__:
             return self._bag == other._bag
         else:
-            raise ValueError
+            raise ValueError, "Comparison with different class ("+other.__class__.__name__+")"
             return False
         
     def __lt__(self, other):
@@ -170,7 +172,7 @@ class OrderedBag(OrderedFrozenBag, collections.MutableSet):
         
     def __init__(self, iterable):
         if not isinstance(iterable, collections.Iterable):
-            raise TypeError, "non-iterabble passed"
+            raise TypeError, "non-iterabble passed ("+repr(iterable)+")"
         self._order = list(iterable)
         self._bag = Bag(self._order)
         

@@ -247,7 +247,8 @@ class ReactionNetwork(object):
         is None, then the process repeats until no more novel molecules are created; this
         may lead to an infinite loop.
         """
-        newmols = list(mols)
+        #make sure mols are unique
+        newmols = sorted(list(set(mols)))
         mols = list()
         rates = {}
         i = 0
@@ -262,12 +263,13 @@ class ReactionNetwork(object):
                         continue
                     assert OrderedFrozenBag([str(a),str(b)]) not in allreactants, [a, b]
                     #allreactants.add(OrderedFrozenBag([str(a), str(b)]))
+                    abrates = allreactions((a,b))
                     
-                    abrates = allreactions(a,b)
-                    
-                    for reactants, products in abrates:
+                    for reaction in abrates:
+                        reactants, products = reaction
                         reactants = OrderedFrozenBag(reactants)
                         products = OrderedFrozenBag(products)
+                        reaction = reactants, products
                         
                         if reactants != products:
                             productsstr = OrderedFrozenBag((str(x) for x in products))
@@ -276,14 +278,17 @@ class ReactionNetwork(object):
                             for mol in products:
                                 if mol not in mols and mol not in newmols and mol not in newnewmols:
                                     newnewmols.append(mol)
-                                    if len(mols) + len(newmols) + len(newnewmols) > maxmols:
+                                    if maxmols is not None and len(mols) + len(newmols) + len(newnewmols) > maxmols:
                                         raise ValueError, "Maximum molecules reached"
                                         
-                            if (reactants, products) not in rates:
-                                rates[reactants, products] = 0.0
-                            rates[reactants, products] += abrates[reactants, products]
+                            if reaction not in rates:
+                                rates[reaction] = 0.0
+                            assert reaction in abrates
+                            assert reaction in rates
+                            rates[reaction] += abrates[reaction]
             mols.extend(newmols)
-            newmols = newnewmols
+            mols = sorted(mols)
+            newmols = sorted(newnewmols)
             i += 1
             
         molstr = [str(x) for x in mols]
@@ -308,6 +313,7 @@ class ReactionNetwork(object):
                         reactiona = reaction
                         reactionb = strrates[key]
                         print "reaction", reactiona, hash(reactiona[0])
+                        print reactiona[0]
                         print reactiona[0]._bag._items
                         
                         print "strrates[key]", reactionb, hash(reactionb[0])

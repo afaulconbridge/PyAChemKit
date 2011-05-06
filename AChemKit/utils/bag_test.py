@@ -45,6 +45,7 @@ class TestFrozenBag(unittest.TestCase):
         
     def test_eq(self):
         self.assertEqual(self.bag, self.bagb)
+        self.assertNotEqual(self.bag, self.cls(self.data[:-1]))
         self.assertEqual(self.bag, self.bag2)
         self.assertNotEqual(self.bag, self.bag3)
         self.assertNotEqual(self.cls(("B1", "B1")), self.cls(("B1", "B2")))
