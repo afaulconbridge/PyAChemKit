@@ -18,10 +18,7 @@ help:
 all: doc test
 
 test:
-	@#coverage run rununittest.py --include="AChemKit/*"
-	@#coverage report --include="AChemKit/*"
 	nosetests  --with-xunit --with-coverage --cover-package=AChemKit --where=AChemKit
-	@#coverage xml --include="AChemKit/*"
 
 pylint:
 	pylint --rcfile=pylint.rc -f parseable AChemKit > pylint.txt
@@ -42,7 +39,7 @@ doclatex:
 setup: 
 	sudo apt-get install python-dev python-setuptools tofrodos
 	#sudo apt-get install texlive-full #needed to build pdf docs, but big so not done by defualt
-	sudo easy_install -U coverage pylint sphinx networkx
+	sudo easy_install -U coverage pylint sphinx networkx nose
 
 distribute: test doc
 	@cp doc/src/README.rst README.txt
@@ -53,6 +50,7 @@ distribute: test doc
 install: test
 	python setup.py sdist
 	sudo python setup.py install
+	sudo rm -rf build/ dist/
 
 clean:
 	rm -rf *.pyc *.pyo *~
