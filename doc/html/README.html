@@ -55,21 +55,24 @@
 <h1>Readme<a class="headerlink" href="#readme" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<p>PyAChemKit is a Python implementation of an Artificial Chemistry Kit - a library and collection of tools.</p>
-<p>Artificial Chemsistry (AChem) is a spin-off topic of Artificial Life. AChem is aimed at emergence of life from
+<p>PyAChemKit is a collection of Artificial Chemistry software written in Python - a library and collection of tools.</p>
+<p>Artificial Chemistry (AChem) is a spin-off topic of Artificial Life. AChem is aimed at emergence of life from
 non-living environment - primordial soup etc.</p>
 </div>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>To install on Unix/Linux, run</p>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/adam/Dropbox/PyAChemKit/doc/src/README.rst</tt>, line 19)</p>
-Literal block expected; none found.</div>
-<p>sudo python setup.py install</p>
-<p>This package should work on windows, but is untested.</p>
+<p>To install on Ubuntu Linux, run</p>
+<div class="highlight-python"><pre>sudo easy_install -U AChemKit</pre>
+</div>
+<p>This package should work on other Linux distributions and versions of Windows, but is untested.</p>
 <p>This package requires the following:</p>
 <ul class="simple">
 <li>Python   &gt;= 2.6   <a class="reference external" href="http://www.python.org/">http://www.python.org/</a></li>
+</ul>
+<p>Some features use the following:</p>
+<ul class="simple">
+<li>NetworkX</li>
+<li>GraphViz <a class="reference external" href="http://www.graphviz.org/">http://www.graphviz.org/</a></li>
 </ul>
 <p>Optionally, the following can be installed to improve performance:</p>
 <ul class="simple">
@@ -79,7 +82,7 @@ Literal block expected; none found.</div>
 </div>
 <div class="section" id="source">
 <h2>Source<a class="headerlink" href="#source" title="Permalink to this headline">¶</a></h2>
-<p>Source code is available from <a class="reference external" href="https://github.com/afaulconbridge/PyAChemKit">https://github.com/afaulconbridge/PyAChemKit</a></p>
+<p>The latest version of the source code is available from <a class="reference external" href="https://github.com/afaulconbridge/PyAChemKit">https://github.com/afaulconbridge/PyAChemKit</a></p>
 <p>The source code additionally requires the following:</p>
 <ul class="simple">
 <li>Sphinx   &gt;= 1.0   <a class="reference external" href="http://sphinx.pocoo.org/">http://sphinx.pocoo.org/</a></li>
@@ -92,14 +95,14 @@ Literal block expected; none found.</div>
 <p>For a Debian-based Linux distrbution &#8212; e.g. Debian, Ubuntu &#8212; these can be installed / updated with:</p>
 <div class="highlight-python"><pre>make setup</pre>
 </div>
-<p>(Note, LaTeX is not installed via this method because it is very large. Run <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">texlive-full</span></tt>)</p>
+<p>(Note, LaTeX is not installed via this method because it is very large. Run <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">texlive-full</span></tt> if you want to be able to compile the PDF documentation.)</p>
 <p>There is a makefile that will run some useful tasks for you (generate documentation, test, benchmark). This can be accessed by running the following command:</p>
 <div class="highlight-python"><pre>make help</pre>
 </div>
 </div>
 <div class="section" id="copyright">
 <h2>Copyright<a class="headerlink" href="#copyright" title="Permalink to this headline">¶</a></h2>
-<p>This project is licensed under a modified-BSD license. See COPYRIGHT file for details.</p>
+<p>This project is licensed under a modified-BSD license. See the fie <tt class="docutils literal"><span class="pre">COPYRIGHT</span></tt> for details.</p>
 </div>
 </div>
 

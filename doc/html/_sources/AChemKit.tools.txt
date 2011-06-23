@@ -1,8 +1,9 @@
+#############
 tools Package
-=============
+#############
 
 :py:mod:`tools` Package
------------------------
+=======================
 
 .. automodule:: AChemKit.tools
     :members:
@@ -10,7 +11,7 @@ tools Package
     :show-inheritance:
 
 :py:mod:`chem_linear` Module
-----------------------------
+============================
 
 .. automodule:: AChemKit.tools.chem_linear
     :members:
@@ -18,7 +19,7 @@ tools Package
     :show-inheritance:
 
 :py:mod:`chem_pp` Module
-------------------------
+========================
 
 .. automodule:: AChemKit.tools.chem_pp
     :members:
@@ -26,7 +27,7 @@ tools Package
     :show-inheritance:
 
 :py:mod:`chem_to_dot` Module
-----------------------------
+============================
 
 .. automodule:: AChemKit.tools.chem_to_dot
     :members:
@@ -34,7 +35,7 @@ tools Package
     :show-inheritance:
 
 :py:mod:`chem_to_pdf` Module
-----------------------------
+============================
 
 .. automodule:: AChemKit.tools.chem_to_pdf
     :members:
@@ -42,7 +43,7 @@ tools Package
     :show-inheritance:
 
 :py:mod:`chem_uniform` Module
------------------------------
+=============================
 
 .. automodule:: AChemKit.tools.chem_uniform
     :members:
@@ -50,7 +51,7 @@ tools Package
     :show-inheritance:
 
 :py:mod:`log_to_chem` Module
-----------------------------
+============================
 
 .. automodule:: AChemKit.tools.log_to_chem
     :members:

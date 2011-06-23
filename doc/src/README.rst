@@ -5,24 +5,29 @@ Readme
 Description
 ===========
 
-PyAChemKit is a Python implementation of an Artificial Chemistry Kit - a library and collection of tools. 
+PyAChemKit is a collection of Artificial Chemistry software written in Python - a library and collection of tools. 
 
-Artificial Chemsistry (AChem) is a spin-off topic of Artificial Life. AChem is aimed at emergence of life from
+Artificial Chemistry (AChem) is a spin-off topic of Artificial Life. AChem is aimed at emergence of life from
 non-living environment - primordial soup etc.
 
 
 Installation
 ============
 
-To install on Unix/Linux, run ::
+To install on Ubuntu Linux, run ::
 
-sudo python setup.py install
+  sudo easy_install -U AChemKit
 
-This package should work on windows, but is untested.
+This package should work on other Linux distributions and versions of Windows, but is untested.
 
 This package requires the following:
 
 * Python   >= 2.6   http://www.python.org/
+    
+Some features use the following:
+
+* NetworkX
+* GraphViz http://www.graphviz.org/
     
 Optionally, the following can be installed to improve performance:
 
@@ -32,7 +37,7 @@ Optionally, the following can be installed to improve performance:
 Source
 ======
 
-Source code is available from https://github.com/afaulconbridge/PyAChemKit
+The latest version of the source code is available from https://github.com/afaulconbridge/PyAChemKit
 
 The source code additionally requires the following:
 
@@ -46,9 +51,9 @@ The source code additionally requires the following:
 
 For a Debian-based Linux distrbution --- e.g. Debian, Ubuntu --- these can be installed / updated with::
 
-    make setup
+  make setup
     
-(Note, LaTeX is not installed via this method because it is very large. Run ``sudo apt-get install texlive-full``)
+(Note, LaTeX is not installed via this method because it is very large. Run ``sudo apt-get install texlive-full`` if you want to be able to compile the PDF documentation.)
 
 
 There is a makefile that will run some useful tasks for you (generate documentation, test, benchmark). This can be accessed by running the following command::
@@ -58,4 +63,4 @@ There is a makefile that will run some useful tasks for you (generate documentat
 Copyright
 =========
 
-This project is licensed under a modified-BSD license. See COPYRIGHT file for details.
+This project is licensed under a modified-BSD license. See the fie ``COPYRIGHT`` for details.

@@ -64,9 +64,12 @@ def write_file(name, text, opts):
         f.close()
 
 def format_heading(level, text):
-    """Create a heading of <level> [1, 2 or 3 supported]."""
-    underlining = ['=', '-', '~', ][level-1] * len(text)
-    return '%s\n%s\n\n' % (text, underlining)
+    """Create a heading of <level> [1, 2, 3 or 4 supported]."""
+    underlining = ['#', '=', '-', '~', ][level-1] * len(text)
+    if level == 1:
+        return '%s\n%s\n%s\n\n' % (underlining, text, underlining)
+    else:
+        return '%s\n%s\n\n' % (text, underlining)
 
 def format_directive(module, package=None):
     """Create the automodule directive and add the options."""

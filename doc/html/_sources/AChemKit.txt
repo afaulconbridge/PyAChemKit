@@ -1,8 +1,9 @@
+################
 AChemKit Package
-================
+################
 
 :py:mod:`AChemKit` Package
---------------------------
+==========================
 
 .. automodule:: AChemKit.__init__
     :members:
@@ -10,7 +11,7 @@ AChemKit Package
     :show-inheritance:
 
 :py:mod:`bucket` Module
------------------------
+=======================
 
 .. automodule:: AChemKit.bucket
     :members:
@@ -18,7 +19,7 @@ AChemKit Package
     :show-inheritance:
 
 :py:mod:`properties` Module
----------------------------
+===========================
 
 .. automodule:: AChemKit.properties
     :members:
@@ -26,7 +27,7 @@ AChemKit Package
     :show-inheritance:
 
 :py:mod:`properties_motif` Module
----------------------------------
+=================================
 
 .. automodule:: AChemKit.properties_motif
     :members:
@@ -34,7 +35,7 @@ AChemKit Package
     :show-inheritance:
 
 :py:mod:`properties_wnx` Module
--------------------------------
+===============================
 
 .. automodule:: AChemKit.properties_wnx
     :members:
@@ -42,7 +43,7 @@ AChemKit Package
     :show-inheritance:
 
 :py:mod:`randomnet` Module
---------------------------
+==========================
 
 .. automodule:: AChemKit.randomnet
     :members:
@@ -50,7 +51,7 @@ AChemKit Package
     :show-inheritance:
 
 :py:mod:`randomnet_test` Module
--------------------------------
+===============================
 
 .. automodule:: AChemKit.randomnet_test
     :members:
@@ -58,7 +59,7 @@ AChemKit Package
     :show-inheritance:
 
 :py:mod:`reactionnet` Module
-----------------------------
+============================
 
 .. automodule:: AChemKit.reactionnet
     :members:
@@ -66,7 +67,7 @@ AChemKit Package
     :show-inheritance:
 
 :py:mod:`reactionnet_test` Module
----------------------------------
+=================================
 
 .. automodule:: AChemKit.reactionnet_test
     :members:
@@ -74,7 +75,7 @@ AChemKit Package
     :show-inheritance:
 
 :py:mod:`reactionnetdot` Module
--------------------------------
+===============================
 
 .. automodule:: AChemKit.reactionnetdot
     :members:
@@ -82,7 +83,7 @@ AChemKit Package
     :show-inheritance:
 
 :py:mod:`reactionnetdot_test` Module
-------------------------------------
+====================================
 
 .. automodule:: AChemKit.reactionnetdot_test
     :members:
@@ -90,7 +91,7 @@ AChemKit Package
     :show-inheritance:
 
 :py:mod:`sims_gillespie` Module
--------------------------------
+===============================
 
 .. automodule:: AChemKit.sims_gillespie
     :members:
@@ -98,7 +99,7 @@ AChemKit Package
     :show-inheritance:
 
 :py:mod:`sims_gillespie_test` Module
-------------------------------------
+====================================
 
 .. automodule:: AChemKit.sims_gillespie_test
     :members:
@@ -106,7 +107,7 @@ AChemKit Package
     :show-inheritance:
 
 :py:mod:`sims_simple` Module
-----------------------------
+============================
 
 .. automodule:: AChemKit.sims_simple
     :members:
@@ -114,7 +115,7 @@ AChemKit Package
     :show-inheritance:
 
 :py:mod:`sims_simple_test` Module
----------------------------------
+=================================
 
 .. automodule:: AChemKit.sims_simple_test
     :members:
@@ -122,7 +123,7 @@ AChemKit Package
     :show-inheritance:
 
 Subpackages
------------
+===========
 
 .. toctree::
 

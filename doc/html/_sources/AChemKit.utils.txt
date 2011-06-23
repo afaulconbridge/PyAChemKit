@@ -1,8 +1,9 @@
+#############
 utils Package
-=============
+#############
 
 :py:mod:`utils` Package
------------------------
+=======================
 
 .. automodule:: AChemKit.utils
     :members:
@@ -10,7 +11,7 @@ utils Package
     :show-inheritance:
 
 :py:mod:`bag` Module
---------------------
+====================
 
 .. automodule:: AChemKit.utils.bag
     :members:
@@ -18,7 +19,7 @@ utils Package
     :show-inheritance:
 
 :py:mod:`bag_test` Module
--------------------------
+=========================
 
 .. automodule:: AChemKit.utils.bag_test
     :members:
@@ -26,7 +27,7 @@ utils Package
     :show-inheritance:
 
 :py:mod:`simpledot` Module
---------------------------
+==========================
 
 .. automodule:: AChemKit.utils.simpledot
     :members:
@@ -34,7 +35,7 @@ utils Package
     :show-inheritance:
 
 :py:mod:`utils` Module
-----------------------
+======================
 
 .. automodule:: AChemKit.utils.utils
     :members:
@@ -42,7 +43,7 @@ utils Package
     :show-inheritance:
 
 :py:mod:`utils_test` Module
----------------------------
+===========================
 
 .. automodule:: AChemKit.utils.utils_test
     :members:
