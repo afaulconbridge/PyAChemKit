@@ -253,44 +253,54 @@ class ReactionNetwork(object):
         rates = {}
         i = 0
         allreactants = set()
+        
+        import multiprocessing
+        import itertools
+        from .utils.utils import mypool
+        import math
         while (maxdepth is None or i < maxdepth)\
-                and (maxmols is None or len(mols) < maxmols)\
+                and (maxmols is None or len(mols)+len(newmols) < maxmols)\
                 and len(newmols) > 0:
             newnewmols = []
-            for a in mols+newmols:
-                for b in newmols:
-                    if a in newmols and newmols.index(b) < newmols.index(a):
-                        continue
-                    assert OrderedFrozenBag([str(a),str(b)]) not in allreactants, [a, b]
-                    #allreactants.add(OrderedFrozenBag([str(a), str(b)]))
-                    abrates = allreactions((a,b))
+            
+            def molcombos(mols, newmols):
+                for a in mols+newmols:
+                    for b in newmols:
+                        if a in newmols and newmols.index(b) < newmols.index(a):
+                            continue
+                        yield a,b
                     
-                    for reaction in abrates:
-                        reactants, products = reaction
-                        reactants = OrderedFrozenBag(reactants)
-                        products = OrderedFrozenBag(products)
-                        reaction = reactants, products
-                        
-                        if reactants != products:
-                            productsstr = OrderedFrozenBag((str(x) for x in products))
-                            reactantstr = OrderedFrozenBag((str(x) for x in reactants))
-                            assert reactantstr != productsstr, [reactantstr, productsstr]
-                            for mol in products:
-                                if mol not in mols and mol not in newmols and mol not in newnewmols:
-                                    newnewmols.append(mol)
-                                    if maxmols is not None and len(mols) + len(newmols) + len(newnewmols) > maxmols:
-                                        raise ValueError, "Maximum molecules reached"
-                                        
-                            if reaction not in rates:
-                                rates[reaction] = 0.0
-                            assert reaction in abrates
-                            assert reaction in rates
-                            rates[reaction] += abrates[reaction]
+            for args, abrates in itertools.izip(molcombos(mols, newmols), mypool(allreactions, molcombos(mols, newmols))):
+                a,b = args
+                abrates = dict(abrates)
+                assert abrates is not None
+                print i, len(mols) + len(newmols) + len(newnewmols), maxmols
+                if maxmols is not None and len(mols) + len(newmols) + len(newnewmols) > maxmols:
+                    break
+                for reaction in abrates:
+                    reactants, products = reaction
+                    reactants = OrderedFrozenBag(reactants)
+                    products = OrderedFrozenBag(products)
+                    reaction = reactants, products
+                    
+                    if reactants != products:
+                        #productsstr = OrderedFrozenBag((str(x) for x in products))
+                        #reactantstr = OrderedFrozenBag((str(x) for x in reactants))
+                        #assert reactantstr != productsstr, [reactantstr, productsstr]
+                        for mol in products:
+                            if mol not in mols and mol not in newmols and mol not in newnewmols:
+                                newnewmols.append(mol)
+                                    
+                        if reaction not in rates:
+                            rates[reaction] = 0.0
+                        assert reaction in abrates
+                        assert reaction in rates
+                        rates[reaction] += abrates[reaction]
             mols.extend(newmols)
             mols = sorted(mols)
             newmols = sorted(newnewmols)
             i += 1
-            
+        """    
         molstr = [str(x) for x in mols]
         for x in molstr:
             if molstr.count(x) > 1:
@@ -321,5 +331,15 @@ class ReactionNetwork(object):
                         
             assert reactionstr not in strrates, reactionstr
             strrates[reactionstr] = reaction
-            
+        """    
         return cls(rates)
+        
+
+def f(args):
+    name = args[0][0]
+    self = args[0][1]
+    cls = args[0][2]
+    args = args[1]
+    #print name, self, cls, args
+    toreturn = cls.__dict__[name](self, args)
+    return [args], toreturn
