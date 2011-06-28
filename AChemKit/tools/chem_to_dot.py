@@ -20,11 +20,13 @@ Options:
 
 __module__ = "AChemKit.tools"
 
+import sys
+
 #this is depcrecated in python 2.7 in favour of argparse
 #however, we want python 2.5 compatibility so its still here
 import optparse
 
-from AChemKit.reactionnet import ReactionNetwork
+from AChemKit.reactionnetdot import ReactionNetworkDot as ReactionNetwork
 
 if __name__=="__main__":
 

@@ -24,15 +24,17 @@ __module__="AChemKit"
 #however, we want python 2.5 compatibility so its still here
 import optparse
 
+import sys
 
-from AChemKit.reactionnet import ReactionNetwork
+#from AChemKit.reactionnet import ReactionNetwork
+from AChemKit.reactionnetdot import ReactionNetworkDot as ReactionNetwork
 
 if __name__=="__main__":
 
     parser = optparse.OptionParser(description="Produces `.dot` output from `.chem` input.")
     parser.add_option("-i", "--infile",  dest="infile",  help="read from INFILE (if ommited, use stdin)", metavar="INFILE")
     parser.add_option("-o", "--outfile", dest="outfile", help="write to OUTFILE in .chem format (if ommited, use stdout)", metavar="OUTFILE")
-    parser.add_option("-l", "--layout", dest="layout", help="Graphviz layout to use (if ommited, use dot)", default="neato", metavar="LAYOUT")
+    parser.add_option("-l", "--layout", dest="layout", help="Graphviz layout to use (if ommited, use sfdp)", default="neato", metavar="LAYOUT")
     (options, args) = parser.parse_args()
     
     rn = None

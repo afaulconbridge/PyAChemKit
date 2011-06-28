@@ -15,6 +15,8 @@ Options:
 
 """
 
+import sys
+
 #this is depcrecated in python 2.7 in favour of argparse
 #however, we want python 2.5 compatibility so its still here
 import optparse
