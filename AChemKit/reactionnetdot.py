@@ -83,7 +83,7 @@ class ReactionNetworkDot(ReactionNetwork):
         dot["edge"]["len"] = 0.25
 
         dot["graph"] = {}
-        dot["graph"]["layout"] = "sfdp"
+        #dot["graph"]["layout"] = "sfdp"
         #dot["graph"]["overlap"] = "prism"
         dot["graph"]["overlap"] = "false"
         #dot["graph"]["normalize":True}
