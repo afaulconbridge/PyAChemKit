@@ -12,25 +12,39 @@ from . import reactionnet
 from .utils.utils import long_subseq
 from . import properties
 
-def make_linkage_graph(rn, min_shared = 3):
+def make_linkage_graph(rn):
     """
-    For each reactant and each product in each reaction, they are linked
-    if they share at minimum subsequence length.
+    For each reactant and each product in each reaction, they are linked.
     """
     G = networkx.MultiDiGraph()
     for reaction in rn.reactions:
         reactants, products = reaction
         for reactant in reactants:
             for product in products:
-                if reactant != product and len(long_subseq((reactant, product))) >= min_shared:
+                if reactant != product:
                     G.add_edge(reactant, product, reaction = rn.reaction_to_string(reaction, rn.rate(*reaction)))
     return G
-
-def make_catalysis_graph(rn, min_shared = 3):
+    
+def make_similar_linkage_graph(rn, similar_func, G=None):
     """
     For each reactant and each product in each reaction, they are linked
-    if they share at minimum subsequence length and if the reactant
-    is a catalsyst.
+    if the similar_func return true.
+    """
+    if G is None:
+        G = make_linkage_graph(rn)
+    else:
+        G = copy.copy(G)
+    for edge in G.edges():
+        if not similar_func(edge):
+            G.remove_edge(*edge)
+    return G
+
+def make_catalysis_graph(rn):
+    """
+    For each reactant and each product in each reaction, they are linked
+    if the reactant is a catalsyst.
+    
+    This Will never form self-edges.
     """
     G = networkx.MultiDiGraph()
     for reaction in properties.get_catalysis_direct(rn):
@@ -55,3 +69,80 @@ def make_catalysis_graph(rn, min_shared = 3):
             for product in products:
                 G.add_edge(catalsyst, product, reaction = rn.reaction_to_string(reaction, rn.rate(*reaction)))
     return G
+    
+def find_cycles(net, G = None):
+    if G is None:
+        G = make_catalysis_graph(net)
+    return _find_cycles_or_loop(G)
+
+
+def find_loops(net, similar_func, G = None):
+    if G is None:
+        G = make_similar_linkage_graph(net, similar_func)
+    loops = _find_cycles_or_loop(G)
+    loops = [x for x in filter_loops(loops) if similar_func(x)]
+    return loops
+
+
+def _find_cycles_or_loop(G):
+    cycles = set()
+    for edge in G.edges():
+        nG = G
+        try:
+            cycle = networkx.algorithms.shortest_path(nG, edge[1], edge[0])
+            #should get all shrotest paths rather than A shortest path.
+        except networkx.exception.NetworkXNoPath:
+            cycle = None
+            
+        if cycle is not None:
+            #there is a cycle
+            #there could be more than one cycle, this just finds the shortest
+            #probably what we actually want in most cases
+            #put the cycle starting at the minimum
+            start = min(cycle)
+            i = cycle.index(start)
+            cycle = cycle[i:] + cycle[:i]
+            cycle = tuple(cycle)
+            
+            if cycle not in cycles:
+                cycles.add(cycle)
+    return sorted(list(cycles))
+            
+def filter_loops(loops):
+    """
+    Filters the itterable of loops according to which loops contain other.
+    
+    Only yield those loops which are not contained within other loops.
+    
+    Provided itterable is converted to list internally.
+    """
+    loops = sorted(loops, lambda x, y: cmp(len(x), len(y)), reverse=True)
+        
+    for loop in itertools.imap(_filter_loops, xrange(len(loops)), [loops]*len(loops)):
+        if loop is not None:
+            yield loop
+            
+def _filter_loops(i, loops):
+    """
+    Internal function used by filter_loops
+    """
+    
+    def loop_contains(a, b):
+        if not set(a) >= set(b):
+            return False
+
+        a = a+a
+        for i in xrange(len(b)):
+            b_test = b[i:]+b[:i]
+            for j in xrange(len(a)-len(b)):
+                if a[j:j+len(b)] == b_test:
+                    return True
+        return False
+        
+    contains = False
+    for j in xrange(i+1, len(loops)):
+        if i != j and len(loops[j]) < len(loops[i]) and loop_contains(loops[i], loops[j]):
+	        contains = True
+	        break
+    if not contains:
+        return loops[i]
