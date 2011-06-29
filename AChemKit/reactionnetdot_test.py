@@ -35,7 +35,7 @@ class TestReactionNetworkDot(unittest.TestCase):
         target = """digraph G {
 	node [margin="0.02,0.02", fontsize=10.0, width=0.3, height=0.0];
 	edge [len=0.25, dir="both"];
-	graph [K=0.25, layout="sfdp", overlap="false"];
+	graph [K=0.25, overlap="false"];
 	M0 [label="A"];
 	M1 [label="B"];
 	M2 [label="C"];
