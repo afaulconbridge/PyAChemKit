@@ -130,6 +130,16 @@ class SimpleDot(DictMixin):
         This provides a unified interface.
         """
         return tuple((self.content[i] for i in xrange(len(self.keylist)) if self.keylist[i] == key))
+        
+    def nodes(self):
+        for key in self:
+            if isinstance(key, str) and key not in ("edge", "node", "graph"):
+                yield key
+    
+    def edges(self):
+        for key in self:
+            if isinstance(key, tuple):
+                yield key
 
     def __delitem__(self, key):
         if key not in self.keylist:
