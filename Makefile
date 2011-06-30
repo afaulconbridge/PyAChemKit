@@ -13,6 +13,7 @@ help:
 	@echo "  setup      Try to install / update required modules"
 	@echo "  distribute Perform a distribution"
 	@echo "  install    Install locally"
+	@echo "  develop    Install as a development version"
 	@echo "  clean      Remove temporary files"
 
 all: doc test
@@ -51,6 +52,9 @@ install: test
 	python setup.py sdist
 	sudo python setup.py install
 	sudo rm -rf build/ dist/
+	
+develop: 
+	sudo python setup.py develop
 
 clean:
 	rm -rf *.pyc *.pyo *~
