@@ -63,7 +63,6 @@ class Gillespie(object):
         #The index of the next reaction to fire is a discrete random
         #variable with probability mass function P(μ = m) = am / α.
         
-        #assumes two reactants to a reaction
         totalnumberofreactions = 0
         for noreactants in self.possiblenoreactants:
             i = noreactants
@@ -79,15 +78,22 @@ class Gillespie(object):
         noreactants = sims_simple.get_sample(self.achem.noreactants, self.rng)
         
         if len(self.mols) >= noreactants:
-            self.mols = list(self.mols)
-            self.rng.shuffle(self.mols)
-            self.mols = tuple(self.mols)
-            
-            reactants = self.mols[:noreactants]
-            self.mols = self.mols[noreactants:]
+            #self.mols = list(self.mols)
+            #self.rng.shuffle(self.mols)
+            #self.mols = tuple(self.mols)
+                 
+            #reactants = self.mols[:noreactants]
+            #self.mols = self.mols[noreactants:]
 
+            reactants = self.rng.sample(self.mols, noreactants)
+            for x in reactants:
+                assert x in self.mols
+                i = self.mols.index(x)
+                self.mols = self.mols[:i] + self.mols[i+1:]
+            
             products = tuple(self.achem.react(reactants))
             self.mols += products
             return interval, reactants, products
         else:
             return interval, None, None
+            
