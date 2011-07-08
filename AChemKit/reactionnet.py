@@ -235,7 +235,7 @@ class ReactionNetwork(object):
         return cls(rates)
         
     @classmethod
-    def from_reactions(cls, allreactions, mols, maxdepth=None, maxmols=None):
+    def from_reactions(cls, allreactions, mols, maxdepth=None, maxmols=None, parallel=True):
         """
         Generates a reaction network using a function that returns all possible products 
         for a given set of reactants and an initial set of molecules.
@@ -256,7 +256,7 @@ class ReactionNetwork(object):
         
         import multiprocessing
         import itertools
-        from .utils.utils import mypool
+        from .utils.utils import pool
         import math
         while (maxdepth is None or i < maxdepth)\
                 and (maxmols is None or len(mols)+len(newmols) < maxmols)\
@@ -270,11 +270,16 @@ class ReactionNetwork(object):
                             continue
                         yield a,b
                     
-            for args, abrates in itertools.izip(molcombos(mols, newmols), mypool(allreactions, molcombos(mols, newmols))):
+            if parallel:
+                results = pool(allreactions, molcombos(mols, newmols))
+            else:
+                results = map(allreactions, molcombos(mols, newmols))
+                
+            for args, abrates in itertools.izip(molcombos(mols, newmols), results):
                 a,b = args
                 abrates = dict(abrates)
                 assert abrates is not None
-                print i, len(mols) + len(newmols) + len(newnewmols), maxmols
+                #print i, len(mols) + len(newmols) + len(newnewmols), maxmols
                 if maxmols is not None and len(mols) + len(newmols) + len(newnewmols) > maxmols:
                     break
                 for reaction in abrates:
