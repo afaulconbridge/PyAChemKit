@@ -155,8 +155,13 @@ def has_varying_rates(rn):
 
         span = max(rn.rates.values())-min(rn.rates.values())
     """
-    if len(set(rn.rates.values())) > 1:
-        return True
+    oldrate = None
+    for reactants, products, rate in rn.rates():
+        if oldrate is None:
+            oldrate = rate
+        else:
+            if rate != oldrate:
+                return True
     return False
 
 
