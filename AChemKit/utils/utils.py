@@ -1,7 +1,7 @@
 """
 Various small functions that can get lumped together into this module.
 """
-
+import math
 import random
 
 def get_sample(distribution, rng=None):
@@ -81,8 +81,9 @@ def pool(f, *args, **kwargs):
         #pickle cant handle this, so hack it apart
         realargs = itertools.izip(itertools.repeat((f.im_func.__name__, f.im_self, f.im_class)), newargskwargs)
         tocall = _mypool_method
-    elif inspect.isfunction(f):
-        #this is a function
+    #elif inspect.isfunction(f):
+    else:
+        #this is a function, or a function-like object
         #pickle can handle this
         realargs = itertools.izip(itertools.repeat(f), newargskwargs)
         tocall = _mypool_function

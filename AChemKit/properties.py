@@ -150,18 +150,13 @@ def has_divergence(rn):
 def has_varying_rates(rn):
     """
     Tests that the reaction network has different rates for different reactions.
-
-    To get the range of rates a reaction network spans, use::
-
-        span = max(rn.rates.values())-min(rn.rates.values())
     """
     oldrate = None
     for reactants, products, rate in rn.rates():
         if oldrate is None:
             oldrate = rate
-        else:
-            if rate != oldrate:
-                return True
+        elif rate != oldrate:
+            return True
     return False
 
 

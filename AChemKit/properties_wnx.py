@@ -19,9 +19,14 @@ def make_linkage_graph(rn):
     G = networkx.MultiDiGraph()
     for reaction in rn.reactions:
         reactants, products = reaction
+        #remove catalysts
+        reactants = list(reactants)
+        products = list(products)
+        catalysts = set(reactants).intersection(products)
+        
         for reactant in reactants:
             for product in products:
-                if reactant != product:
+                if reactant != product and reactant not in catalysts and product not in catalysts:
                     G.add_edge(reactant, product, reaction = rn.reaction_to_string(reaction, rn.rate(*reaction)))
     return G
     
@@ -56,7 +61,7 @@ def make_catalysis_graph(rn):
         #work out what the catalysts are
         #probably only one of them
         catalysts = set(reactants).intersection(products)
-        assert len(catalysts) == 1
+        #assert len(catalysts) == 1
         assert len(catalysts) > 0
         for catalyst in catalysts:
             count = min(reactants.count(catalyst), products.count(catalyst))

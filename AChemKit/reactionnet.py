@@ -193,7 +193,7 @@ class ReactionNetwork(object):
                 splitline = re.split(repattern, line)
 
                 if len(splitline) != 3:
-                    raise ValueError, "Invalid reaction at line %d : %s" % (linecount, rawline, splitline)
+                    raise ValueError, "Invalid reaction at line %d : %s" % (linecount, rawline)
 
                 inputstring, rate, outputstring = splitline
 

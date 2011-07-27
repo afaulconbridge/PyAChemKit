@@ -140,22 +140,19 @@ class ReactionNetworkDot(ReactionNetwork):
 
 
             r_id = "R%d" % self.reactions.index((reactants, products))
-            dot[r_id] = {"shape":"point"}
+            dot[r_id] = {"label":"   "}
+            #make it inverted colors
+            dot[r_id]["style"] = "filled"
+            dot[r_id]["fontcolor"] = "white"
+            dot[r_id]["fillcolor"] = "black"
+            dot[r_id]["shape"] = "box"
+            #no need to have margins as big as the ovals
+            dot[r_id]["margin"] = "0.01,0.01"
+            dot[r_id]["width"] = "0.2"
+            dot[r_id]["height"] = "0.2"
 
             if rates == True or (rates is None and self.rate(reactants, products) != 1.0):
-                dot[r_id] = {"label":self.rate(reactants, products)}
-                #make it inverted colors
-                dot[r_id]["style"] = "filled"
-                dot[r_id]["fontcolor"] = "white"
-                dot[r_id]["fillcolor"] = "black"
-                #do stuff to make shape work on more versions of graphviz
-                #dot[r]["regular"] = "true"
-                #dot[r]["shape"] = "polygon"
-                dot[r_id]["shape"] = "box"
-                #no need to have margins as big as the ovals
-                dot[r_id]["margin"] = "0.01,0.01"
-                dot[r_id]["width"] = "0.0"
-                dot[r_id]["height"] = "0.0"
+                dot[r_id]["label"] = self.rate(reactants, products)
 
             for i in xrange(len(reactants)):
                 reactant = reactants[i]
