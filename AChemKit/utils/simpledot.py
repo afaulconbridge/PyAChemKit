@@ -88,8 +88,7 @@ class SimpleDot(DictMixin):
 
     def __getitem__(self, key):
         if key not in self.keylist:
-            self[key] = {}
-            return self[key]
+            raise LookupError, key
         elif self.keylist.count(key) > 1:
             #there may be multiple edges in the same graph
             return tuple((self.content[i] for i in xrange(len(self.keylist)) if self.keylist[i] == key))
@@ -104,14 +103,18 @@ class SimpleDot(DictMixin):
         else:
             self.content[self.keylist.index(key)] = value
 
+
     def __delitem__(self, key):
-        if key not in self.keylist:
+        if isinstance(key, int):
+            i = key        
+        elif key not in self.keylist:
             raise KeyError
         elif self.keylist.count(key) > 1:
-            raise IndexError, "delitem cannot be used with multi-use keys"
+            raise TypeError, "delete cannot be used with multi-use keys"
         else:
-            self.content.pop(self.keylist.index(key))
-            self.keylist.pop(self.keylist.index(key))
+            i = self.keylist.index(key)
+        del self.keylist[i]
+        del self.content[i]
 
     def add(self, key, value=None):
         """
@@ -140,16 +143,6 @@ class SimpleDot(DictMixin):
         for key in self:
             if isinstance(key, tuple):
                 yield key
-
-    def __delitem__(self, key):
-        if key not in self.keylist:
-            raise KeyError
-        elif self.keylist.count(key) > 1:
-            raise TypeError, "delete cannot be used with multi-use keys"
-        else:
-            i = self.keylist.index(key)
-            del self.keylist[i]
-            del self.content[i]
 
     def __str__(self):
         return self._to_dot()

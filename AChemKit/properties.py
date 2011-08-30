@@ -11,6 +11,8 @@ for explicitly.
 """
 import itertools
 
+from AChemKit.utils.bag import FrozenBag
+
 #some of these could be accelerated by moving the lambdas to dedicated functions?
 
 
@@ -56,6 +58,19 @@ def has_decomposition(rn):
         return True
     return False
 
+def split_catalysts_direct(reaction):
+    reactants, products = reaction
+    catalysts = []
+    newreactants = list(reactants)
+    newproducts = list(products)
+    for mol in sorted(set(reactants)):
+        if mol in newproducts:
+            newreactants.remove(mol)
+            newproducts.remove(mol)
+            catalysts.append(mol)
+    newreactants = FrozenBag(newreactants)
+    newproducts = FrozenBag(newproducts)
+    return newreactants, catalysts, newproducts
 
 def get_catalysis_direct(rn):
     """

@@ -77,10 +77,12 @@ class ReactionNetworkDot(ReactionNetwork):
         dot["node"]["margin"] = "0.02,0.02"
         dot["node"]["height"] = 0.0
         dot["node"]["width"] = 0.3
+        dot["node"]["shape"] = "box"
 
         dot["edge"] = {}
         dot["edge"]["dir"] = "both" #this is required to annotate tails
-        dot["edge"]["len"] = 0.25
+        dot["edge"]["len"] = 0.4
+        dot["edge"]["K"] = 0.4
 
         dot["graph"] = {}
         #dot["graph"]["layout"] = "sfdp"
@@ -145,11 +147,17 @@ class ReactionNetworkDot(ReactionNetwork):
             dot[r_id]["style"] = "filled"
             dot[r_id]["fontcolor"] = "white"
             dot[r_id]["fillcolor"] = "black"
-            dot[r_id]["shape"] = "box"
-            #no need to have margins as big as the ovals
-            dot[r_id]["margin"] = "0.01,0.01"
-            dot[r_id]["width"] = "0.2"
-            dot[r_id]["height"] = "0.2"
+            if (products, reactants) in self.reactions:
+                dot[r_id]["shape"] = "point"
+                dot[r_id]["margin"] = "0.0,0.0"
+                dot[r_id]["width"] = "0.0"
+                dot[r_id]["height"] = "0.0"
+            else:
+                dot[r_id]["shape"] = "box"
+                #no need to have margins as big as the ovals
+                dot[r_id]["margin"] = "0.01,0.01"
+                dot[r_id]["width"] = "0.2"
+                dot[r_id]["height"] = "0.2"
 
             if rates == True or (rates is None and self.rate(reactants, products) != 1.0):
                 dot[r_id]["label"] = self.rate(reactants, products)

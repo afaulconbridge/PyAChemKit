@@ -15,6 +15,7 @@ Options:
   -i INFILE, --infile=INFILE     Read from INFILE (if ommited, use stdin)
   -o OUTFILE, --outfile=OUTFILE  Write to OUTFILE in .chem format  (if ommited, use stdout)
   -n NAMES, --names              Style of molecular species naming. One of 'full', 'id', 'blank'
+  -l LAYOUT                      Layout asigned to graph
 
 """
 
@@ -34,6 +35,8 @@ if __name__=="__main__":
     parser.add_option("-i", "--infile",  dest="infile",  help="read from INFILE in .chem format (if ommited, use stdin)", metavar="INFILE")
     parser.add_option("-o", "--outfile", dest="outfile", help="write to OUTFILE in .dot format (if ommited, use stdout)", metavar="OUTFILE")
     parser.add_option("-n", "--names", dest="names", help="style of molecular species naming. One of 'full', 'id', 'blank'", metavar="NAMES", default=None)
+    parser.add_option("-l", "--layout", dest="layout", help="layout to assign to the dot file")
+    
     (options, args) = parser.parse_args()
     rn = None
     if options.infile is None:
@@ -43,7 +46,11 @@ if __name__=="__main__":
         #read from provided filename
         rn = ReactionNetwork.from_filename(options.infile)
 
-    dotstr = str(rn.to_dot(names=options.names))
+    dot = rn.to_dot(names=options.names)
+    if options.layout is not None:
+        dot["graph"]["layout"] = options.layout
+        
+    dotstr = str(dot)
 
     if options.outfile is None:
         #print to standard out
