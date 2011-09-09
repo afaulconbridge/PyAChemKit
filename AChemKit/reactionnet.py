@@ -46,7 +46,8 @@ class ReactionNetwork(object):
                 reactants = OrderedFrozenBag(reactants)
             if not isinstance(products, OrderedFrozenBag):
                 products = OrderedFrozenBag(products)
-            self._rates[reactants, products] = rates[reaction]
+            if reactants != products:
+                self._rates[reactants, products] = rates[reaction]
 
     @property
     def seen(self):
