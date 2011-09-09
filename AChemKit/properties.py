@@ -82,8 +82,13 @@ def get_catalysis_direct(rn):
         AB + C -> A + B + C
 
     """
-    for reaction in itertools.ifilter(lambda (reactants, products):len(set(reactants).intersection(products)) > 0, rn.reactions):
-        yield reaction
+    for reaction in rn.reactions:
+        reactants, catalysts, products = split_catalysts_direct(reaction)
+        if len(catalysts) > 0:
+            yield reaction
+    
+#    for reaction in itertools.ifilter(lambda (reactants, products):len(set(reactants).intersection(products)) > 0, rn.reactions):
+#        yield reaction
 
 def has_catalysis_direct(rn):
     "Tests if any reactions are direct catalysis. See :py:func:`~get_catalysis_direct` for definition."
