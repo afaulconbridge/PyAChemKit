@@ -52,7 +52,7 @@ install: test
 	python setup.py sdist
 	sudo python setup.py install
 	sudo rm -rf build/ dist/
-	
+
 develop: 
 	sudo python setup.py develop
 

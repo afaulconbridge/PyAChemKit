@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name="AChemKit", 
-    version="0.2.0", 
+    version="0.3.0", 
     author="Adam Faulconbridge", 
     author_email="afaulconbridge@googlemail.com", 
 #    packages=["AChemKit", "AChemKit/utils", "AChemKit/tools"],
