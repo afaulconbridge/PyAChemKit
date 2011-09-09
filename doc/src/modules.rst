@@ -6,4 +6,3 @@ Project Modules
    :maxdepth: 10
 
    AChemKit
-   setup
