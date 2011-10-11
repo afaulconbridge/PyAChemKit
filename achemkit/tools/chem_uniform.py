@@ -10,8 +10,7 @@ import argparse
 import AChemKit
 from AChemKit.randomnet import Uniform 
 
-if __name__=="__main__":
-
+def main():
     parser = argparse.ArgumentParser(description="Generates `.chem` using Uniform algorithm.")
     parser.add_argument("-o", "--outfile", action="store", type=argparse.FileType('w'), help="write to OUTFILE in .chem format (if ommited, use stdout)", metavar="OUTFILE")
     parser.add_argument("-n", "--nmols", action="store", type=int, help="number of molecules", default=10)
@@ -57,3 +56,7 @@ if __name__=="__main__":
     else:
         #write to provided filename
         args.outfile.write(chemstr)
+        
+
+if __name__=="__main__":
+    main()

@@ -29,8 +29,7 @@ import sys
 #from AChemKit.reactionnet import ReactionNetwork
 from AChemKit.reactionnetdot import ReactionNetworkDot as ReactionNetwork
 
-if __name__=="__main__":
-
+def main():
     parser = optparse.OptionParser(description="Produces `.dot` output from `.chem` input.")
     parser.add_option("-i", "--infile",  dest="infile",  help="read from INFILE (if ommited, use stdin)", metavar="INFILE")
     parser.add_option("-o", "--outfile", dest="outfile", help="write to OUTFILE in .chem format (if ommited, use stdout)", metavar="OUTFILE")
@@ -55,3 +54,7 @@ if __name__=="__main__":
         outfile = open(options.outfile, "w")
         outfile.write(dotstr)
         outfile.close()
+        
+
+if __name__=="__main__":
+    main()

@@ -22,9 +22,8 @@ import optparse
 import AChemKit
 from AChemKit.bucket import Bucket
 
-if __name__=="__main__":
-
-    parser = optparse.OptionParser(description="Produces `.dot` output from `.chem` input.")
+def main():
+    parser = optparse.OptionParser(description="Produces `.chem` output from `.log` input.")
     parser.add_option("-i", "--infile",  action="store", type="string", dest="infile",  help="read from INFILE in .log format (if ommited, use stdin)", metavar="INFILE")
     parser.add_option("-o", "--outfile", action="store", type="string", dest="outfile", help="write to OUTFILE in .chem format (if ommited, use stdout)", metavar="OUTFILE")
     parser.add_option("-a", "--after", action="store", type="float", dest="after", help="only use events after this time", default=0.0)
@@ -49,3 +48,7 @@ if __name__=="__main__":
         outfile = open(options.outfile, "w")
         outfile.write(chemstr)
         outfile.close()
+        
+
+if __name__=="__main__":
+    main()

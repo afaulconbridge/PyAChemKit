@@ -25,8 +25,7 @@ import sys
 import AChemKit
 from AChemKit.randomnet import Linear 
 
-if __name__=="__main__":
-
+def main():
     parser = argparse.ArgumentParser(description="Generates `.chem` using Linear algorithm.")
     parser.add_argument("-o", "--outfile", action="store", type=argparse.FileType('w'), help="write to OUTFILE in .chem format (if ommited, use stdout)", metavar="OUTFILE")
     parser.add_argument("-a", "--natoms", action="store", type=int, help="number of atoms", default=2)
@@ -70,3 +69,8 @@ if __name__=="__main__":
     else:
         #write to provided filename
         args.outfile.write(chemstr)
+        
+        
+        
+if __name__=="__main__":
+    main()

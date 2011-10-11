@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name="AChemKit", 
-    version="0.3.0", 
+    version="0.4.0", 
     author="Adam Faulconbridge", 
     author_email="afaulconbridge@googlemail.com", 
 #    packages=["AChemKit", "AChemKit/utils", "AChemKit/tools"],
@@ -21,4 +21,10 @@ setup(name="AChemKit",
     url="https://github.com/afaulconbridge/PyAChemKit", 
     download_url="http://pypi.python.org/packages/source/A/AChemKit/AChemKit-0.1.0.tar.gz#md5=a4b09ccb7ce61642305e3ef5874ac924", 
     description="An Artificial Chemistry Tookit", 
-    long_description=open("README.txt").read() )
+    long_description=open("README.txt").read(),
+    entry_points = {
+        'console_scripts': ['chem_pp = achemkit.tools.chem_pp:main', 
+        'chem_to_dot = achemkit.tools.chem_to_dot:main',
+        'chem_to_pdf = achemkit.tools.chem_to_pdf:main',
+        ]}
+    )
