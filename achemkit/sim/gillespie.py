@@ -3,7 +3,7 @@
 
 import random
 
-from . import sims_simple
+import achemkit
 
 def simulate_gillespie_iter(achem, mols, maxtime, rng=None):
     """

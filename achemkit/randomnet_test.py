@@ -10,7 +10,7 @@ sys.path.append(".")
 
 import unittest
 
-from AChemKit.randomnet import Uniform, Linear
+from achemkit import Uniform, Linear
 import random
 
 class TestUniform(unittest.TestCase):

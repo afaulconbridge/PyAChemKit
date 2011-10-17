@@ -306,38 +306,6 @@ class ReactionNetwork(object):
             mols = sorted(mols)
             newmols = sorted(newnewmols)
             i += 1
-        """    
-        molstr = [str(x) for x in mols]
-        for x in molstr:
-            if molstr.count(x) > 1:
-                print ">", molstr
-                for mol in mols:
-                    if str(mol) == x:
-                        print mol
-            assert molstr.count(x) == 1
-                        
-        strrates = {}
-        for reaction in rates:
-            reactants, products = reaction
-            productsstr = OrderedFrozenBag((str(x) for x in products))
-            reactantstr = OrderedFrozenBag((str(x) for x in reactants))
-            reactionstr = (reactantstr, productsstr)
-            
-            if reactionstr in strrates:
-                for key in strrates:
-                    if key == reactionstr:
-                        reactiona = reaction
-                        reactionb = strrates[key]
-                        print "reaction", reactiona, hash(reactiona[0])
-                        print reactiona[0]
-                        print reactiona[0]._bag._items
-                        
-                        print "strrates[key]", reactionb, hash(reactionb[0])
-                        print reactionb[0]._bag._items
-                        
-            assert reactionstr not in strrates, reactionstr
-            strrates[reactionstr] = reaction
-        """    
         return cls(rates)
         
 

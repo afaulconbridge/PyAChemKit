@@ -11,7 +11,7 @@ for explicitly.
 """
 import itertools
 
-from AChemKit.utils.bag import FrozenBag
+from achemkit.utils.bag import FrozenBag
 
 #some of these could be accelerated by moving the lambdas to dedicated functions?
 

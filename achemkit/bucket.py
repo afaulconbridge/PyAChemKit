@@ -17,18 +17,21 @@ class Event(object):
 
     Supports comparisons, is hashable, is immutable.
     """
-    __slots__ = ["time", "reactants", "products"]
+    __slots__ = ["time", "reactants", "products", "rateconstant"]
 
 
-    def __init__(self, time, reactants, products):
-        if not isinstance(reactants, OrderedFrozenBag):
-            reactants = OrderedFrozenBag(reactants)
-        if not isinstance(products, OrderedFrozenBag):
-            products = OrderedFrozenBag(products)
+    def __init__(self, time, reactants, products, rateconstant=1.0):
+        reactants = OrderedFrozenBag(reactants)
+        products = OrderedFrozenBag(products)
             
+        #have to do it this way to avoid immutability issues
         super(Event, self).__setattr__('time', time)
         super(Event, self).__setattr__('reactants', reactants)
         super(Event, self).__setattr__('products', products)
+        super(Event, self).__setattr__('rateconstant', rateconstant)
+
+    def __repr__(self):
+        return "Event({0},{1},{2},{3})".format(self.time, self.reactants, self.products, self.rateconstant)
 
     def __eq__(self, other):
         if self.time == other.time and self.reactants == other.reactants and self.products == other.products:
