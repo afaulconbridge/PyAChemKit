@@ -19,23 +19,23 @@ help:
 all: doc test
 
 test:
-	nosetests  --with-xunit --with-coverage --cover-package=AChemKit --where=AChemKit
+	nosetests  --with-xunit --with-coverage --cover-package=achemkit --where=achemkit
 
 pylint:
-	pylint --rcfile=pylint.rc -f parseable AChemKit > pylint.txt
+	pylint --rcfile=pylint.rc -f parseable achemkit > pylint.txt
 
 doc: dochtml doclatex
 
 dochtml:
-	python doc/src/generate_modules.py -d doc/src/ -s rst -f -m 10 AChemKit
+	python doc/src/generate_modules.py -d doc/src/ -s rst -f -m 10 achemkit
 	sphinx-build -b html -n doc/src doc/html
 
 doclatex:
-	python doc/src/generate_modules.py -d doc/src/ -s rst -f -m 10 AChemKit
+	python doc/src/generate_modules.py -d doc/src/ -s rst -f -m 10 achemkit
 	sphinx-build -b latex -n doc/src doc/latex
-	pdflatex -output-directory doc/latex  doc/latex/AChemKit > /dev/null
-	pdflatex -output-directory doc/latex  doc/latex/AChemKit > /dev/null
-	pdflatex -output-directory doc/latex  doc/latex/AChemKit > /dev/null
+	pdflatex -output-directory doc/latex  doc/latex/achemkit > /dev/null
+	pdflatex -output-directory doc/latex  doc/latex/achemkit > /dev/null
+	pdflatex -output-directory doc/latex  doc/latex/achemkit > /dev/null
 
 setup: 
 	sudo apt-get install python-dev python-setuptools tofrodos
@@ -45,7 +45,7 @@ setup:
 distribute: test doc
 	@cp doc/src/README.rst README.txt
 	@unix2dos README.txt
-	@cp doc/latex/AChemKit.pdf AChemKit.pdf
+	@cp doc/latex/achemkit.pdf PyAChemKit.pdf
 	python setup.py register sdist upload
 
 install: test

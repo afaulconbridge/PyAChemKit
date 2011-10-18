@@ -1,9 +1,7 @@
 from setuptools import setup, find_packages
 
-import achemkit
-
 setup(name="AChemKit", 
-    version=achemkit.__version__, 
+    version="0.4.0", 
     author="Adam Faulconbridge", 
     author_email="afaulconbridge@googlemail.com", 
     packages = find_packages(),
@@ -26,10 +24,8 @@ setup(name="AChemKit",
     entry_points = {
         'console_scripts': ['chem_pp = achemkit.tools.chem_pp:main', 
         'chem_to_dot = achemkit.tools.chem_to_dot:main',
-        'chem_to_pdf = achemkit.tools.chem_to_pdf:main',
-        ]},
+        'chem_to_pdf = achemkit.tools.chem_to_pdf:main']},
     install_requires = [
         'networkx',
-        'pyumpf'    
-    ]
+        'pyumpf']
     )
