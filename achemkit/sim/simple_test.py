@@ -24,7 +24,7 @@ class TestItterative(unittest.TestCase):
         
         
     def test_basic(self):
-        #this isnt a true test, but it runs some code and gets a result
+        #this isnt a complete test, but it runs some code and gets a result
         events = achemkit.sim_itterative(self.achem, self.mols, 10)
         buck = achemkit.Bucket(events)
         self.assertEqual(set(buck.reactionnet.reactions), set(self.net.reactions))
@@ -32,7 +32,7 @@ class TestItterative(unittest.TestCase):
 class TestStepwise(TestItterative):
         
     def test_basic(self):
-        #this isnt a true test, but it runs some code and gets a result
+        #this isnt a complete test, but it runs some code and gets a result
         events = achemkit.sim_stepwise(self.achem, self.mols, 10)
         buck = achemkit.Bucket(events)
         self.assertEqual(buck.reactionnet.reactions, self.net.reactions)
@@ -40,8 +40,8 @@ class TestStepwise(TestItterative):
 class TestEnumerate(TestItterative):
         
     def test_basic(self):
-        #this isnt a true test, but it runs some code and gets a result
-        events = achemkit.sim_enumerate(self.achem, self.mols, 10)
+        #this isnt a complete test, but it runs some code and gets a result
+        events = achemkit.sim_enumerate(self.achem, set(self.mols), 10)
         buck = achemkit.Bucket(events)
         self.assertEqual(buck.reactionnet.reactions, self.net.reactions)
         

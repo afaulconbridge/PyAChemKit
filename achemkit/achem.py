@@ -69,12 +69,11 @@ class AChemReactionNetwork(AChem):
         
     def all_reactions(self, reactants):
         #need to convert to a bag so that it maps to the reactionnetwork properly
-        if not isinstance(reactants, OrderedFrozenBag):
-            reactants = OrderedFrozenBag(reactants)
+        reactants = OrderedFrozenBag(reactants)
             
         possibleproducts = {}
         for netreactants, netproducts in self.reactionnetwork.reactions:
             if netreactants == reactants:
-                possibleproducts[netreactants] =  self.reactionnetwork.rate(netreactants, netproducts)
+                possibleproducts[netreactants, netproducts] =  self.reactionnetwork.rate(netreactants, netproducts)
         
         return possibleproducts

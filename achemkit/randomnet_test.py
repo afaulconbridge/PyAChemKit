@@ -4,10 +4,6 @@ This is the test harness for :py:mod:`AChemKit.randomnet`.
 Tricky to test well because it is non-deterministic.
 
 """
-#this will not be required once a proper installer exists
-import sys
-sys.path.append(".")
-
 import unittest
 
 from achemkit import Uniform, Linear
@@ -126,9 +122,11 @@ class TestLinear(unittest.TestCase):
     def test_natoms_int(self):
         net = Linear(2, 3, 0.2, 0.2)
         net = Linear(2, 3, 0.2, 0.2, rng = self.rng)
+        
     def test_natoms_tuple(self):
         net = Linear((2,3), 3, 0.2, 0.2)
         net = Linear((2,3), 3, 0.2, 0.2, rng = self.rng)
+        
     def test_natoms_dict(self):
         net = Linear({2:2,3:2.1}, 3, 0.2, 0.2)
         net = Linear({2:2,3:2.1}, 3, 0.2, 0.2, rng = self.rng)
@@ -136,6 +134,7 @@ class TestLinear(unittest.TestCase):
     def test_maxlengt_tuple(self):
         net = Linear(2, (3,5), 0.2, 0.2)
         net = Linear(2, (3,5), 0.2, 0.2, rng = self.rng)
+
     def test_maxlengt_dict(self):
         net = Linear(2, {3:2,5:2.1}, 0.2, 0.2)
         net = Linear(2, {3:2,5:2.1}, 0.2, 0.2, rng = self.rng)

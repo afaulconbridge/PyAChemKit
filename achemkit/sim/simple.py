@@ -37,17 +37,16 @@ class ReactorEnumerate(Reactor):
         while len(self.mols) < self.maxmols and len(self.untested) > 0:
             untested = tuple(self.untested)
             self.untested = []
-            results = itertools.izip(untested, umpf.map(self.achem.all_reactions, untested))
+            results = umpf.map(self.achem.all_reactions, untested)
             while len(self.mols) < self.maxmols:
                 try:
-                    reactants, all_products = results.next()
+                    reactions = results.next()
                 except StopIteration:
                     break
                 else:
-                    reactants = OrderedFrozenBag(reactants)
-                    self.tested.append(reactants)
-                    for products in all_products:
-                        e = Event(0.0, reactants, products, all_products[products])
+                    for reaction in reactions:
+                        reactants, products = reaction
+                        e = Event(0.0, reactants, products, reactions[reaction])
                         yield e
                         for product in products:
                             self.add_mol(product)

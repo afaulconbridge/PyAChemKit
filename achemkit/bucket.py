@@ -20,7 +20,7 @@ class Event(object):
     __slots__ = ["time", "reactants", "products", "rateconstant"]
 
 
-    def __init__(self, time, reactants, products, rateconstant=1.0):
+    def __init__(self, time, reactants, products, rateconstant=None):
         reactants = OrderedFrozenBag(reactants)
         products = OrderedFrozenBag(products)
             
@@ -61,13 +61,7 @@ class Bucket(object):
     events = []
 
     def __init__(self, events):
-        self.events = []
-        for event in events:
-            if not isinstance(event, Event):
-                event = Event(*event)
-            self.events.append(event)
-        self.events.sort()
-        self.events = tuple(self.events)
+        self.events = sorted(events)
 
     @classmethod
     def from_string(cls, instr):
@@ -105,15 +99,20 @@ class Bucket(object):
             walltime = int(walltime)
             simtime = float(simtime)
 
-            match = re.search(r"^(.*?)->(.*?)$", reaction)
+            match = re.search(r"^(.*?)-([0-9]*\.?[0-9]*)>(.*?)$", reaction)
             
             if match == None:
                 raise ValueError, "invalid reaction: "+reaction
                 
-            reactants, products = match.groups()
+            reactants, rateconstant, products = match.groups()
 
             reactants = reactants.split("+")
             reactants = tuple( x.strip() for x in reactants if len(x.strip()) > 0 )
+
+            if rateconstant == "":
+                rateconstant = None
+            else:
+                rateconstant = float(rateconstant)
 
             products = products.split("+")
             products = tuple( x.strip() for x in products if len(x.strip()) > 0 )
@@ -127,7 +126,7 @@ class Bucket(object):
                 assert "\t" not in product
                 assert "->" not in product
 
-            event = Event(simtime, reactants, products)
+            event = Event(simtime, reactants, products, rateconstant)
             events.append(event)
         return cls(events)
 
@@ -149,9 +148,15 @@ class Bucket(object):
                 reactants = event.reactants
                 products = event.products
                 reaction = (reactants, products)
-                if reaction not in rates:
-                    rates[reaction] = 0
-                rates[reaction] += 1
+                if event.rateconstant is None:
+                    if reaction not in rates:
+                        rates[reaction] = 0
+                    rates[reaction] += 1
+                else:
+                    if reaction not in rates:
+                        rates[reaction] = event.rateconstant
+                    else:
+                        assert rates[reaction] == event.rateconstant
                 
                 reactants_sorted = tuple(sorted(reactants))
                 if reactants_sorted not in seenreactants:
