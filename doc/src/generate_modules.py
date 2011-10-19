@@ -139,6 +139,8 @@ def shall_skip(module):
     """
     Check if we want to skip this module.
     """
+    if module.endswith("_test.py"):
+        return True
     # skip it, if there is nothing (or just \n or \r\n) in the file
     return os.path.getsize(module) < 3
 
@@ -220,7 +222,7 @@ def is_excluded(root, excludes):
     Check if the directory is in the exclude list.
 
     Note: by having trailing slashes, we avoid common prefix issues, like
-          e.g. an exlude "foo" also accidentally excluding "foobar".
+          e.g. an exclude "foo" also accidentally excluding "foobar".
     """
     sep = os.path.sep
     if not root.endswith(sep):
@@ -238,7 +240,7 @@ def main():
 
 Note: By default this script will not overwrite already created files.""")
     parser.add_option("-n", "--doc-header", action="store", dest="header", help="Documentation Header (default=Project)", default="Project")
-    parser.add_option("-d", "--dest-dir", action="store", dest="destdir", help="Output destination directory", default="")
+    parser.add_option("-d", "--dest-dir", action="store", dest="destdir", help="Output destination directory", default=".")
     parser.add_option("-s", "--suffix", action="store", dest="suffix", help="module suffix (default=txt)", default="txt")
     parser.add_option("-m", "--maxdepth", action="store", dest="maxdepth", help="Maximum depth of submodules to show in the TOC (default=4)", type="int", default=4)
     parser.add_option("-r", "--dry-run", action="store_true", dest="dryrun", help="Run the script without creating the files")
