@@ -33,9 +33,9 @@ dochtml:
 doclatex:
 	python doc/src/generate_modules.py -d doc/src/ -s rst -f -m 10 achemkit
 	sphinx-build -b latex -n doc/src doc/latex
-	pdflatex -output-directory doc/latex  doc/latex/achemkit > /dev/null
-	pdflatex -output-directory doc/latex  doc/latex/achemkit > /dev/null
-	pdflatex -output-directory doc/latex  doc/latex/achemkit > /dev/null
+	pdflatex -output-directory doc/latex  doc/latex/PyAChemKit
+	pdflatex -output-directory doc/latex  doc/latex/PyAChemKit 
+	pdflatex -output-directory doc/latex  doc/latex/PyAChemKit
 
 setup: 
 	sudo apt-get install python-dev python-setuptools tofrodos
