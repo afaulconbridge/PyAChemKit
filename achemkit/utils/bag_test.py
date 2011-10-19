@@ -1,5 +1,5 @@
 """
-This is the test harness for :py:mod:`AChemKit.utils.bag`.
+This is the test harness for :py:mod:`achemkit.utils.bag`.
 
 """
 #this will not be required once a proper installer exists
@@ -7,7 +7,7 @@ import sys
 sys.path.append(".")
 
 import unittest
-from bag import *
+from achemkit.utils.bag import *
 try:
     import cPickle as pickle
 except ImportError:

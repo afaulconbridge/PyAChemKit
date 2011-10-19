@@ -8,9 +8,9 @@ import itertools
 
 import networkx
 
-from . import reactionnet
-from .utils.utils import long_subseq
-from . import properties
+from achemkit import ReactionNetwork
+from achemkit.utils.utils import long_subseq
+from achemkit import properties
 
 def make_linkage_graph(rn):
     """

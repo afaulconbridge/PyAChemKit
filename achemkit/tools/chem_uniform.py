@@ -1,14 +1,13 @@
 """
 
-This is a command-line tool for generating `.chem` files using the :py:func:`~AChemKit.randomnet.Uniform` random reaction network algorithm.
+This is a command-line tool for generating `.chem` files using the :py:func:`~achemkit.randomnet.Uniform` random reaction network algorithm.
 
 """
 
 import random
 import argparse
 
-import AChemKit
-from AChemKit.randomnet import Uniform 
+from achemkit import Uniform 
 
 def main():
     parser = argparse.ArgumentParser(description="Generates `.chem` using Uniform algorithm.")

@@ -1,7 +1,7 @@
 """
 Functions for testing properties of particular reaction networks.
 
-These functions expect an object of class :py:class:`AChemKit.reactionnet.ReactionNetwork`
+These functions expect an object of class :py:class:`achemkit.reactionnet.ReactionNetwork`
 or subclass or something with an equivalent API. It does not enforce
 this however, so you may use custom classes with the same API.
 
@@ -11,7 +11,7 @@ for explicitly.
 """
 import itertools
 
-from achemkit.utils.bag import FrozenBag
+from achemkit import FrozenBag
 
 #some of these could be accelerated by moving the lambdas to dedicated functions?
 

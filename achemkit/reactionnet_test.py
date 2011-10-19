@@ -1,15 +1,12 @@
 """
-This is the test harness for :py:mod:`AChemKit.reactionnet`.
+This is the test harness for :py:mod:`achemkit.reactionnet`.
 
 """
-#this will not be required once a proper installer exists
-import sys
-sys.path.append(".")
 
 import unittest
 
-from reactionnet import ReactionNetwork
-from utils.bag import OrderedFrozenBag
+from achemkit import ReactionNetwork
+from achemkit import OrderedFrozenBag
 
 class TestReactionNetwork(unittest.TestCase):
     """

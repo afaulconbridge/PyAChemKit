@@ -1,5 +1,5 @@
 """
-This is the test harness for :py:mod:`AChemKit.utils.utils`.
+This is the test harness for :py:mod:`achemkit.utils.utils`.
 
 """
 #this will not be required once a proper installer exists
@@ -9,7 +9,7 @@ sys.path.append(".")
 import unittest
 import random
 
-from utils import *
+from achemkit.utils import *
 
 class TestGetSample(unittest.TestCase):
     

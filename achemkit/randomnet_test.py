@@ -1,5 +1,5 @@
 """
-This is the test harness for :py:mod:`AChemKit.randomnet`.
+This is the test harness for :py:mod:`achemkit.randomnet`.
 
 Tricky to test well because it is non-deterministic.
 

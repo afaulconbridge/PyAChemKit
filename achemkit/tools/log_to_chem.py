@@ -19,8 +19,7 @@ Options:
 #however, we want python 2.5 compatibility so its still here
 import optparse
 
-import AChemKit
-from AChemKit.bucket import Bucket
+from achemkit import Bucket
 
 def main():
     parser = optparse.OptionParser(description="Produces `.chem` output from `.log` input.")

@@ -1,6 +1,6 @@
 """
 This is a command-line tool for generating `.chem` files using 
-the :py:func:`~AChemKit.randomnet.Linear` random reaction network algorithm.
+the :py:func:`~achemkit.randomnet.Linear` random reaction network algorithm.
 
 usage: chem_linear.py [options]
 
@@ -22,8 +22,7 @@ import random
 import argparse
 import sys
 
-import AChemKit
-from AChemKit.randomnet import Linear 
+from achemkit import Linear 
 
 def main():
     parser = argparse.ArgumentParser(description="Generates `.chem` using Linear algorithm.")

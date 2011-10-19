@@ -1,5 +1,5 @@
 """
-This is the test harness for :py:mod:`AChemKit.sims_simple`.
+This is the test harness for :py:mod:`achemkit.sims_simple`.
 
 """
 #this will not be required once a proper installer exists

@@ -12,12 +12,12 @@ except ImportError:
    
 __version__ = "0.4.0"
    
+from achemkit.utils.bag import Bag, FrozenBag, OrderedBag, OrderedFrozenBag
 from achemkit.reactionnet import ReactionNetwork
-from achemkit.reactionnetdot import net_to_dot 
 from achemkit.utils.simpledot import SimpleDot
+from achemkit.reactionnetdot import net_to_dot
 from achemkit.randomnet import Uniform
 from achemkit.randomnet import Linear
-from achemkit.utils.bag import Bag, FrozenBag, OrderedBag, OrderedFrozenBag
 from achemkit.bucket import Bucket, Event
 from achemkit.achem import AChem, AChemReactionNetwork
 from achemkit.sim.simple import sim_enumerate, sim_itterative, sim_stepwise

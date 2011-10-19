@@ -3,7 +3,7 @@
 Produces a `.pdf` output from a provided `.chem` format input
 
 The output files in `.pdf` format produced using Graphviz tools.
-In particular, they are constructed using :class:`AChemKit.utils.simpledot.SimpleDot`.
+In particular, they are constructed using :class:`achemkit.utils.simpledot.SimpleDot`.
 
 For information in `.chem` files see :ref:`chem_file_format`.
 
@@ -18,7 +18,6 @@ Options:
 
 """
 
-__module__="AChemKit"
 
 #this is depcrecated in python 2.7 in favour of argparse
 #however, we want python 2.5 compatibility so its still here
@@ -26,13 +25,13 @@ import optparse
 
 import sys
 
-#from AChemKit.reactionnet import ReactionNetwork
-from AChemKit.reactionnetdot import ReactionNetworkDot as ReactionNetwork
+from achemkit import ReactionNetwork, net_to_dot
 
 def main():
     parser = optparse.OptionParser(description="Produces `.dot` output from `.chem` input.")
     parser.add_option("-i", "--infile",  dest="infile",  help="read from INFILE (if ommited, use stdin)", metavar="INFILE")
     parser.add_option("-o", "--outfile", dest="outfile", help="write to OUTFILE in .chem format (if ommited, use stdout)", metavar="OUTFILE")
+    parser.add_option("-n", "--names", dest="names", help="style of molecular species naming. One of 'full', 'id', 'blank'", metavar="NAMES", default=None)
     parser.add_option("-l", "--layout", dest="layout", help="Graphviz layout to use (if ommited, use dot)", default="dot", metavar="LAYOUT")
     (options, args) = parser.parse_args()
     
@@ -44,7 +43,8 @@ def main():
         #read from provided filename
         rn = ReactionNetwork.from_filename(options.infile)
 
-    dotstr = rn.dot.plot(prog = options.layout)
+    dot = net_to_dot(rn, names=options.names)
+    dotstr = dot.plot(prog = options.layout)
 
     if options.outfile is None:
         #print to standard out

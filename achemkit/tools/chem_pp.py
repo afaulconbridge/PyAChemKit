@@ -21,7 +21,7 @@ import sys
 #however, we want python 2.5 compatibility so its still here
 import optparse
 
-from AChemKit.reactionnet import ReactionNetwork
+from achemkit import ReactionNetwork
 
 def main():
     parser = optparse.OptionParser(description="Pretty-printer and syntax checker for .chem files.")

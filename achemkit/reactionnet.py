@@ -1,9 +1,9 @@
 """
 Core for all ReactionNetwork classes
 
-Of particular note are the alternative constructors of :py:class:`~AChemKit.reactionnet.ReactionNetwork`,
-:py:meth:`~AChemKit.reactionnet.ReactionNetwork.from_file`, :py:meth:`~AChemKit.reactionnet.ReactionNetwork.from_filename` and
-:py:meth:`~AChemKit.reactionnet.ReactionNetwork.from_string`.
+Of particular note are the alternative constructors of :py:class:`~achemkit.reactionnet.ReactionNetwork`,
+:py:meth:`~achemkit.reactionnet.ReactionNetwork.from_file`, :py:meth:`~achemkit.reactionnet.ReactionNetwork.from_filename` and
+:py:meth:`~achemkit.reactionnet.ReactionNetwork.from_string`.
 """
 
 #regular expression to detect reaction when reading from string-based inputs
@@ -11,7 +11,7 @@ import re
 #used to converge from_string into from_file paradigm
 import StringIO
 
-from .utils.bag import OrderedFrozenBag, FrozenBag, Bag
+from achemkit import OrderedFrozenBag, FrozenBag, Bag
 
 class ReactionNetwork(object):
     """
@@ -19,9 +19,9 @@ class ReactionNetwork(object):
     composed of (reactants, products) and each
     value is the rate.
 
-    :py:class:`~AChemKit.reactionnet.ReactionNetwork` objects are immutable and hashable.
+    :py:class:`~achemkit.reactionnet.ReactionNetwork` objects are immutable and hashable.
 
-    :py:class:`~AChemKit.reactionnet.ReactionNetwork` objects support :py:meth:`~AChemKit.reactionnet.ReactionNetwork.__eq__` and :py:meth:`~AChemKit.reactionnet.ReactionNetwork.__ne__`, but none of the other
+    :py:class:`~achemkit.reactionnet.ReactionNetwork` objects support :py:meth:`~achemkit.reactionnet.ReactionNetwork.__eq__` and :py:meth:`~achemkit.reactionnet.ReactionNetwork.__ne__`, but none of the other
     rich comparison operators (__lt__, __le__, __gt__, __ge__).
 
     Different subclassess could be implemented to generate reaction networks on
@@ -154,14 +154,14 @@ class ReactionNetwork(object):
     @classmethod
     def from_string(cls, instr):
         """
-        Wrapper around :py:meth:`AChemKit.reactionnet.ReactionNetwork.from_file` that uses :class:`~StringIO.StringIO`.
+        Wrapper around :py:meth:`achemkit.reactionnet.ReactionNetwork.from_file` that uses :class:`~StringIO.StringIO`.
         """
         return cls.from_file(StringIO.StringIO(instr))
 
     @classmethod
     def from_filename(cls, infilename):
         """
-        Wrapper around :py:meth:`AChemKit.reactionnet.ReactionNetwork.from_file` that opens the provided filename as a file to read.
+        Wrapper around :py:meth:`achemkit.reactionnet.ReactionNetwork.from_file` that opens the provided filename as a file to read.
         """
         return cls.from_file(open(infilename, "r"))
 

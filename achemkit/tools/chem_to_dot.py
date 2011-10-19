@@ -3,7 +3,7 @@
 Produces a `.dot` output from a provided `.chem` format input
 
 The output files in `.dot` format are suitable for future processing using Graphviz tools.
-In particular, they are constructed using :class:`AChemKit.utils.simpledot.SimpleDot`.
+In particular, they are constructed using :class:`achemkit.utils.simpledot.SimpleDot`.
 
 For information in `.chem` files see :ref:`chem_file_format`.
 
@@ -19,15 +19,13 @@ Options:
 
 """
 
-__module__ = "AChemKit.tools"
-
 import sys
 
 #this is depcrecated in python 2.7 in favour of argparse
 #however, we want python 2.5 compatibility so its still here
 import optparse
 
-from AChemKit.reactionnetdot import ReactionNetworkDot as ReactionNetwork
+from achemkit import ReactionNetwork, net_to_dot
 
 def main():
     parser = optparse.OptionParser(description="Produces `.dot` output from `.chem` input.")
@@ -45,7 +43,8 @@ def main():
         #read from provided filename
         rn = ReactionNetwork.from_filename(options.infile)
 
-    dot = rn.to_dot(names=options.names)
+    
+    dot = net_to_dot(rn, names=options.names)
     if options.layout is not None:
         dot["graph"]["layout"] = options.layout
         
