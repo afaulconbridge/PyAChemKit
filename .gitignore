@@ -25,16 +25,16 @@ AChemKit.pdf #this is just a copy for distribution
 MANIFEST
 dist/
 build/
+AChemKit.egg-info/
 
 
 #documentation build directorys
 doc/latex/
-#doc/html/ #dont ignore this so it can be put on the git website in branch gh-pages
+doc/html/
 !doc/latex/AChemKit.pdf
 
-
 #autobuild doc sources
-doc/src/AChemKit*.rst
+doc/src/achemkit*.rst
 
 #sphinx internal caching
 doc/html/.doctrees/
