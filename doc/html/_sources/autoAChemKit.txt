@@ -1,5 +1,0 @@
-.. automodule:: AChemKit
-   :members:
-   :inherited-members:
-
-.. autofunction:: AChemKit.randomnet.Uniform

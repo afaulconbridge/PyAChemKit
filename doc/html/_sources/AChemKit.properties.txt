@@ -1,6 +1,0 @@
-AChemKit.properties
-===================
-
-.. currentmodule:: AChemKit
-
-.. autodata:: properties

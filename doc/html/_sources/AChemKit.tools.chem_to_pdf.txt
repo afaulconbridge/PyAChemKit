@@ -1,6 +1,0 @@
-AChemKit.tools.chem_to_pdf
-==========================
-
-.. currentmodule:: AChemKit.tools
-
-.. autodata:: chem_to_pdf

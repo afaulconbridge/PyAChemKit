@@ -1,6 +1,0 @@
-AChemKit.randomnet
-==================
-
-.. currentmodule:: AChemKit
-
-.. autodata:: randomnet

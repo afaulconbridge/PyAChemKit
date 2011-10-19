@@ -1,6 +1,0 @@
-AChemKit.randomnet.Uniform
-==========================
-
-.. currentmodule:: AChemKit
-
-.. automethod:: randomnet.Uniform

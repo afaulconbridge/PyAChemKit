@@ -1,6 +1,0 @@
-AChemKit.randomnet.Linear
-=========================
-
-.. currentmodule:: AChemKit
-
-.. automethod:: randomnet.Linear

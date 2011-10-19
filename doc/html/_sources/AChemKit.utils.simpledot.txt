@@ -1,6 +1,0 @@
-AChemKit.utils.simpledot
-========================
-
-.. currentmodule:: AChemKit.utils
-
-.. autodata:: simpledot

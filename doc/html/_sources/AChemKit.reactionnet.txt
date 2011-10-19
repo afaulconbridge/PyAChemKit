@@ -1,6 +1,0 @@
-AChemKit.reactionnet
-====================
-
-.. currentmodule:: AChemKit
-
-.. autodata:: reactionnet

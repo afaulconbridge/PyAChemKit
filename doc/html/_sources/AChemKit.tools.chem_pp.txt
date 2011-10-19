@@ -1,6 +1,0 @@
-AChemKit.tools.chem_pp
-======================
-
-.. currentmodule:: AChemKit.tools
-
-.. autodata:: chem_pp
