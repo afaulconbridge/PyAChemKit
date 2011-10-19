@@ -1,0 +1,383 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>utils Package &mdash; AChemKit 0.4.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.4.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="AChemKit 0.4.0 documentation" href="index.html" />
+    <link rel="up" title="achemkit Package" href="achemkit.html" />
+    <link rel="next" title="To-Dos" href="TODO.html" />
+    <link rel="prev" title="tools Package" href="achemkit.tools.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="TODO.html" title="To-Dos"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="achemkit.tools.html" title="tools Package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">AChemKit 0.4.0 documentation</a> &raquo;</li>
+          <li><a href="modules.html" >Project Modules</a> &raquo;</li>
+          <li><a href="achemkit.html" accesskey="U">achemkit Package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="utils-package">
+<h1>utils Package<a class="headerlink" href="#utils-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><tt class="xref py py-mod docutils literal"><span class="pre">utils</span></tt> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-achemkit.utils"></span><p>Various utility functions and classes.</p>
+</div>
+<div class="section" id="module-achemkit.utils.bag">
+<span id="bag-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">bag</span></tt> Module<a class="headerlink" href="#module-achemkit.utils.bag" title="Permalink to this headline">¶</a></h2>
+<p>A collection of classes providing containers. These use the abstract
+base classes (ABCs) from <a class="reference external" href="http://docs.python.org/2.7/library/collections.html#module-collections" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">collections</span></tt></a> module to satisfy 
+isinstance() criteria for API provision.</p>
+<dl class="class">
+<dt id="achemkit.utils.bag.Bag">
+<em class="property">class </em><tt class="descclassname">achemkit.utils.bag.</tt><tt class="descname">Bag</tt><big>(</big><em>iterable</em><big>)</big><a class="headerlink" href="#achemkit.utils.bag.Bag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#achemkit.utils.bag.FrozenBag" title="achemkit.utils.bag.FrozenBag"><tt class="xref py py-class docutils literal"><span class="pre">achemkit.utils.bag.FrozenBag</span></tt></a>, <tt class="xref py py-class docutils literal"><span class="pre">_abcoll.MutableSet</span></tt></p>
+<p>A Bag is like a set, but can contain duplicates.</p>
+<p>Also, a Bag is like a list, but is always ordered.</p>
+<dl class="method">
+<dt id="achemkit.utils.bag.Bag.add">
+<tt class="descname">add</tt><big>(</big><em>item</em><big>)</big><a class="headerlink" href="#achemkit.utils.bag.Bag.add" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="achemkit.utils.bag.Bag.discard">
+<tt class="descname">discard</tt><big>(</big><em>item</em><big>)</big><a class="headerlink" href="#achemkit.utils.bag.Bag.discard" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="achemkit.utils.bag.FrozenBag">
+<em class="property">class </em><tt class="descclassname">achemkit.utils.bag.</tt><tt class="descname">FrozenBag</tt><big>(</big><em>iterable</em><big>)</big><a class="headerlink" href="#achemkit.utils.bag.FrozenBag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">_abcoll.Set</span></tt></p>
+<p>A Bag is like a set, but can contain duplicates.</p>
+<p>Also, a Bag is like a list, but is always ordered.</p>
+<p>Note: objects must be both hashable and sortable. By default, 
+python objects are sorted by id(), but this is not consistent.
+As there is no easy way to test this, if you get wierd results
+this may be the cause.</p>
+<dl class="method">
+<dt id="achemkit.utils.bag.FrozenBag.count">
+<tt class="descname">count</tt><big>(</big><em>item</em><big>)</big><a class="headerlink" href="#achemkit.utils.bag.FrozenBag.count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="achemkit.utils.bag.OrderedBag">
+<em class="property">class </em><tt class="descclassname">achemkit.utils.bag.</tt><tt class="descname">OrderedBag</tt><big>(</big><em>iterable</em><big>)</big><a class="headerlink" href="#achemkit.utils.bag.OrderedBag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#achemkit.utils.bag.OrderedFrozenBag" title="achemkit.utils.bag.OrderedFrozenBag"><tt class="xref py py-class docutils literal"><span class="pre">achemkit.utils.bag.OrderedFrozenBag</span></tt></a>, <tt class="xref py py-class docutils literal"><span class="pre">_abcoll.MutableSet</span></tt></p>
+<p>Like a Bag, but iterating will keep the order things were put in. New items
+are added to the end of the OrderedBag - if you need anything else you can
+convert it to a tuple or list and make a new bag.</p>
+<p>Comparisons are still as for a Bag so OrderedBag([1,2,1]) == OrderedBag([2,1,1])
+will return True.</p>
+<dl class="method">
+<dt id="achemkit.utils.bag.OrderedBag.add">
+<tt class="descname">add</tt><big>(</big><em>item</em><big>)</big><a class="headerlink" href="#achemkit.utils.bag.OrderedBag.add" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="achemkit.utils.bag.OrderedBag.discard">
+<tt class="descname">discard</tt><big>(</big><em>item</em><big>)</big><a class="headerlink" href="#achemkit.utils.bag.OrderedBag.discard" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="achemkit.utils.bag.OrderedFrozenBag">
+<em class="property">class </em><tt class="descclassname">achemkit.utils.bag.</tt><tt class="descname">OrderedFrozenBag</tt><big>(</big><em>iterable</em><big>)</big><a class="headerlink" href="#achemkit.utils.bag.OrderedFrozenBag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">_abcoll.Set</span></tt></p>
+<p>Like a FrozenBag, but iterating will keep the order things were put in.</p>
+<p>Comparisons are still as for a FrozenBag so OrderedFrozenBag([1,2,1]) == OrderedFrozenBag([2,1,1])
+will return True.</p>
+<dl class="method">
+<dt id="achemkit.utils.bag.OrderedFrozenBag.count">
+<tt class="descname">count</tt><big>(</big><em>item</em><big>)</big><a class="headerlink" href="#achemkit.utils.bag.OrderedFrozenBag.count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="achemkit.utils.bag.OrderedFrozenBag.index">
+<tt class="descname">index</tt><big>(</big><em>item</em><big>)</big><a class="headerlink" href="#achemkit.utils.bag.OrderedFrozenBag.index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="achemkit.utils.bag.OrderedFrozenBagCache">
+<em class="property">class </em><tt class="descclassname">achemkit.utils.bag.</tt><tt class="descname">OrderedFrozenBagCache</tt><a class="headerlink" href="#achemkit.utils.bag.OrderedFrozenBagCache" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<dl class="attribute">
+<dt id="achemkit.utils.bag.OrderedFrozenBagCache.cache">
+<tt class="descname">cache</tt><em class="property"> = {}</em><a class="headerlink" href="#achemkit.utils.bag.OrderedFrozenBagCache.cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-achemkit.utils.simpledot">
+<span id="simpledot-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">simpledot</span></tt> Module<a class="headerlink" href="#module-achemkit.utils.simpledot" title="Permalink to this headline">¶</a></h2>
+<p>A library to manage <cite>.dot</cite> files</p>
+<p>There are existing python libraries for this, but they do not
+always do it correctly (e.g. PyDot does not respect order within
+a .dot file).</p>
+<dl class="class">
+<dt id="achemkit.utils.simpledot.SimpleDot">
+<em class="property">class </em><tt class="descclassname">achemkit.utils.simpledot.</tt><tt class="descname">SimpleDot</tt><big>(</big><em>name='G'</em>, <em>digraph=True</em>, <em>strict=False</em>, <em>cluster=False</em><big>)</big><a class="headerlink" href="#achemkit.utils.simpledot.SimpleDot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/2.7/library/userdict.html#UserDict.DictMixin" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">UserDict.DictMixin</span></tt></a></p>
+<p>Repsents a graphviz <cite>.dot</cite> file (also known as <cite>.gv</cite>).</p>
+<p>Uses a dictionary-like interface via the :class:~`UserDict.DictMixin`
+class.</p>
+<p>To produce <cite>.dot</cite> output, cast to string e.g. <cite>str(mysimpledot)</cite></p>
+<p>Contains three types of graph objects:</p>
+<dl class="docutils">
+<dt>Nodes</dt>
+<dd>Named by strings and are dictionaries of attributes.</dd>
+<dt>Edges</dt>
+<dd>Named by tuples of length 2 of strings and are are
+dictionaries of attributes. Nodes will be implicitly created by
+graphviz if they do not exist, and therefore do not need to be
+explicitly created.</dd>
+<dt>Subgraphs</dt>
+<dd>Named by strings and are instances of this class. Some
+graphviz layout engines (e.g. <cite>neato</cite>) will flatten subgraphs.</dd>
+</dl>
+<p>These can be set and accessed by standard slice notation (e.g.
+<cite>dot[nodename] = {}</cite>).</p>
+<p>Node names and subgraph names are unique but multiple parallel edges
+are permitted. However, slice notation (e.g. <cite>dot[(from, to)]</cite>) cannot
+cope with this. Therefore, when there are multiple parallel edges,
+accessing any of them returns a tuple of all their attributes as
+dictionaries. To create multiple parallel edges you must use the
+<a class="reference internal" href="#achemkit.utils.simpledot.SimpleDot.add" title="achemkit.utils.simpledot.SimpleDot.add"><tt class="xref py py-meth docutils literal"><span class="pre">add()</span></tt></a> method</p>
+<p>Names of nodes and subgraphs, attribute keys, and attribute values
+should all be graphviz compatible. Some attempt to wrap string attribute
+values in quotes will be made so that the use of plain python strings
+is accepted by graphviz.</p>
+<p>Very little checking and enforcement is performed. This means that you
+can use them in ways not originally intended; for example, you can
+se attributes that no graphviz programme will recognize. But, it also
+means you can break it by doing odd things to them.</p>
+<dl class="method">
+<dt id="achemkit.utils.simpledot.SimpleDot.add">
+<tt class="descname">add</tt><big>(</big><em>key</em>, <em>value=None</em><big>)</big><a class="headerlink" href="#achemkit.utils.simpledot.SimpleDot.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Guaranteed to add the passed key/value to self, even if it is a duplicate.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="achemkit.utils.simpledot.SimpleDot.cluster">
+<tt class="descname">cluster</tt><em class="property"> = False</em><a class="headerlink" href="#achemkit.utils.simpledot.SimpleDot.cluster" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="achemkit.utils.simpledot.SimpleDot.content">
+<tt class="descname">content</tt><em class="property"> = None</em><a class="headerlink" href="#achemkit.utils.simpledot.SimpleDot.content" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="achemkit.utils.simpledot.SimpleDot.digraph">
+<tt class="descname">digraph</tt><em class="property"> = True</em><a class="headerlink" href="#achemkit.utils.simpledot.SimpleDot.digraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="achemkit.utils.simpledot.SimpleDot.edges">
+<tt class="descname">edges</tt><big>(</big><big>)</big><a class="headerlink" href="#achemkit.utils.simpledot.SimpleDot.edges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="achemkit.utils.simpledot.SimpleDot.get">
+<tt class="descname">get</tt><big>(</big><em>key</em><big>)</big><a class="headerlink" href="#achemkit.utils.simpledot.SimpleDot.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a tuple of all things matching that key.</p>
+<p>Designed for multiple edges, but will also work with single edges, nodes, or subgraphs.
+This provides a unified interface.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="achemkit.utils.simpledot.SimpleDot.keys">
+<tt class="descname">keys</tt><big>(</big><big>)</big><a class="headerlink" href="#achemkit.utils.simpledot.SimpleDot.keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple of the keys.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="achemkit.utils.simpledot.SimpleDot.name">
+<tt class="descname">name</tt><em class="property"> = None</em><a class="headerlink" href="#achemkit.utils.simpledot.SimpleDot.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="achemkit.utils.simpledot.SimpleDot.nodes">
+<tt class="descname">nodes</tt><big>(</big><big>)</big><a class="headerlink" href="#achemkit.utils.simpledot.SimpleDot.nodes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="achemkit.utils.simpledot.SimpleDot.plot">
+<tt class="descname">plot</tt><big>(</big><em>output='pdf'</em>, <em>prog='dot'</em>, <em>args=()</em><big>)</big><a class="headerlink" href="#achemkit.utils.simpledot.SimpleDot.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls the specified drawing program to turn this into an image.</p>
+<p>Use args to pass extra arguments, particularly <tt class="docutils literal"><span class="pre">-o</span></tt> to specify an output filename.</p>
+<p>Follows the same format as subprocess calls.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="achemkit.utils.simpledot.SimpleDot.strict">
+<tt class="descname">strict</tt><em class="property"> = False</em><a class="headerlink" href="#achemkit.utils.simpledot.SimpleDot.strict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-achemkit.utils.utils">
+<span id="utils-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">utils</span></tt> Module<a class="headerlink" href="#module-achemkit.utils.utils" title="Permalink to this headline">¶</a></h2>
+<p>Various small functions that can get lumped together into this module.</p>
+<dl class="class">
+<dt id="achemkit.utils.utils.frozenarray">
+<em class="property">class </em><tt class="descclassname">achemkit.utils.utils.</tt><tt class="descname">frozenarray</tt><big>(</big><em>typecode</em>, <em>initializer=</em><span class="optional">[</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#achemkit.utils.utils.frozenarray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/2.7/library/array.html#array.array" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">array.array</span></tt></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="achemkit.utils.utils.get_sample">
+<tt class="descclassname">achemkit.utils.utils.</tt><tt class="descname">get_sample</tt><big>(</big><em>distribution</em>, <em>rng=None</em><big>)</big><a class="headerlink" href="#achemkit.utils.utils.get_sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Samples a provided distribution at random.</p>
+<p>Distribution can be a single number (int or float), always returns the same value</p>
+<p>Distribution can be a sequence (list or tuple) which will be uniformly sampled from
+Duplicates can be used to adjust frequencies.</p>
+<p>Distribution can be a mapping (dict) where the keys are things to be returned and
+values are the relative weightings.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="achemkit.utils.utils.long_subseq">
+<tt class="descclassname">achemkit.utils.utils.</tt><tt class="descname">long_subseq</tt><big>(</big><em>data</em><big>)</big><a class="headerlink" href="#achemkit.utils.utils.long_subseq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given some sequences &#8212; strings, tuples, lists, etc &#8212; return the 
+longest subsequence common to all sequences.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="achemkit.utils.utils.memory_free">
+<tt class="descclassname">achemkit.utils.utils.</tt><tt class="descname">memory_free</tt><big>(</big><big>)</big><a class="headerlink" href="#achemkit.utils.utils.memory_free" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the amount of memory free, in megabytes</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="achemkit.utils.utils.pool">
+<tt class="descclassname">achemkit.utils.utils.</tt><tt class="descname">pool</tt><big>(</big><em>f</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#achemkit.utils.utils.pool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper of pythons built-in multiprocessing library that is more like a 
+drop-in replacement for map.</p>
+<p>Also handles using instance methods, assuming that they are the same as the class
+method.</p>
+<p>Takes parameters as itterables and uses them in lock-step.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">utils Package</a><ul>
+<li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">utils</span></tt> Package</a></li>
+<li><a class="reference internal" href="#module-achemkit.utils.bag"><tt class="docutils literal"><span class="pre">bag</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-achemkit.utils.simpledot"><tt class="docutils literal"><span class="pre">simpledot</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-achemkit.utils.utils"><tt class="docutils literal"><span class="pre">utils</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="achemkit.tools.html"
+                        title="previous chapter">tools Package</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="TODO.html"
+                        title="next chapter">To-Dos</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/achemkit.utils.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="TODO.html" title="To-Dos"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="achemkit.tools.html" title="tools Package"
+             >previous</a> |</li>
+        <li><a href="index.html">AChemKit 0.4.0 documentation</a> &raquo;</li>
+          <li><a href="modules.html" >Project Modules</a> &raquo;</li>
+          <li><a href="achemkit.html" >achemkit Package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Adam Faulconbridge.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.
+    </div>
+  </body>
+</html>
