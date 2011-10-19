@@ -18,8 +18,12 @@ from achemkit.utils.simpledot import SimpleDot
 from achemkit.reactionnetdot import net_to_dot
 from achemkit.randomnet import Uniform
 from achemkit.randomnet import Linear
+
 from achemkit.bucket import Bucket, Event
+
 from achemkit.achem import AChem, AChemReactionNetwork
+
+from achemkit.sim.reactor import Reactor
 from achemkit.sim.simple import sim_enumerate, sim_itterative, sim_stepwise
 from achemkit.sim.simple import ReactorEnumerate, ReactorItterative, ReactorStepwise
 from achemkit.sim.gillespie import simulate_gillespie as sim_gillespie
