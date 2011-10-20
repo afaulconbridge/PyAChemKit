@@ -26,5 +26,5 @@ from achemkit.achem import AChem, AChemReactionNetwork
 from achemkit.sim.reactor import Reactor
 from achemkit.sim.simple import sim_enumerate, sim_itterative, sim_stepwise
 from achemkit.sim.simple import ReactorEnumerate, ReactorItterative, ReactorStepwise
-from achemkit.sim.gillespie import simulate_gillespie as sim_gillespie
+from achemkit.sim.gillespie import sim_gillespie, ReactorGillespieLike
 
