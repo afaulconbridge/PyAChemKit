@@ -14,11 +14,15 @@ non-living environment - primordial soup etc.
 Installation
 ============
 
-To install on Ubuntu Linux, run ::
+To install on Ubuntu (and dervatives such as Xubuntu or Mint), run ::
 
-  sudo easy_install -U AChemKit
+  sudo easy_install achemkit
+  
+If you dont have easy_install installed, run ::
 
-This package should work on other Linux distributions and versions of Windows, but is untested.
+  sudo apt-get install python-setuptools
+
+This package should work on other Linux distributions and mostly versions of Windows, but is untested.
 
 This package requires the following:
 
@@ -42,7 +46,6 @@ The latest version of the source code is available from https://github.com/afaul
 The source code additionally requires the following:
 
 * Sphinx   >= 1.0   http://sphinx.pocoo.org/
-* Graphviz          http://www.graphviz.org/
 * Make              http://www.gnu.org/software/make/
 * LaTeX             http://www.latex-project.org/
 * PyLint   >=0.13.0 http://www.logilab.org/project/pylint/
