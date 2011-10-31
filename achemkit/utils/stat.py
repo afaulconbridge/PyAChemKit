@@ -7,10 +7,10 @@ def median(values):
     return sorted(values)[len(values) // 2]
     
 def quartile_upper(values):
-    return sorted(values)[len(values) // 4]
+    return sorted(values, reverse=True)[len(values) // 4]
     
 def quartile_lower(values):
-    return sorted(values, reverse=True)[len(values) // 4]
+    return sorted(values)[len(values) // 4]
     
 def standard_deviation(values):
     raise NotImplementedError
