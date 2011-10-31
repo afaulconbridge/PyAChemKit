@@ -47,59 +47,7 @@ def long_subseq(data):
             if j > len(substr) and all(data[0][i:i+j] in x for x in data):
                 substr = data[0][i:i+j]
     return substr
-    
-    
-p = None 
-import multiprocessing 
-import itertools  
-import inspect
-
-
-def pool(f, *args, **kwargs):
-    """
-    Wrapper of pythons built-in multiprocessing library that is more like a 
-    drop-in replacement for map.
-    
-    Also handles using instance methods, assuming that they are the same as the class
-    method.
-    
-    Takes parameters as itterables and uses them in lock-step.    
-    """
-    p = multiprocessing.Pool()
-        
-    #need to turn args and kwargs into a single itterable
-    #each item in that itterable is a tuple of one set of args and the kwargs
-    newargs = itertools.izip(*args)
-    newargskwargs = itertools.izip(newargs, itertools.repeat(kwargs))
-
-    #now we need a function that will deal with it approriately
-    #at a minimum, the function must unpack the args and kwargs
-    #if we were given an instancemethod, we need to handle it too
-    
-    if inspect.ismethod(f):
-        #this is an instance method
-        #pickle cant handle this, so hack it apart
-        realargs = itertools.izip(itertools.repeat((f.im_func.__name__, f.im_self, f.im_class)), newargskwargs)
-        tocall = _mypool_method
-    #elif inspect.isfunction(f):
-    else:
-        #this is a function, or a function-like object
-        #pickle can handle this
-        realargs = itertools.izip(itertools.repeat(f), newargskwargs)
-        tocall = _mypool_function
-        
-    for result in p.imap(tocall, realargs):
-    #for result in map(tocall, realargs):
-        yield result
-    
-def _mypool_method(passed):
-    ((name, self, cls), (args, kwargs)) = passed
-    return cls.__dict__[name](self, *args, **kwargs)
-
-def _mypool_function(passed):
-    (f, (args, kwargs)) = passed
-    return f(*args, **kwargs)
-        
+           
 def memory_free():
     """Returns the amount of memory free, in megabytes"""
     import os
