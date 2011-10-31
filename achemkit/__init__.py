@@ -29,3 +29,4 @@ from achemkit.sim.simple import ReactorEnumerate, ReactorItterative, ReactorStep
 from achemkit.sim.gillespie import sim_gillespie, ReactorGillespieLike
 
 import achemkit.properties
+import achemkit.stat
