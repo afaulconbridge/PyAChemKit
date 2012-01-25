@@ -29,4 +29,7 @@ from achemkit.sim.simple import ReactorEnumerate, ReactorItterative, ReactorStep
 from achemkit.sim.gillespie import sim_gillespie, ReactorGillespieLike
 
 import achemkit.properties
-import achemkit.stat
+import achemkit.properties_wnx
+import achemkit.utils.stat
+
+from achemkit.utils.datafile import data_from_file, data_to_file

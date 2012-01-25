@@ -197,5 +197,4 @@ def not_conservation_mass(rn):
 
     (Credit to Adam Nellis for algorithm)
     """
-
-    return False
+    raise NotImplementedError

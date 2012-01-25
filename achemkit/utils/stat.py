@@ -16,5 +16,7 @@ def standard_deviation(values):
     raise NotImplementedError
     
 def standard_error(values):
-    raise NotImplementedError
+    raise NotImplementedError    
     
+def correlation(values1, values2):
+    raise NotImplementedError

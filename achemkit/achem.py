@@ -1,17 +1,26 @@
+"""
+This module contains a template for representing generic Artificial Chemistries,
+without needing to explicit list all reactions. Whilst this is not required to
+be used as a base class for custom Artificial Chemistries, it is recommended
+to do so.
+"""
+
 import random
 
 from achemkit import OrderedFrozenBag
 
 class AChem(object):
+    noreactants = (2,)
 
     def react(self, molecules):
         """
         May be implemented by subclasses to enable simulation
         of reaction network.
         
-        Give one or more molecules, returns a collection of products.
+        Elastic reactions return the reactants as the products.
         
-        Elastic reactions return the sample products as reactants.
+        :param molecules: Itterable of reactant molecules
+        :rtype: Itterable of product molecules
         """
         raise NotImplementedError
         
@@ -23,7 +32,11 @@ class AChem(object):
         
         Given one or more molecules, returns a dictionary where
         keys are possible reaction products and values are relative
-        frequencies.
+        rate constants.
+        
+        :param molecules: Itterable of reactant molecular species
+        :rtype: Dictionary with tuples of (reactants, products) as keys and
+                rate constants as values.
         """
         raise NotImplementedError
         
@@ -31,21 +44,24 @@ class AChem(object):
     def atoms(self, molecule):
         """
         May be implemented by subclasses to enable some analysis
-        techniques.
+        techniques. Should only be implemented for Artificial Chemistries where
+        molecules are composed of atoms (structured or sub-symbolic).
         
-        Given a molecule, returns an itterable over all atoms in that
-        molecule.
+        Itterates over each atom wthin a molecule. 
+        :param molecule: A molecule object
+        :rtype: Itterable over atoms
         """
         raise NotImplementedError
         
        
 class AChemReactionNetwork(AChem):
     """
-    This is an AChem class that uses a Reaction Network as its base. 
+    This is a subclass of :py:class:`AChem` that uses a 
+    :py:class:`achem.Reaction Network` as its base. 
     
-    The main point of this is to be able to compare different simuatlion
-    approaches to see which ones best reconstruct the original Reaction 
-    Network.
+    This is designed to be used to compare different simulation approaches, 
+    typically to see which best reconstructs the original
+    :py:class:`achem.Reaction Network`.
     """
     
     def __init__(self, reactionnetwork):

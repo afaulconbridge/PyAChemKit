@@ -151,3 +151,9 @@ def _filter_loops(i, loops):
 	        break
     if not contains:
         return loops[i]
+        
+        
+def get_direct_autocatalytic_sets(net):
+    G = make_catalysis_graph(net)
+    return networkx.strongly_connected_components(G)
+    

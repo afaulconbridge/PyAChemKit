@@ -17,13 +17,17 @@ def get_sample(distribution, rng=None):
     values are the relative weightings.
     
     """
-    if rng is None:
-        rng = random.Random()
+    #TODO convert this to try/except?
     if isinstance(distribution, int) or isinstance(distribution, float):
         return distribution
-    elif isinstance(distribution, list) or isinstance(distribution, tuple):
+        
+    if rng is None:
+        rng = random.Random()
+        
+    if isinstance(distribution, list) or isinstance(distribution, tuple):
         return (rng.sample(distribution, 1))[0]
-    elif isinstance(distribution, dict):
+        
+    if isinstance(distribution, dict):
         #assume its a value:proportion dict
         total = sum(distribution.values())
         target = rng.random()*total

@@ -48,10 +48,12 @@ class ReactorEnumerate(Reactor):
         """
         if mol not in self.mols:
             self.mols.append(mol)
-            for other in self.mols:
-                reactants = OrderedFrozenBag((mol, other))
-                assert reactants not in self.tested
-                self.untested.append(reactants)
+            for i in set(self.achem.noreactants):
+                for others in itertools.combinations(self.mols, i-1):
+                    reactants = (mol,)+others
+                    reactants = OrderedFrozenBag(reactants)
+                    assert reactants not in self.tested
+                    self.untested.append(reactants)
         
     def do(self, count):
         """
@@ -95,7 +97,7 @@ class ReactorItterative(Reactor):
         """
         super(ReactorItterative, self).__init__(achem, mols)
         self.maxtime = 0.0
-        self.time = 0.0
+        self.time = 1.0
         if isinstance(rngseed, random.Random):
             self.rng = rngseed
         else:
@@ -123,10 +125,10 @@ class ReactorItterative(Reactor):
             products = self.achem.react(reactants)
             self.mols += tuple(products)
             
-            e = Event(time, reactants, products)
+            e = Event(self.time, reactants, products)
             yield e
-            
             self.time += 1.0
+            
                 
 class ReactorStepwise(Reactor):
     """
@@ -141,7 +143,7 @@ class ReactorStepwise(Reactor):
         """
         super(ReactorStepwise, self).__init__(achem, mols)
         self.maxtime = 0.0
-        self.time = 0.0
+        self.time = 1.0
         if isinstance(rngseed, random.Random):
             self.rng = rngseed
         else:
@@ -164,16 +166,18 @@ class ReactorStepwise(Reactor):
             newmols = ()
             allreactants = []
             while len(self.mols) > 0:
-                noreactants = 2
+                noreactants = get_sample(self.achem.noreactants)
                 if noreactants <= len(self.mols):
                     reactants = self.mols[:noreactants]
                     self.mols = self.mols[noreactants:]                
                     allreactants.append(OrderedFrozenBag(reactants))
+                else:
+                    break
                     
             allproducts = umpf.map(self.achem.react, allreactants)
             results = itertools.izip(allreactants, allproducts)
             for reactants, products in results:
-                e = Event(time, reactants, products)
+                e = Event(self.time, reactants, products)
                 newmols += tuple(products)
                 yield e
                 
@@ -182,7 +186,8 @@ class ReactorStepwise(Reactor):
             
 def sim_enumerate(achem, mols, maxmols):
     """
-    Wrapper for :py:class:`ReactorEnumerate`.
+    Wrapper for :py:class:`ReactorEnumerate`
+    to return :py:class:`Event` objects.
     """
     sim = ReactorEnumerate(achem, mols)
     for e in sim.do(maxmols):
@@ -190,7 +195,8 @@ def sim_enumerate(achem, mols, maxmols):
         
 def sim_itterative(achem, mols, maxtime, rng = None):
     """
-    Wrapper for :py:class:`ReactorItterative`.
+    Wrapper for :py:class:`ReactorItterative`
+    to return :py:class:`Event` objects.
     """
     sim = ReactorItterative(achem, mols, rng)
     for e in sim.do(maxtime):
@@ -199,9 +205,19 @@ def sim_itterative(achem, mols, maxtime, rng = None):
 
 def sim_stepwise(achem, mols, maxtime, rng=None):
     """
-    Wrapper for :py:class:`ReactorStepwise`.
+    Wrapper for :py:class:`ReactorStepwise`
+    to return :py:class:`Event` objects.
     """
     sim = ReactorStepwise(achem, mols, rng)
     for e in sim.do(maxtime):
         yield e
 
+def net_enumerate(achem, mols, maxmol, rng=None):
+    """
+    Wrapper for :py:func:`sim_enumerate`
+    to return a :py:class:`ReactionNetwork` object.
+    """
+    events = sim_enumerate(achem, mols, maxmols)
+    bucket = Bucket(events)
+    net = bucket.reactionnet
+    return net

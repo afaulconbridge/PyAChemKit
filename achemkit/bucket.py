@@ -7,9 +7,10 @@ the data within :py:class:`~.Bucket` objects.
 
 import re
 import collections
+import math
 
-from .reactionnet import ReactionNetwork
-from .utils.bag import OrderedFrozenBag, OrderedFrozenBagCache
+from achemkit import ReactionNetwork
+from achemkit import OrderedFrozenBag
 
 class Event(object):
     """
@@ -61,6 +62,10 @@ class Bucket(object):
     events = []
 
     def __init__(self, events):
+        """
+        events will immediately be converted to a sorted tuple. If events is an 
+        intterator this will cause it to be fully evaluated.
+        """
         self.events = sorted(events)
 
     @classmethod
@@ -158,30 +163,53 @@ class Bucket(object):
                     else:
                         assert rates[reaction] == event.rateconstant
                 
-                reactants_sorted = tuple(sorted(reactants))
-                if reactants_sorted not in seenreactants:
-                    seenreactants[reactants_sorted] = 0
-                seenreactants[reactants_sorted] += 1
-                #if event.reactants == event.products:
-                #    print "Bounce"
-                
-            #should correct the rates by the total number of collisions of those reactants
-            #BUT current old data does not track bounces :`(
-            
-            #correct the rate by the number of times this occured
-            for reaction in tuple(rates.keys()):
-                reactants, products = reaction
-                reactants_sorted = tuple(sorted(reactants))
-                #print reaction, rates[reaction], seenreactants[reactants_sorted]
-                assert float(rates[reaction]) <= float(seenreactants[reactants_sorted])
-                rates[reaction] = float(rates[reaction]) / float(seenreactants[reactants_sorted])
-                
-            #remove bounces
-            for reaction in tuple(rates.keys()):
-                reactants, products = reaction
-                if reactants == products:
-                    del rates[reaction]
-
             self._reactionnet = ReactionNetwork(rates)
 
         return self._reactionnet
+        
+    def get_mol_counts(self, initialcounts, timeinterval=1.0):
+        """
+        Return a dictionary of dictionaries where the first key is time points,
+        the second key is molecular species, and the value is the number of 
+        molecules of that species present at that time.
+        """
+        
+        data = {}
+        if isinstance(initialcounts, tuple) or isinstance(initialcounts, list):
+            data[0.0] = {}
+            for mol in initialcounts:
+                if mol not in data[0.0]:
+                    data[0.0][mol] = 0
+                data[0.0][mol] += 1
+        elif isinstance(initialcounts, dict):
+            data[0.0] = initialcounts
+            
+        def get_last_amount(data, mol):
+            history = [x for x in data if x < time and mol in data[x]]
+            if len(history) == 0:
+                return 0
+            else:
+                lasttime = max([x for x in data if x < time and mol in data[x]])
+                return data[lasttime][mol]
+            
+        for event in self.events:
+            #assume that events is already sorted by increasing time
+            time = (math.ceil(event.time/timeinterval))*timeinterval
+            assert time > 0.0
+            
+            if time not in data:
+                data[time] = {}
+                
+            for mol in event.reactants:
+                if mol not in data[time]:
+                    #get last known quantity
+                    data[time][mol] = get_last_amount(data, mol)
+                data[time][mol] -= 1
+                
+            for mol in event.products:
+                if mol not in data[time]:
+                    #get last known quantity
+                    data[time][mol] = get_last_amount(data, mol)
+                data[time][mol] += 1
+                
+        return data
