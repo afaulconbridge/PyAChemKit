@@ -155,5 +155,15 @@ def _filter_loops(i, loops):
         
 def get_direct_autocatalytic_sets(net):
     G = make_catalysis_graph(net)
-    return networkx.strongly_connected_components(G)
+    c = networkx.strongly_connected_components(G)
+    sets = []
+    for x in c:
+        x = tuple(sorted(x))
+        if len(x) > 1:
+            sets.append(x)
+        else:
+            #only add single nodes if they are autocatalytic
+            if (x[0],x[0]) in G:
+                sets.append(x)
+    return tuple(sets)
     
