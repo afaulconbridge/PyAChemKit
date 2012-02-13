@@ -48,6 +48,8 @@ class ReactionNetwork(object):
                 products = OrderedFrozenBag(products)
             if reactants != products:
                 self._rates[reactants, products] = rates[reaction]
+        #self._rates = FrozenDict(self._rates)
+        self.rates = dict(self._rates)
 
     @property
     def seen(self):
@@ -73,11 +75,11 @@ class ReactionNetwork(object):
         """Gets the rate of a particular reaction."""
         return self._rates[reactants, products]
         
-    def rates(self):
+    def itter_rates(self):
         """Itterate over all reactions through tuples
-        of the form (reactants, products, rate)"""
+        of the form ((reactants, products), rate)"""
         for reactants, products in self.reactions:
-            yield (reactants, products, self.rate(reactants, products))
+            yield ((reactants, products), self.rate(reactants, products))
     
     @classmethod
     def reaction_to_string(cls, reaction, rate=1.0):

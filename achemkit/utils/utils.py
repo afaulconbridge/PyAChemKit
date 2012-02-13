@@ -39,6 +39,9 @@ def get_sample(distribution, rng=None):
             score += distribution.values()[i]
             hit = distribution.keys()[i]
         return hit
+        
+def get_samples(distribution, count, rng):
+    return [get_sample(distribution, rng) for x in xrange(count)]
 
 def long_subseq(data):
     """

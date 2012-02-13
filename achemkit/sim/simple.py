@@ -19,6 +19,7 @@ from achemkit.utils.utils import get_sample
 from achemkit import OrderedFrozenBag
 from achemkit import Reactor
 from achemkit import Event
+from achemkit import Bucket
 
 class ReactorEnumerate(Reactor):
     """
@@ -48,7 +49,13 @@ class ReactorEnumerate(Reactor):
         """
         if mol not in self.mols:
             self.mols.append(mol)
-            for i in set(self.achem.noreactants):
+            noreactants = self.achem.noreactants
+            try:
+                noreactants = set(noreactants)
+            except TypeError:
+                #not an itterable, single number
+                noreactants = set([noreactants])
+            for i in noreactants:
                 for others in itertools.combinations(self.mols, i-1):
                     reactants = (mol,)+others
                     reactants = OrderedFrozenBag(reactants)
@@ -143,7 +150,7 @@ class ReactorStepwise(Reactor):
         """
         super(ReactorStepwise, self).__init__(achem, mols)
         self.maxtime = 0.0
-        self.time = 1.0
+        self.time = 0.0
         if isinstance(rngseed, random.Random):
             self.rng = rngseed
         else:
@@ -212,7 +219,7 @@ def sim_stepwise(achem, mols, maxtime, rng=None):
     for e in sim.do(maxtime):
         yield e
 
-def net_enumerate(achem, mols, maxmol, rng=None):
+def net_enumerate(achem, mols, maxmols, rng=None):
     """
     Wrapper for :py:func:`sim_enumerate`
     to return a :py:class:`ReactionNetwork` object.

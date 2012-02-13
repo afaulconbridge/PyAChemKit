@@ -74,6 +74,7 @@ def net_to_dot(net, names=None, rates=None, shown=(), hidden =()):
         hidden = tuple(hidden)
 
     dot = SimpleDot()
+    #Override some dot defaults to get better looking graphs
     dot["node"] = {}
     dot["node"]["fontsize"] = 10.0
     #make it as small as possible
@@ -91,7 +92,10 @@ def net_to_dot(net, names=None, rates=None, shown=(), hidden =()):
     #dot["graph"]["layout"] = "sfdp"
     #dot["graph"]["overlap"] = "prism"
     dot["graph"]["overlap"] = "false"
-    #dot["graph"]["normalize" = "true"
+    dot["graph"]["normalize"] = "true"
+    dot["graph"]["splines"] = "true"
+    dot["graph"]["nodesep"] = 0.2
+    dot["graph"]["ranksep"] = 0.15
     dot["graph"]["K"] = dot["edge"]["len"] #this is similar to edge:len
 
     molplot = net.seen
